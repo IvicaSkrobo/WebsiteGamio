@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -69,6 +69,10 @@ const originalsDiceAsset =
   "https://www.figma.com/api/mcp/asset/6c76508b-6328-49ee-aba7-939029646604";
 const originalsCashoutAsset =
   "https://www.figma.com/api/mcp/asset/474529f6-1b4b-4ed9-a559-9023571feedc";
+const originalsBadgeAsset =
+  "https://www.figma.com/api/mcp/asset/1402779d-2350-4299-8b95-fbc0726e7a5d";
+const aboutUsPanelAsset =
+  "https://www.figma.com/api/mcp/asset/208b2f34-cbcf-4f23-847d-0d820c4af45d";
 const marketsVisualAsset =
   "https://www.figma.com/api/mcp/asset/30c91480-1867-45c0-98f1-fb0cb5297e4d";
 const capabilityGlowAsset =
@@ -106,14 +110,27 @@ const navItems: NavItem[] = [
 const floatingIcons = [
   {
     fallback: "heart" as const,
-    className: "left-[12.5%] top-[11.8rem] h-[86px] w-[97px]",
+    className: "left-[12.4%] top-[11.2rem] h-[94px] w-[106px]",
   },
   {
     fallback: "star" as const,
-    className: "left-[11.5%] top-[21.8rem] h-[88px] w-[88px]",
+    className: "left-[10.9%] top-[22.3rem] h-[94px] w-[94px]",
   },
-  { asset: heroBombAsset, className: "right-[23.55%] top-[11.4rem] h-[98px] w-[77px]" },
-  { asset: heroDiceAsset, className: "right-[17.25%] top-[18.95rem] h-[95px] w-[86px]" },
+  {
+    asset: predictionCoinAsset,
+    fallback: "coin" as const,
+    className: "left-[20.3%] top-[16.2rem] h-[82px] w-[82px]",
+  },
+  {
+    asset: heroBombAsset,
+    fallback: "bomb" as const,
+    className: "right-[23.2%] top-[10.8rem] h-[106px] w-[84px]",
+  },
+  {
+    asset: heroDiceAsset,
+    fallback: "dice" as const,
+    className: "right-[16.8%] top-[18.6rem] h-[104px] w-[94px]",
+  },
 ];
 
 const productCards: ProductCard[] = [
@@ -235,7 +252,323 @@ function formatTransactions(value: number) {
     currency: "EUR",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(value);
+  }).format(value).replace("€", "€ ");
+}
+
+function AssetImage({
+  src,
+  alt,
+  wrapperClassName,
+  imgClassName,
+  fallback,
+}: {
+  src: string;
+  alt: string;
+  wrapperClassName?: string;
+  imgClassName?: string;
+  fallback?: ReactNode;
+}) {
+  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
+
+  return (
+    <div className={cn("relative", wrapperClassName)}>
+      {status !== "loaded" ? fallback ?? null : null}
+      {status !== "error" ? (
+        <img
+          src={src}
+          alt={alt}
+          className={cn(
+            imgClassName,
+            status === "loaded" ? "opacity-100" : "opacity-0",
+          )}
+          onLoad={() => setStatus("loaded")}
+          onError={() => setStatus("error")}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function NavLogoFallback() {
+  return (
+    <div className="flex h-full w-full items-center justify-start">
+      <span className="font-display text-[31px] leading-none font-bold tracking-[-0.08em] text-white">
+        Gamio
+      </span>
+    </div>
+  );
+}
+
+function OriginalsBadgeFallback() {
+  return (
+    <div className="inline-flex h-[40px] items-center rounded-full border border-[rgba(255,169,119,0.35)] bg-[linear-gradient(180deg,rgba(255,125,78,0.18),rgba(255,125,78,0.06))] px-5 text-[11px] font-bold tracking-[0.38em] text-[#ffb188] uppercase">
+      Originals
+    </div>
+  );
+}
+
+function HogambaLogoFallback() {
+  return (
+    <div className="flex h-full w-full items-center justify-center rounded-full border border-[rgba(196,255,123,0.16)] bg-[linear-gradient(180deg,rgba(113,255,71,0.08),rgba(113,255,71,0.01))] px-5">
+      <span className="font-display text-[1.15rem] leading-none font-bold tracking-[0.34em] text-[#cbff89] uppercase">
+        Hogamba
+      </span>
+    </div>
+  );
+}
+
+function AboutPanelFallback() {
+  return (
+    <div className="absolute inset-0 bg-[#121212]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(255,255,255,0.06),rgba(255,255,255,0)_26%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]" />
+    </div>
+  );
+}
+
+function MarketsVisualFallback() {
+  return (
+    <div className="absolute inset-0 overflow-hidden rounded-[20px] bg-[linear-gradient(180deg,#080510,#05060b_52%,#09040d)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_42%,rgba(181,93,255,0.22),rgba(181,93,255,0)_28%),radial-gradient(circle_at_30%_72%,rgba(255,93,45,0.18),rgba(255,93,45,0)_28%),radial-gradient(circle_at_52%_48%,rgba(255,31,128,0.12),rgba(255,31,128,0)_34%)]" />
+      <div className="absolute left-[49%] top-[56%] h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,33,110,0.18),rgba(255,33,110,0)_68%)] blur-[70px]" />
+      {[
+        { left: "18%", top: "8%", width: 590, height: 250, rotate: -12, color: "rgba(87,77,255,0.34)" },
+        { left: "24%", top: "10%", width: 540, height: 240, rotate: -3, color: "rgba(255,65,140,0.54)" },
+        { left: "22%", top: "16%", width: 560, height: 250, rotate: 7, color: "rgba(255,65,140,0.64)" },
+        { left: "18%", top: "22%", width: 600, height: 255, rotate: 15, color: "rgba(255,83,147,0.46)" },
+        { left: "22%", top: "28%", width: 560, height: 230, rotate: 24, color: "rgba(255,91,61,0.34)" },
+        { left: "12%", top: "22%", width: 640, height: 290, rotate: -24, color: "rgba(189,62,255,0.28)" },
+        { left: "16%", top: "30%", width: 620, height: 300, rotate: -38, color: "rgba(255,60,132,0.34)" },
+        { left: "30%", top: "20%", width: 460, height: 230, rotate: 38, color: "rgba(255,95,155,0.3)" },
+      ].map((loop, index) => (
+        <div
+          key={`loop-${index}`}
+          className="absolute rounded-[50%] border-[2px] blur-[0.4px]"
+          style={{
+            left: loop.left,
+            top: loop.top,
+            width: `${loop.width}px`,
+            height: `${loop.height}px`,
+            transform: `rotate(${loop.rotate}deg)`,
+            borderColor: loop.color,
+            boxShadow: `0 0 18px ${loop.color}`,
+          }}
+        />
+      ))}
+      <div className="absolute left-[16%] top-[22%] h-[290px] w-[660px] rotate-[8deg] rounded-[50%] border border-[rgba(255,115,84,0.16)] blur-[1px]" />
+      <div className="absolute left-[42%] top-[2%] h-[280px] w-[2px] rotate-[7deg] bg-[linear-gradient(180deg,rgba(255,126,184,0),rgba(255,126,184,0.55),rgba(255,126,184,0))] blur-[1px]" />
+      <div className="absolute left-[48%] top-[2%] h-[280px] w-[2px] rotate-[3deg] bg-[linear-gradient(180deg,rgba(255,126,184,0),rgba(255,126,184,0.65),rgba(255,126,184,0))] blur-[1px]" />
+      <div className="absolute left-[54%] top-[4%] h-[270px] w-[2px] rotate-[-4deg] bg-[linear-gradient(180deg,rgba(255,126,184,0),rgba(255,126,184,0.45),rgba(255,126,184,0))] blur-[1px]" />
+      <div className="absolute inset-x-0 bottom-0 h-[26%] bg-[linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,0.35)_48%,rgba(0,0,0,0.72))]" />
+    </div>
+  );
+}
+
+function ProductArtFallback({ name }: { name: ProductCard["name"] }) {
+  if (name === "PLINKO") {
+    return (
+      <div className="absolute inset-0 overflow-hidden bg-[radial-gradient(circle_at_50%_20%,rgba(255,214,236,0.48),rgba(255,214,236,0)_30%),linear-gradient(180deg,#89124e,#430525)]">
+        <div className="absolute inset-x-[18%] top-[18%] grid grid-cols-5 gap-3 opacity-60">
+          {Array.from({ length: 20 }).map((_, index) => (
+            <span
+              key={`plinko-${index}`}
+              className="h-2.5 w-2.5 rounded-full bg-white/60"
+            />
+          ))}
+        </div>
+        <div className="absolute left-1/2 top-[38%] h-[110px] w-[110px] -translate-x-1/2 rounded-full border border-white/30 bg-[radial-gradient(circle_at_32%_28%,rgba(255,255,255,0.95),rgba(255,220,240,0.9)_18%,rgba(255,124,172,0.95)_56%,rgba(143,18,73,1)_100%)] shadow-[0_28px_70px_rgba(255,108,164,0.34)]" />
+      </div>
+    );
+  }
+
+  if (name === "MINES") {
+    return (
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,199,224,0.28),rgba(255,199,224,0)_28%),linear-gradient(180deg,#60112f,#22040f)] p-8">
+        <div className="grid h-full grid-cols-3 gap-4">
+          {Array.from({ length: 9 }).map((_, index) => (
+            <div
+              key={`mines-${index}`}
+              className={cn(
+                "rounded-[18px] border border-white/12",
+                index === 4
+                  ? "bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.95),rgba(255,181,210,0.9)_20%,rgba(255,76,131,0.92)_58%,rgba(123,12,55,0.96)_100%)] shadow-[0_20px_50px_rgba(255,82,138,0.24)]"
+                  : "bg-white/[0.06]",
+              )}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (name === "CHICKEN") {
+    return (
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,227,145,0.26),rgba(255,227,145,0)_30%),linear-gradient(180deg,#783d06,#341605)]">
+        <div className="absolute inset-x-[14%] bottom-0 top-[20%] rounded-t-[40px] bg-[linear-gradient(180deg,rgba(255,219,104,0.18),rgba(255,138,66,0.05))]" />
+        <div className="absolute left-1/2 top-[34%] flex h-[150px] w-[150px] -translate-x-1/2 items-center justify-center rounded-full border border-white/24 bg-[radial-gradient(circle_at_35%_28%,rgba(255,255,255,0.96),rgba(255,236,188,0.94)_20%,rgba(255,193,78,0.94)_58%,rgba(169,88,8,0.98)_100%)] text-[2.3rem] font-bold text-[#55260a] shadow-[0_28px_70px_rgba(255,193,78,0.28)]">
+          CH
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(226,222,255,0.28),rgba(226,222,255,0)_32%),linear-gradient(180deg,#4a3b88,#19152d)]">
+      <div className="absolute left-1/2 top-[31%] h-[146px] w-[146px] -translate-x-1/2 rotate-[18deg] rounded-[28px] border border-white/18 bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(198,190,255,0.92)_20%,rgba(120,103,255,0.92)_72%,rgba(49,37,124,0.98))] shadow-[0_28px_70px_rgba(120,103,255,0.3)]">
+        <span className="absolute left-[20%] top-[20%] h-4 w-4 rounded-full bg-white/92" />
+        <span className="absolute right-[20%] top-[20%] h-4 w-4 rounded-full bg-white/92" />
+        <span className="absolute left-[20%] bottom-[20%] h-4 w-4 rounded-full bg-white/92" />
+        <span className="absolute right-[20%] bottom-[20%] h-4 w-4 rounded-full bg-white/92" />
+      </div>
+    </div>
+  );
+}
+
+function OriginalsPreviewFallback() {
+  return (
+    <div className="absolute inset-0 rounded-[10px] bg-[linear-gradient(180deg,#2b0920,#15040e)] p-4 lg:p-7">
+      <div className="rounded-[14px] border border-[rgba(255,255,255,0.08)] bg-[linear-gradient(180deg,#180c24,#09080f)] p-4 lg:p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.26em] text-white/38">Live round</p>
+            <p className="mt-3 font-display text-[2.4rem] leading-none font-bold tracking-[-0.06em] text-white lg:text-[4.7rem]">
+              10.01x
+            </p>
+          </div>
+          <div className="rounded-full border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] px-4 py-2 text-[11px] font-bold tracking-[0.24em] text-[#ffb18b] uppercase">
+            Cashout
+          </div>
+        </div>
+        <div className="mt-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[18px] border border-white/8 bg-[radial-gradient(circle_at_50%_24%,rgba(255,125,78,0.2),rgba(255,125,78,0)_38%),rgba(255,255,255,0.03)] p-5">
+            <div className="flex items-end justify-between">
+              {["1.3x", "2.1x", "3.8x", "6.5x", "9.8x"].map((value, index) => (
+                <div
+                  key={value}
+                  className="w-8 rounded-t-full bg-[linear-gradient(180deg,#ff8f64,#ff5a36)]"
+                  style={{ height: `${(index + 2) * 14}px` }}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[18px] border border-white/8 bg-white/[0.03] p-5">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-white/36">Bet controls</p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {["€ 2", "€ 5", "€ 10", "AUTO"].map((value) => (
+                <div
+                  key={value}
+                  className="rounded-xl border border-white/8 bg-white/[0.04] px-3 py-3 text-center text-sm font-semibold text-white/82"
+                >
+                  {value}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PredictionAssetFallback({
+  kind,
+}: {
+  kind:
+    | "coin"
+    | "tablet"
+    | "bomb"
+    | "potion"
+    | "badge"
+    | "chat"
+    | "gun"
+    | "streamer"
+    | "skullCoin";
+}) {
+  if (kind === "tablet") {
+    return (
+      <div className="absolute inset-0 rounded-[2.2rem] border border-white/12 bg-[linear-gradient(180deg,#23324f,#101827)] p-3 shadow-[0_25px_70px_rgba(0,0,0,0.45)]">
+        <div className="h-full rounded-[1.7rem] border border-white/8 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.14),rgba(255,255,255,0)_35%),linear-gradient(180deg,#141f34,#0b0f17)] p-5">
+          <div className="grid h-full grid-cols-3 gap-3">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div
+                key={`tablet-${index}`}
+                className={cn(
+                  "rounded-[1rem] border border-white/8",
+                  index === 2 ? "bg-[rgba(255,108,61,0.32)]" : "bg-white/[0.05]",
+                )}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (kind === "chat") {
+    return (
+      <div className="absolute inset-0 rotate-[-4deg] rounded-[1.8rem] border border-[rgba(255,255,255,0.14)] bg-[linear-gradient(180deg,#1b1f2f,#11151f)] p-5 shadow-[0_25px_70px_rgba(0,0,0,0.35)]">
+        <div className="space-y-3">
+          {["Arena locked in", "Odds are moving", "Next round in 08s"].map((line, index) => (
+            <div
+              key={line}
+              className={cn(
+                "max-w-[84%] rounded-[1rem] border px-4 py-3 text-sm text-white/82",
+                index === 1
+                  ? "ml-auto border-[rgba(255,107,53,0.26)] bg-[rgba(255,107,53,0.14)]"
+                  : "border-white/8 bg-white/[0.04]",
+              )}
+            >
+              {line}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (kind === "streamer") {
+    return (
+      <div className="absolute inset-0 overflow-hidden rounded-[10px] border-2 border-[rgba(255,167,124,0.16)] bg-[linear-gradient(180deg,#25101f,#140912)]">
+        <div className="absolute left-4 top-4 rounded-full bg-[rgba(255,84,84,0.18)] px-3 py-1 text-[10px] font-bold tracking-[0.24em] text-[#ff9c90] uppercase">
+          Live
+        </div>
+        <div className="absolute inset-x-8 bottom-8 top-14 rounded-[1.4rem] bg-[radial-gradient(circle_at_50%_16%,rgba(255,255,255,0.18),rgba(255,255,255,0)_35%),linear-gradient(180deg,#4a1736,#140b17)]" />
+      </div>
+    );
+  }
+
+  if (kind === "badge") {
+    return (
+      <div className="flex h-full w-full items-center justify-center rounded-full border border-[rgba(255,178,136,0.32)] bg-[linear-gradient(180deg,rgba(255,107,53,0.18),rgba(255,107,53,0.06))] text-[12px] font-bold tracking-[0.28em] text-[#ffb188] uppercase">
+        Arena
+      </div>
+    );
+  }
+
+  if (kind === "potion") {
+    return (
+      <div className="absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.82),rgba(255,255,255,0.1)_24%,rgba(124,96,255,0.94)_56%,rgba(39,22,96,0.98)_100%)] shadow-[0_20px_60px_rgba(124,96,255,0.28)]" />
+    );
+  }
+
+  if (kind === "gun") {
+    return (
+      <div className="absolute inset-y-[26%] left-0 right-0 rounded-full border border-white/10 bg-[linear-gradient(90deg,#3f1625,#140912)] shadow-[0_14px_40px_rgba(0,0,0,0.34)]">
+        <div className="absolute right-[8%] top-1/2 h-[46%] w-[26%] -translate-y-1/2 rounded-full bg-[linear-gradient(180deg,#ff8b64,#c33b22)]" />
+      </div>
+    );
+  }
+
+  if (kind === "skullCoin") {
+    return (
+      <div className="absolute inset-0 rounded-full border border-white/12 bg-[radial-gradient(circle_at_34%_28%,rgba(255,255,255,0.94),rgba(255,220,245,0.9)_18%,rgba(214,120,255,0.92)_54%,rgba(60,18,93,0.98)_100%)] shadow-[0_20px_60px_rgba(214,120,255,0.28)]">
+        <div className="absolute inset-[26%] flex items-center justify-center rounded-full bg-black/18 text-[1.8rem] text-white/94">
+          X
+        </div>
+      </div>
+    );
+  }
+
+  return <HeroFallbackIcon type={kind === "bomb" ? "bomb" : "coin"} />;
 }
 
 function CapabilityIcon({
@@ -243,65 +576,48 @@ function CapabilityIcon({
 }: {
   card: CapabilityCard;
 }) {
-  if (card.title === "Scalable RNG systems") {
-    return (
-      <div className="relative h-[130px] w-[130px] shrink-0">
-        <img
-          src={capabilityGlowAsset}
-          alt=""
-          className="absolute left-[21px] top-[21px] h-[88px] w-[88px] scale-[1.46] mix-blend-plus-lighter"
-        />
-        <img
-          src={capabilityRingAsset}
-          alt=""
-          className="absolute inset-0 h-full w-full object-contain"
-        />
-        <img
-          src={capabilityInnerCircleAsset}
-          alt=""
-          className="absolute left-[29px] top-[29px] h-[72px] w-[72px] object-contain"
-        />
-        <img
-          src={capabilityRngTopAsset}
-          alt=""
-          className="absolute left-[44px] top-[43px] h-[17px] w-[16px] object-contain"
-        />
-        <img
-          src={capabilityRngBottomAsset}
-          alt=""
-          className="absolute left-[39px] top-[45px] h-[34px] w-[52px] object-contain"
-        />
-      </div>
-    );
-  }
+  const symbolMap: Record<string, string> = {
+    "F2P engagement": "F2P",
+    "Scalable RNG systems": "RNG",
+    "Affiliate & referral systems": "AFF",
+    "Data & analytics": "DATA",
+    "Streaming-ready software": "LIVE",
+    "Whitelabel solutions": "WL",
+  };
+
+  const glowMap: Record<string, string> = {
+    "F2P engagement":
+      "bg-[radial-gradient(circle,rgba(255,154,107,0.42),rgba(255,154,107,0)_70%)]",
+    "Scalable RNG systems":
+      "bg-[radial-gradient(circle,rgba(112,255,71,0.38),rgba(112,255,71,0)_72%)]",
+    "Affiliate & referral systems":
+      "bg-[radial-gradient(circle,rgba(255,86,163,0.34),rgba(255,86,163,0)_72%)]",
+    "Data & analytics":
+      "bg-[radial-gradient(circle,rgba(121,160,255,0.34),rgba(121,160,255,0)_72%)]",
+    "Streaming-ready software":
+      "bg-[radial-gradient(circle,rgba(255,188,92,0.34),rgba(255,188,92,0)_72%)]",
+    "Whitelabel solutions":
+      "bg-[radial-gradient(circle,rgba(198,136,255,0.34),rgba(198,136,255,0)_72%)]",
+  };
 
   return (
     <div className="relative h-[130px] w-[130px] shrink-0">
-      <img
-        src={capabilityGlowAsset}
-        alt=""
-        className="absolute left-[21px] top-[21px] h-[88px] w-[88px] scale-[1.46] mix-blend-plus-lighter"
-      />
-      <img
-        src={capabilityRingAsset}
-        alt=""
-        className="absolute inset-0 h-full w-full object-contain"
-      />
-      <img
-        src={card.innerCircleAsset ?? capabilityInnerCircleAsset}
-        alt=""
-        className="absolute left-[29px] top-[29px] h-[72px] w-[72px] object-contain"
-      />
-      <img
-        src={card.symbolAsset}
-        alt=""
-        className="absolute left-1/2 top-1/2 w-[49px] -translate-x-1/2 -translate-y-1/2 object-contain"
-      />
+      <div className={cn("absolute left-[18px] top-[18px] h-[94px] w-[94px] scale-[1.25]", glowMap[card.title])} />
+      <div className="absolute inset-0 rounded-full border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
+      <div className="absolute left-[29px] top-[29px] flex h-[72px] w-[72px] items-center justify-center rounded-full border border-white/12 bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.22),rgba(255,255,255,0.06)_55%,rgba(255,255,255,0.02)_100%)]">
+        <span className="text-[14px] font-bold tracking-[0.18em] text-white/90">
+          {symbolMap[card.title]}
+        </span>
+      </div>
     </div>
   );
 }
 
-function HeroFallbackIcon({ type }: { type: "heart" | "star" }) {
+function HeroFallbackIcon({
+  type,
+}: {
+  type: "heart" | "star" | "coin" | "bomb" | "dice";
+}) {
   if (type === "heart") {
     return (
       <div className="relative h-full w-full">
@@ -309,6 +625,49 @@ function HeroFallbackIcon({ type }: { type: "heart" | "star" }) {
         <div className="absolute inset-x-[24%] bottom-[20%] top-[20%] flex items-center justify-center rounded-[28px] bg-[linear-gradient(180deg,rgba(255,255,255,0.28),rgba(255,255,255,0.05))] text-[2.4rem] text-white/95">
           ♥
         </div>
+      </div>
+    );
+  }
+
+  if (type === "coin") {
+    return (
+      <div className="relative h-full w-full">
+        <div className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.95),rgba(255,243,182,0.96)_26%,rgba(255,192,66,1)_62%,rgba(194,114,6,1)_100%)] shadow-[0_18px_35px_rgba(255,191,69,0.28)]" />
+        <div className="absolute inset-[24%] flex items-center justify-center rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.22),rgba(255,255,255,0.03))] text-[1.65rem] font-bold text-white/98">
+          G
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "bomb") {
+    return (
+      <div className="relative h-full w-full">
+        <div className="absolute bottom-[10%] left-[8%] right-[8%] top-[20%] rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.28),rgba(57,57,57,0.95)_32%,rgba(18,18,18,1)_80%)] shadow-[0_18px_35px_rgba(0,0,0,0.34)]" />
+        <div className="absolute right-[18%] top-[8%] h-[24%] w-[12%] rounded-full bg-[linear-gradient(180deg,#ffb36e,#ff6b35)]" />
+      </div>
+    );
+  }
+
+  if (type === "dice") {
+    return (
+      <div className="relative h-full w-full">
+        <div className="absolute inset-[10%] rounded-[26px] bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(232,236,255,0.94)_24%,rgba(144,166,255,0.9)_72%,rgba(65,78,154,0.98))] shadow-[0_18px_35px_rgba(124,144,255,0.28)]" />
+        {[
+          "left-[26%] top-[26%]",
+          "right-[26%] top-[26%]",
+          "left-1/2 top-1/2",
+          "left-[26%] bottom-[26%]",
+          "right-[26%] bottom-[26%]",
+        ].map((position) => (
+          <span
+            key={position}
+            className={cn(
+              "absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#31406f]",
+              position,
+            )}
+          />
+        ))}
       </div>
     );
   }
@@ -613,7 +972,7 @@ export default function Home() {
 
   return (
     <main ref={rootRef} className="relative overflow-x-clip bg-gamio-bg text-white">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] bg-[radial-gradient(circle_at_top,rgba(204,68,0,0.38),rgba(10,10,10,0.96)_58%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_10rem,rgba(204,68,0,0.12),rgba(10,10,10,0.98)_40%)]" />
       <div className="pointer-events-none absolute left-[-10rem] top-[38rem] h-[28rem] w-[28rem] rounded-full bg-[rgba(255,107,53,0.09)] blur-3xl" />
       <div className="pointer-events-none absolute right-[-12rem] top-[95rem] h-[34rem] w-[34rem] rounded-full bg-[rgba(127,47,255,0.14)] blur-3xl" />
 
@@ -627,11 +986,13 @@ export default function Home() {
           </a>
 
           <div className="hidden h-[68px] w-full max-w-[1008px] items-center rounded-[18px] border border-[rgba(255,206,182,0.16)] bg-[radial-gradient(circle_at_50%_50%,rgba(108,57,28,0.42)_0%,rgba(68,38,25,0.88)_45%,rgba(34,28,25,0.95)_100%)] px-[14px] shadow-[0_14px_42px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-[18px] lg:grid lg:grid-cols-[134px_713px_133px]">
-            <a href="#about" className="flex h-[44px] items-center justify-start">
-              <img
+            <a href="#about" className="flex h-[44px] items-center justify-start overflow-visible">
+              <AssetImage
                 src={navLogoAsset}
                 alt="Gamio"
-                className="h-[30px] w-[110px] translate-x-[18px] object-contain"
+                wrapperClassName="h-[32px] w-[112px] translate-x-[18px]"
+                imgClassName="block h-full w-full object-contain transition-opacity duration-200"
+                fallback={<NavLogoFallback />}
               />
             </a>
 
@@ -653,7 +1014,7 @@ export default function Home() {
             <div className="flex h-[44px] items-center justify-end">
               <a
                 href="mailto:hello@gamio.io"
-                className="flex h-[44px] w-[133px] translate-x-[10px] items-center justify-center rounded-[8px] bg-[#ff5e39] px-5 text-[16px] leading-5 font-bold text-white shadow-[0_10px_24px_rgba(255,94,57,0.22)] transition-transform duration-200 hover:scale-[1.02]"
+                className="font-display flex h-[44px] w-[133px] translate-x-[10px] items-center justify-center rounded-[8px] bg-[#ff5e39] px-5 text-[16px] leading-5 font-bold text-white shadow-[0_10px_24px_rgba(255,94,57,0.22)] transition-transform duration-200 hover:scale-[1.02]"
               >
                 Get in touch
               </a>
@@ -662,52 +1023,30 @@ export default function Home() {
         </div>
       </nav>
 
-      <div aria-hidden="true" className="h-[5.75rem] lg:h-[6.25rem]" />
-
       <section
         id="about"
         ref={heroRef}
-        className="relative isolate mx-auto flex min-h-[calc(100vh-6.25rem)] w-full max-w-[1440px] flex-col items-center justify-center px-6 pb-24 pt-16 lg:px-12 lg:pb-28 lg:pt-20"
+        className="relative isolate mx-auto min-h-[38rem] w-full max-w-[1440px] overflow-hidden px-6 pb-20 pt-28 lg:h-[650px] lg:min-h-0 lg:px-0 lg:pb-0 lg:pt-0"
       >
-        {floatingIcons.map((item, index) => (
-          <div
-            key={`${item.className}-${index}`}
-            ref={(node) => {
-              floatingOuterRefs.current[index] = node;
-            }}
-            className={cn(
-              "pointer-events-none absolute hidden lg:flex",
-              item.className,
-            )}
-          >
-            <div
-              ref={(node) => {
-                floatingInnerRefs.current[index] = node;
-              }}
-              className="relative h-full w-full"
-            >
-              {"asset" in item ? (
-                <img src={item.asset} alt="" className="h-full w-full object-contain" />
-              ) : null}
-              {"fallback" in item && item.fallback ? (
-                <div className="absolute inset-0">
-                  <HeroFallbackIcon type={item.fallback} />
-                </div>
-              ) : null}
-            </div>
-          </div>
-        ))}
+        <div className="pointer-events-none absolute inset-0 bg-[#101010]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,108,61,0.08),transparent_46%)]" />
+        <div className="pointer-events-none absolute left-1/2 top-[6rem] h-[24rem] w-[24rem] -translate-x-1/2 lg:top-[140px] lg:h-[1006.761px] lg:w-[1006.761px]">
+          <div className="absolute inset-[13.4%] rounded-full bg-[radial-gradient(circle,rgba(255,48,0,1)_0%,rgba(255,60,14,1)_15%,rgba(255,71,29,1)_30%,rgba(255,94,57,1)_60%,rgba(255,127,83,1)_80%,rgba(255,159,108,1)_100%)] blur-[90px] lg:blur-[120px]" />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.04)_40%,rgba(0,0,0,0.34)_72%,rgba(0,0,0,0.72)_100%)]" />
+        {/* Dark curved mask — lives inside hero so overflow-hidden clips its bottom half, keeping it below stats bar (z-10) */}
+        <div className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[204px] w-[1820px] -translate-x-1/2 translate-y-1/2 rounded-[50%] bg-[#121212] lg:block" />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[529px] flex-col items-center justify-center text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-[560px] flex-col items-center justify-center text-center lg:absolute lg:left-1/2 lg:top-[161px] lg:h-[183px] lg:w-[529px] lg:-translate-x-1/2">
           <h1
             data-reveal
-            className="mx-auto w-full bg-[linear-gradient(180deg,rgba(255,255,255,1)_13%,rgba(255,255,255,0.18)_88%,rgba(255,255,255,0)_100%)] bg-clip-text text-center text-[5.25rem] leading-none font-bold tracking-[-0.04em] text-transparent sm:text-[6.5rem] lg:text-[8.8rem]"
+            className="font-display mx-auto w-full overflow-visible whitespace-nowrap bg-[linear-gradient(180deg,rgba(255,255,255,1)_13.312%,rgba(255,255,255,0)_88.636%)] bg-clip-text text-center text-[5.1rem] leading-[0.94] font-bold tracking-[-0.038em] text-transparent sm:text-[6rem] lg:absolute lg:left-1/2 lg:top-0 lg:min-w-[529px] lg:w-auto lg:-translate-x-1/2 lg:px-[14px] lg:pt-[10px] lg:text-[166px] lg:leading-[152px]"
           >
             Gamio
           </h1>
           <p
             data-reveal
-            className="-mt-1 mx-auto w-full text-center text-[2.35rem] font-bold tracking-[-0.03em] text-white"
+            className="font-display mx-auto -mt-1 w-full text-center text-[1.85rem] leading-none font-bold tracking-[-0.03em] text-white sm:text-[2.15rem] lg:absolute lg:left-0 lg:right-0 lg:top-[142px] lg:mt-0 lg:text-[31px] lg:leading-[41px]"
           >
             Game & Gain
           </p>
@@ -716,99 +1055,121 @@ export default function Home() {
         <div
           ref={statsBarRef}
           data-reveal
-          className="relative z-10 mx-auto mt-12 grid w-full max-w-[540px] place-content-center gap-5 text-center lg:grid-cols-2"
+          className="relative z-10 mx-auto mt-10 grid w-full max-w-[540px] gap-5 text-center whitespace-nowrap lg:absolute lg:left-1/2 lg:top-[386px] lg:mt-0 lg:w-[540px] lg:-translate-x-1/2 lg:grid-cols-2"
         >
           <div className="flex min-h-[103px] flex-col items-center justify-center rounded-[10px] bg-white/16 px-6 py-4 text-center text-white">
-            <p className="text-[1.25rem] leading-[1.3] text-white">
+            <p className="font-display text-[18px] leading-[24px] font-normal text-white sm:text-[20px] sm:leading-[26px]">
               Live number of players
             </p>
             <p
               ref={playerCountRef}
-              className="mt-1 text-[2.6rem] font-bold tracking-[-0.04em] text-white"
+              className="font-display mt-1 text-[2.35rem] font-bold tracking-[-0.04em] text-white sm:text-[2.55rem] sm:leading-[41px] lg:text-[31px]"
             >
               1,879
             </p>
           </div>
           <div className="flex min-h-[103px] flex-col items-center justify-center rounded-[10px] border-4 border-[rgba(255,255,255,0.6)] bg-[rgba(255,255,255,0.28)] px-6 py-4 text-center text-[#fff5c9]">
-            <p className="text-[1.25rem] leading-[1.3] text-[#fff5c9]">
+            <p className="font-display text-[18px] leading-[24px] font-normal text-[#fff5c9] sm:text-[20px] sm:leading-[26px]">
               Total transactions
             </p>
             <p
               ref={transactionCountRef}
-              className="mt-1 text-[2.6rem] font-bold tracking-[-0.04em] text-[#fff5c9]"
+              className="font-display mt-1 text-[2.35rem] font-bold tracking-[-0.04em] text-[#fff5c9] sm:text-[2.55rem] sm:leading-[41px] lg:text-[31px]"
             >
               € 303,980.99
             </p>
           </div>
         </div>
-
-        <div className="pointer-events-none absolute inset-x-0 bottom-[-1px] h-36 bg-[radial-gradient(125%_110%_at_50%_120%,transparent_60%,#0f0f10_61%)]" />
       </section>
 
-      <section className="mx-auto w-full max-w-[1440px] px-6 py-24 lg:px-12">
+      <section className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:-mt-[91px] lg:h-[454px] lg:overflow-visible lg:px-0 lg:py-0">
+        <AssetImage
+          src={aboutUsPanelAsset}
+          alt=""
+          wrapperClassName="pointer-events-none absolute inset-0"
+          imgClassName="h-full w-full object-cover transition-opacity duration-200"
+          fallback={<AboutPanelFallback />}
+        />
+        <div className="absolute inset-0 bg-[#121212]/94 lg:bg-transparent" />
         <div
           data-reveal
-          className="mx-auto max-w-[795px] text-center text-[2.3rem] leading-[1.12] font-bold tracking-[-0.04em] text-white lg:text-[3.25rem]"
+          className="font-display relative mx-auto max-w-[795px] text-center text-[2rem] leading-[1.22] font-bold tracking-[0] text-white sm:text-[2.35rem] lg:absolute lg:left-1/2 lg:top-[176px] lg:w-[795px] lg:-translate-x-1/2 lg:text-[31px] lg:leading-[41px]"
         >
-          We make things you actually want to play and yes, sometimes there&apos;s
+          We make things you actually want to play &mdash; and yes, sometimes there&apos;s
           money involved.
         </div>
       </section>
 
       <section
         id="markets"
-        className="mx-auto w-full max-w-[1440px] px-6 py-20 lg:px-12 lg:py-24"
+        className="mx-auto w-full max-w-[1440px] px-6 py-16 lg:px-0 lg:pt-[40px] lg:pb-[140px]"
       >
-        <div
-          data-reveal
-          className="mx-auto max-w-[900px] text-center"
-        >
-          <h2 className="text-4xl leading-tight font-bold tracking-[-0.04em] text-white lg:text-[4.25rem]">
-            Where do we operate?
-          </h2>
-          <p className="mx-auto mt-9 max-w-[795px] text-[1.1rem] leading-[1.25] text-white/88 lg:text-[1.85rem]">
-            We focus on regulated and fast-growing markets such as Belgium, Poland,
-            Romania, Greece, Türkiye and Brazil.
-          </p>
-          <p className="mx-auto mt-9 max-w-[795px] text-[1rem] leading-[1.28] text-white/84 lg:text-[1.8rem]">
-            Our products and platforms are built to be market-agnostic, so we can
-            adapt features, UX and compliance to new regions as we expand. Local
-            rules differ, but our tech and content stack is built to plug into
-            different regulatory and cultural contexts with minimal friction.
-          </p>
+        <div className="mx-auto flex w-full max-w-[900px] flex-col items-center">
+          <div
+            data-reveal
+            className="font-display mx-auto max-w-[795px] text-center text-[1.6rem] leading-[1.28] font-bold tracking-[0] text-white sm:text-[1.95rem] lg:w-[795px] lg:text-[25px] lg:leading-[32px]"
+          >
+            From prediction arenas to instant games and multiplayer chaos, we build
+            interactive stuff people come back to.
+          </div>
+
+          <div
+            data-reveal
+            className="mx-auto mt-10 aspect-[900/473] w-full max-w-[900px] overflow-hidden rounded-[20px] lg:mt-[28px]"
+          >
+            <AssetImage
+              src={marketsVisualAsset}
+              alt="3D network visualization"
+              wrapperClassName="h-full w-full rounded-[20px]"
+              imgClassName="h-full w-full rounded-[20px] object-cover object-center transition-opacity duration-200"
+              fallback={<MarketsVisualFallback />}
+            />
+          </div>
         </div>
 
-        <div data-reveal className="mx-auto mt-14 max-w-[900px] overflow-hidden rounded-[30px]">
-          <img
-            src={marketsVisualAsset}
-            alt="Abstract neon markets visual"
-            className="w-full rounded-[30px] object-cover"
-          />
+        <div
+          data-reveal
+          className="mx-auto mt-20 max-w-[795px] text-center lg:mt-[112px] lg:w-[795px]"
+        >
+          <h2 className="font-display text-[2.75rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3.35rem] lg:text-[49px] lg:leading-[68px]">
+            Where do we operate?
+          </h2>
+          <p className="font-body mx-auto mt-9 max-w-[720px] text-[1rem] leading-[1.4] tracking-[0] text-white/88 lg:text-[16px] lg:leading-[20px]">
+            Regulated markets: Belgium, Poland, Romania, Greece, Turkey, Brazil.
+          </p>
+          <p className="font-body mx-auto mt-6 max-w-[690px] text-[1rem] leading-[1.45] tracking-[0] text-white/72 lg:text-[16px] lg:leading-[22px]">
+            Our products stay market-agnostic, so compliance, UX and feature depth
+            can flex quickly as we expand into new regions.
+          </p>
         </div>
       </section>
 
       <section
         id="originals"
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:py-34"
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-0 lg:py-34"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-22rem] top-16 h-[41rem] w-[41rem] rounded-full bg-[radial-gradient(circle,rgba(255,0,132,0.34),rgba(255,0,132,0)_68%)] blur-[110px]" />
-        <div className="relative">
+        <div className="relative mx-auto max-w-[1180px]">
           <div className="relative z-10 mx-auto max-w-[809px] text-center">
             <h2
               data-reveal
-              className="text-[2.35rem] leading-tight font-bold tracking-[-0.04em] text-white lg:text-[3.25rem]"
+              className="font-display text-[2.75rem] leading-[1.02] font-bold tracking-[0] text-white sm:text-[3.6rem] lg:text-[95px] lg:leading-[137px]"
             >
               Our Products
             </h2>
             <div data-reveal className="mt-5 flex justify-center">
-              <span className="inline-flex rounded-full border border-white/25 bg-[rgba(255,255,255,0.08)] px-4 py-1.5 text-[13px] font-bold tracking-[0.08em] text-white shadow-[0_0_22px_rgba(255,164,211,0.35)]">
-                ORIGINALS
-              </span>
+              <AssetImage
+                src={originalsBadgeAsset}
+                alt="Originals"
+                wrapperClassName="h-[40px] w-[178px]"
+                imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                fallback={<OriginalsBadgeFallback />}
+              />
             </div>
           </div>
 
-          <div className="relative z-10 mx-auto mt-14 grid max-w-[1180px] gap-5 lg:grid-cols-4">
+          <div className="relative z-10 mx-auto mt-12 grid max-w-[1180px] gap-5 lg:mt-[56px] lg:grid-cols-4">
             {productCards.map((card) => (
               <article
                 key={card.name}
@@ -818,21 +1179,29 @@ export default function Home() {
                 <div className="relative h-[350px] overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,192,230,0.55),rgba(255,255,255,0)_48%)] opacity-80" />
                   {card.name === "CHICKEN" ? (
-                    <img
+                    <AssetImage
                       src={card.art}
                       alt=""
-                      className="absolute inset-0 h-full w-full object-cover"
+                      wrapperClassName="absolute inset-0"
+                      imgClassName="h-full w-full object-cover transition-opacity duration-200"
+                      fallback={<ProductArtFallback name={card.name} />}
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <img src={card.art} alt="" className={card.artClassName} />
-                    </div>
+                    <AssetImage
+                      src={card.art}
+                      alt=""
+                      wrapperClassName="absolute inset-0 flex items-center justify-center"
+                      imgClassName={cn(card.artClassName, "transition-opacity duration-200")}
+                      fallback={<ProductArtFallback name={card.name} />}
+                    />
                   )}
                   {card.name === "PLINKO" && (
-                    <img
+                    <AssetImage
                       src={originalsPlinkoBallAsset}
                       alt=""
-                      className="absolute right-4 top-9 h-12 w-12 object-contain opacity-90"
+                      wrapperClassName="absolute right-4 top-9 h-12 w-12"
+                      imgClassName="h-full w-full object-contain opacity-90 transition-opacity duration-200"
+                      fallback={<HeroFallbackIcon type="coin" />}
                     />
                   )}
                   <div className="absolute inset-x-0 bottom-0 h-[170px] bg-[linear-gradient(180deg,rgba(24,16,32,0),rgba(24,16,32,0.85)_58%,rgba(24,16,32,0.98))]" />
@@ -853,27 +1222,33 @@ export default function Home() {
             data-reveal
             className="relative z-10 mx-auto mt-14 max-w-[1180px] overflow-hidden rounded-[16px] border border-[rgba(255,162,222,0.16)] bg-[#180515] p-2"
           >
-            <img
+            <AssetImage
               src={originalsCashoutAsset}
               alt="Originals game preview"
-              className="w-full rounded-[10px] object-cover"
+              wrapperClassName="aspect-[1180/612] w-full rounded-[10px]"
+              imgClassName="h-full w-full rounded-[10px] object-cover transition-opacity duration-200"
+              fallback={<OriginalsPreviewFallback />}
             />
           </div>
         </div>
       </section>
 
-      <div className="mx-auto flex w-full max-w-[1440px] justify-center px-6 py-12 lg:px-12">
-        <img
-          src={hogambaLogoAsset}
-          alt="Hogamba"
-          className="h-6 w-auto"
-        />
+      <div className="mx-auto w-full max-w-[1440px] px-6 py-12 lg:px-0">
+        <div className="mx-auto flex max-w-[1180px] justify-center">
+          <AssetImage
+            src={hogambaLogoAsset}
+            alt="Hogamba"
+            wrapperClassName="h-8 min-w-[180px]"
+            imgClassName="h-full w-full object-contain transition-opacity duration-200"
+            fallback={<HogambaLogoFallback />}
+          />
+        </div>
       </div>
 
       <section
         id="hogamba"
         ref={magarbaSectionRef}
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-12 lg:py-24"
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-0 lg:py-24"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-18rem] top-[8rem] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(125,255,0,0.38),rgba(125,255,0,0)_68%)] blur-[120px]" />
@@ -1035,176 +1410,192 @@ export default function Home() {
       <section
         id="prediction-arena"
         ref={arenaSectionRef}
-        className="mx-auto w-full max-w-[1440px] px-6 py-20 lg:px-12 lg:py-24"
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-0 lg:pt-[140px] lg:pb-[140px]"
       >
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-          <div ref={arenaCopyRef} className="lg:pr-6">
-            <p
-              data-reveal
-              className="text-sm font-bold uppercase tracking-[0.3em] text-gamio-orange"
-            >
-              Prediction arena
-            </p>
-            <h2
-              data-reveal
-              className="mt-6 text-4xl leading-tight font-bold tracking-[-0.03em] text-white lg:text-[3.5rem]"
-            >
-              Gamio Prediction Arena
-            </h2>
-            <p
-              data-reveal
-              className="mt-6 max-w-[30rem] text-lg leading-8 text-white/72"
-            >
-              This section now supports the same desktop scroll-capture pattern,
-              so the arena sequence can move through its story frames while the
-              page itself stays pinned.
-            </p>
-            <div data-reveal className="mt-8">
-              <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                <div
-                  ref={arenaProgressRef}
-                  className="h-full w-full rounded-full bg-[linear-gradient(90deg,#FF6B35,#CC4400)]"
-                />
-              </div>
-              <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-white/45">
-                {arenaSlides.map((slide) => (
-                  <span key={slide.label}>{slide.label}</span>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
+        <div className="pointer-events-none absolute left-[-26rem] top-[18rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(255,97,59,0.14),rgba(255,97,59,0)_68%)] blur-[130px]" />
 
+        <div data-reveal className="mx-auto max-w-[809px] text-center">
+          <h2 className="font-display text-[2.6rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[49px] lg:leading-[68px]">
+            Gamio Prediction Arena
+          </h2>
+        </div>
+
+        <div
+          data-reveal
+          className="mx-auto mt-12 w-full max-w-[1344px] overflow-hidden lg:mt-[60px]"
+        >
           <div
-            data-reveal
-            className="overflow-hidden rounded-[32px] bg-transparent p-0 shadow-none"
+            ref={arenaTrackRef}
+            className="flex w-[300%] gap-0"
           >
-            <div
-              ref={arenaTrackRef}
-              className="flex w-[300%] gap-0"
-            >
-              {arenaSlides.map((slide, slideIndex) => (
-                <article
-                  key={slide.label}
-                  className="relative min-h-[42rem] w-full overflow-hidden rounded-[28px]"
-                >
-                  <div className="absolute inset-0">
-                    {slideIndex === 0 && (
-                      <>
-                        <img
-                          src={predictionCoinAsset}
-                          alt=""
-                          className="absolute left-[12%] top-[15%] h-[125px] w-[125px] rotate-[18deg] object-contain"
-                        />
-                        <img
-                          src={predictionTabletAsset}
-                          alt=""
-                          className="absolute left-[17%] top-[30%] w-[430px] -rotate-[0.8deg] object-contain"
-                        />
-                        <img
-                          src={predictionBombAsset}
-                          alt=""
-                          className="absolute left-[8%] top-[63%] w-[150px] -rotate-[24deg] object-contain blur-[3px]"
-                        />
-                        <img
-                          src={predictionPotionAsset}
-                          alt=""
-                          className="absolute left-[54%] top-[54%] w-[138px] -rotate-[14deg] object-contain"
-                        />
-                        <img
-                          src={predictionGameBadgeAsset}
-                          alt=""
-                          className="absolute left-[73%] top-[25%] w-[132px] rotate-[22deg] object-contain"
-                        />
-                      </>
-                    )}
+            {arenaSlides.map((slide, slideIndex) => (
+              <article
+                key={slide.label}
+                className="relative h-[33rem] w-full overflow-hidden lg:h-[800px]"
+              >
+                <div className="absolute inset-0">
+                  {slideIndex === 0 && (
+                    <>
+                      <AssetImage
+                        src={predictionCoinAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[18%] top-[29%] h-[125px] w-[125px] rotate-[18deg]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="coin" />}
+                      />
+                      <AssetImage
+                        src={predictionTabletAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[19.5%] top-[38%] h-[270px] w-[419px]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="tablet" />}
+                      />
+                      <AssetImage
+                        src={predictionBombAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[14.7%] top-[59.5%] h-[150px] w-[150px] blur-[3px]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="bomb" />}
+                      />
+                      <AssetImage
+                        src={predictionPotionAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[44.5%] top-[55.8%] h-[138px] w-[138px] -rotate-[14deg]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="potion" />}
+                      />
+                      <AssetImage
+                        src={predictionGameBadgeAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[69.6%] top-[23.6%] h-[44px] w-[132px] rotate-[22deg]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="badge" />}
+                      />
+                    </>
+                  )}
 
-                    {slideIndex === 1 && (
-                      <>
-                        <img
-                          src={predictionChatAsset}
-                          alt=""
-                          className="absolute left-[16%] top-[12%] w-[340px] rotate-[-4deg] object-contain"
-                        />
-                        <div className="absolute left-[63%] top-[45%] rounded-[10px] border-2 border-[#f9bcae] bg-[rgba(146,28,0,0.16)] px-4 py-3 backdrop-blur-[4px]">
-                          <p className="text-center text-base font-bold text-white">
-                            Prediction
-                          </p>
-                          <div className="mt-5 flex w-40 overflow-hidden rounded-full">
-                            <div className="h-3 w-[64%] bg-[linear-gradient(90deg,#0056c6,#507fff)]" />
-                            <div className="h-3 w-[36%] bg-[linear-gradient(90deg,#ff364f,#ee001e)]" />
-                          </div>
-                          <div className="mt-3 flex justify-between text-[10px] text-white">
-                            <span>COMPLETE</span>
-                            <span>FAIL</span>
-                          </div>
+                  {slideIndex === 1 && (
+                    <>
+                      <AssetImage
+                        src={predictionChatAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[11.5%] top-[16.7%] h-[459px] w-[815px]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="chat" />}
+                      />
+                      <AssetImage
+                        src={predictionCoinAsset}
+                        alt=""
+                        wrapperClassName="absolute right-[16%] top-[23.5%] h-[118px] w-[118px] rotate-[18deg]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="coin" />}
+                      />
+                      <div className="absolute left-1/2 top-[47.5%] w-[336px] -translate-x-1/2 text-center">
+                        <p className="font-body text-[16px] leading-[20px] text-white/70">
+                          Track predictions, follow the odds, and watch outcomes unfold in real time.
+                        </p>
+                      </div>
+                    </>
+                  )}
+
+                  {slideIndex === 2 && (
+                    <>
+                      <AssetImage
+                        src={predictionGunAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[15.7%] top-[52%] h-[95px] w-[230px] rotate-[163deg]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="gun" />}
+                      />
+                      <AssetImage
+                        src={predictionStreamerAsset}
+                        alt=""
+                        wrapperClassName="absolute left-[54.3%] top-[21.9%] h-[450px] w-[806px]"
+                        imgClassName="h-full w-full rounded-[10px] border-2 border-[rgba(255,167,124,0.16)] object-cover transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="streamer" />}
+                      />
+                      <AssetImage
+                        src={predictionSkullCoinAsset}
+                        alt=""
+                        wrapperClassName="absolute right-[11.1%] top-[11.4%] h-[202px] w-[202px] rotate-[15deg] blur-[3px]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="skullCoin" />}
+                      />
+                      <AssetImage
+                        src={predictionCoinAsset}
+                        alt=""
+                        wrapperClassName="absolute right-[12.3%] top-[65.5%] h-[125px] w-[125px] rotate-[18deg]"
+                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                        fallback={<PredictionAssetFallback kind="coin" />}
+                      />
+                      <div className="absolute left-[44%] top-[74.6%] rounded-[10px] border-2 border-[#f9bcae] bg-[rgba(146,28,0,0.16)] px-4 py-3 backdrop-blur-[4px]">
+                        <p className="font-display text-center text-[16px] leading-[20px] font-bold text-white">
+                          Prediction
+                        </p>
+                        <div className="mt-[34px] flex w-40 overflow-hidden rounded-full">
+                          <div className="h-3 w-[64%] bg-[linear-gradient(90deg,#0056c6,#507fff)]" />
+                          <div className="h-3 w-[36%] bg-[linear-gradient(90deg,#ff364f,#ee001e)]" />
                         </div>
-                        <img
-                          src={predictionCoinAsset}
-                          alt=""
-                          className="absolute right-[16%] top-[18%] w-[118px] rotate-[18deg] object-contain"
-                        />
-                      </>
-                    )}
+                        <div className="mt-3 flex justify-between text-[10px] leading-[13px] text-white">
+                          <span>COMPLETE</span>
+                          <span>FAIL</span>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
 
-                    {slideIndex === 2 && (
-                      <>
-                        <img
-                          src={predictionGunAsset}
-                          alt=""
-                          className="absolute left-[12%] top-[46%] w-[180px] rotate-[163deg] object-contain"
-                        />
-                        <img
-                          src={predictionStreamerAsset}
-                          alt=""
-                          className="absolute left-[30%] top-[25%] w-[430px] rounded-[10px] border-2 border-[rgba(255,167,124,0.16)] object-cover"
-                        />
-                        <img
-                          src={predictionSkullCoinAsset}
-                          alt=""
-                          className="absolute right-[12%] top-[16%] w-[190px] rotate-[15deg] object-contain blur-[3px]"
-                        />
-                        <img
-                          src={predictionCoinAsset}
-                          alt=""
-                          className="absolute right-[13%] top-[70%] w-[120px] rotate-[18deg] object-contain"
-                        />
-                      </>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
+        <div
+          ref={arenaCopyRef}
+          data-reveal
+          className="mx-auto mt-10 max-w-[460px]"
+        >
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+            <div
+              ref={arenaProgressRef}
+              className="h-full w-full rounded-full bg-[linear-gradient(90deg,#FF6B35,#CC4400)]"
+            />
+          </div>
+          <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-white/45">
+            {arenaSlides.map((slide) => (
+              <span key={slide.label}>{slide.label}</span>
+            ))}
           </div>
         </div>
       </section>
 
       <section
         id="capabilities"
-        className="mx-auto w-full max-w-[1440px] px-6 py-20 lg:px-12 lg:py-34"
+        className="mx-auto w-full max-w-[1440px] px-6 py-20 lg:px-0 lg:py-[140px]"
       >
         <div className="mx-auto max-w-[794px] text-center">
           <h2
             data-reveal
-            className="mx-auto max-w-[12ch] text-[3rem] leading-[1.08] font-bold tracking-[-0.05em] text-white lg:text-[4.25rem]"
+            className="font-display mx-auto max-w-[12ch] text-[3rem] leading-[1.08] font-bold tracking-[0] text-white lg:text-[49px] lg:leading-[68px]"
           >
             Capabilities & supporting systems
           </h2>
         </div>
 
-        <div className="mx-auto mt-11 grid max-w-[794px] gap-x-5 gap-y-20 lg:grid-cols-2">
+        <div className="mx-auto mt-10 grid max-w-[1180px] gap-x-5 gap-y-14 lg:mt-[40px] lg:grid-cols-3">
           {capabilityCards.map((card) => (
             <article
               key={card.title}
               data-reveal
-              className="mx-auto max-w-[387px] text-center"
+              className="mx-auto flex max-w-[380px] flex-col items-center gap-3 text-center"
             >
               <div className="mx-auto">
                 <CapabilityIcon card={card} />
               </div>
-              <h3 className="mt-1 text-[2rem] leading-tight font-bold tracking-[-0.04em] text-white">
+              <h3 className="font-display text-[16px] leading-[20px] font-bold tracking-[0] text-white">
                 {card.title}
               </h3>
-              <p className="mt-1 text-[1.05rem] leading-[1.38] text-white/88">
+              <p className="font-body max-w-[340px] text-[13px] leading-[18px] text-white/70">
                 {card.description}
               </p>
             </article>

@@ -41,9 +41,10 @@ A visually stunning, animated landing page that makes operators immediately unde
 ## Context
 
 - Design source: Figma file "Gamio web" — inspected directly via browser
+- Design source is now being verified directly via Figma MCP screenshots, metadata, and design-context extraction during implementation.
 - Design dimensions: 1440px desktop, mobile responsive
 - Color palette: near-black background (#0a0a0a range), orange/amber primary accent, white text
-- Typography: bold modern sans-serif throughout
+- Typography: `Nohemi` for display elements and `Kumbh Sans` for nav/body text
 - Effect styles: "Icons glass effect" — frosted glass cards
 - Text styles: "Typography Scale" design system
 - Animation notes from Figma comments:
@@ -67,6 +68,9 @@ A visually stunning, animated landing page that makes operators immediately unde
 | Next.js static export | SSR not needed, but React component model simplifies animation wiring | — Pending |
 | GSAP for animations | Industry standard for scroll-triggered animations, parallax, timeline control | — Pending |
 | Tailwind CSS | Rapid utility styling matches dark theme token approach from Figma | — Pending |
+| Local `Nohemi` + `Kumbh Sans` | Match the actual Figma typography and avoid font-metric drift during pixel alignment | Adopted 2026-04-22 |
+| Second section owns hero mask | The `About Us` section shape should cut into the hero rather than a separate hero arc layer faking the transition | Adopted 2026-04-22 |
+| Desktop-first Figma refinement before mobile | The highest-visibility desktop sections are being tightened section-by-section before Phase 4 mobile adaptation | In progress 2026-04-22 |
 
 ---
 ## Evolution
@@ -87,4 +91,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-22 after initialization*
+*Last updated: 2026-04-22 after desktop Figma refinement pass*
