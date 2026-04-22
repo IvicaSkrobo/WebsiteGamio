@@ -202,24 +202,6 @@ const capabilityCards: CapabilityCard[] = [
   },
 ];
 
-const magarbaSlides: ShowcaseSlide[] = [
-  {
-    label: "01",
-    title: "Live board reveal",
-    body: "A bright, outcome-first product moment that makes the multiplier feel immediate before the user even reads the controls.",
-  },
-  {
-    label: "02",
-    title: "Betting control pass",
-    body: "The interface tightens around confident actions with fast presets, clear stakes, and a visual hierarchy built for repeat decisions.",
-  },
-  {
-    label: "03",
-    title: "Retention loop",
-    body: "Reward pacing, risk contrast, and simple repeat actions make this section ideal for a pinned desktop storytelling moment.",
-  },
-];
-
 const arenaSlides: ShowcaseSlide[] = [
   {
     label: "01",
@@ -303,6 +285,126 @@ function OriginalsBadgeFallback() {
   return (
     <div className="inline-flex h-[40px] items-center rounded-full border border-[rgba(255,169,119,0.35)] bg-[linear-gradient(180deg,rgba(255,125,78,0.18),rgba(255,125,78,0.06))] px-5 text-[11px] font-bold tracking-[0.38em] text-[#ffb188] uppercase">
       Originals
+    </div>
+  );
+}
+
+function HogambaGameFallback() {
+  return (
+    <div className="overflow-hidden rounded-[20px] border border-[rgba(100,200,255,0.15)] bg-[linear-gradient(180deg,#0e1a2a,#070e18)] p-3 shadow-[0_24px_70px_rgba(0,0,0,0.5)]">
+      {/* Top bar */}
+      <div className="flex items-center justify-between px-2 py-1">
+        <div className="flex items-center gap-1.5">
+          {[
+            "bg-[rgba(255,107,53,0.9)]",
+            "bg-[rgba(255,200,80,0.8)]",
+            "bg-[rgba(100,220,100,0.8)]",
+          ].map((color, index) => (
+            <div
+              key={`avatar-${index}`}
+              className={`h-6 w-6 rounded-full border border-white/20 ${color}`}
+            />
+          ))}
+        </div>
+        <div className="flex gap-1">
+          {[0, 1, 2].map((dot) => (
+            <span key={dot} className="h-1 w-1 rounded-full bg-white/40" />
+          ))}
+        </div>
+      </div>
+
+      {/* Game area */}
+      <div className="relative mt-2 overflow-hidden rounded-[16px] bg-[linear-gradient(180deg,#0b1828,#050c18)] p-5">
+        {/* Win toast */}
+        <div className="absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap rounded-full border border-[rgba(93,222,42,0.3)] bg-[rgba(93,222,42,0.12)] px-4 py-1.5 text-[11px] font-bold text-[#8fffaa]">
+          You won at 9.85x · €63.00 EUR
+        </div>
+
+        {/* Multiplier + rocket */}
+        <div className="flex items-end justify-between pt-10 pb-4">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-white/40">Live round</p>
+            <p className="font-display mt-1 text-[3.2rem] font-bold leading-none tracking-[-0.06em]">
+              <span className="text-[#5dde2a]">10</span>
+              <span className="text-white">.01x</span>
+            </p>
+          </div>
+          {/* Rocket shape */}
+          <div className="relative flex h-[80px] w-[40px] flex-col items-center">
+            <div className="h-[42px] w-[28px] rounded-t-full bg-[linear-gradient(180deg,#e8f0ff,#8aaad4)]" />
+            <div className="h-[24px] w-[28px] bg-[linear-gradient(180deg,#6a8fbf,#3a5a8a)]" />
+            <div className="absolute bottom-0 flex gap-1">
+              <div className="h-[16px] w-[10px] rounded-br-full bg-[rgba(255,140,60,0.7)] blur-[1px]" />
+              <div className="h-[16px] w-[10px] rounded-bl-full bg-[rgba(255,140,60,0.7)] blur-[1px]" />
+            </div>
+          </div>
+        </div>
+
+        {/* Balance */}
+        <div className="mt-2 border-t border-white/8 pt-3 text-[12px] text-white/50">
+          EUR 468.17
+        </div>
+      </div>
+
+      {/* Bet row */}
+      <div className="mt-2 rounded-[16px] bg-[rgba(255,255,255,0.03)] p-3">
+        <div className="flex items-center gap-2">
+          {/* Minus/plus input */}
+          <div className="flex flex-1 items-center justify-between rounded-[12px] border border-white/10 bg-black/30 px-3 py-2 text-sm font-semibold text-white/80">
+            <span className="text-white/50">−</span>
+            <span>.00</span>
+            <span className="text-white/50">+</span>
+          </div>
+          <div className="flex flex-1 items-center justify-between rounded-[12px] border border-white/10 bg-black/30 px-3 py-2 text-sm font-semibold text-white/80">
+            <span className="text-white/50">−</span>
+            <span>1.00</span>
+            <span className="text-white/50">+</span>
+          </div>
+        </div>
+        {/* Number grid */}
+        <div className="mt-2 grid grid-cols-4 gap-1.5">
+          {[1, 2, 3, 4].map((n) => (
+            <div
+              key={n}
+              className="rounded-[10px] border border-white/8 bg-white/[0.05] py-2 text-center text-sm font-bold text-white/70"
+            >
+              {n}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HogambaMascotFallback() {
+  return (
+    <div className="flex flex-col items-center">
+      {/* Dome / hot-air balloon */}
+      <div className="relative h-[220px] w-[220px] overflow-hidden rounded-t-full border border-[rgba(200,240,255,0.2)] bg-[linear-gradient(180deg,#d8eeff,#b0cfee)]">
+        {/* Vertical stripes */}
+        {Array.from({ length: 8 }).map((_, index) => (
+          <div
+            key={`stripe-${index}`}
+            className="absolute top-0 h-full w-[2px] bg-black/30"
+            style={{ left: `${12 + index * 12}%` }}
+          />
+        ))}
+        {/* Inner glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.4),rgba(255,255,255,0)_60%)]" />
+      </div>
+      {/* Creature body */}
+      <div className="relative -mt-2 flex h-[72px] w-[72px] items-center justify-center rounded-full border border-[rgba(100,220,200,0.3)] bg-[linear-gradient(180deg,#1a3a3a,#0d2020)]">
+        {/* Eyes */}
+        <div className="flex gap-4">
+          {[0, 1].map((eye) => (
+            <div
+              key={eye}
+              className="h-3 w-3 rounded-full bg-[#00e5c8] shadow-[0_0_8px_rgba(0,229,200,0.8)]"
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -418,52 +520,6 @@ function ProductArtFallback({ name }: { name: ProductCard["name"] }) {
         <span className="absolute right-[20%] top-[20%] h-4 w-4 rounded-full bg-white/92" />
         <span className="absolute left-[20%] bottom-[20%] h-4 w-4 rounded-full bg-white/92" />
         <span className="absolute right-[20%] bottom-[20%] h-4 w-4 rounded-full bg-white/92" />
-      </div>
-    </div>
-  );
-}
-
-function OriginalsPreviewFallback() {
-  return (
-    <div className="absolute inset-0 rounded-[10px] bg-[linear-gradient(180deg,#2b0920,#15040e)] p-4 lg:p-7">
-      <div className="rounded-[14px] border border-[rgba(255,255,255,0.08)] bg-[linear-gradient(180deg,#180c24,#09080f)] p-4 lg:p-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.26em] text-white/38">Live round</p>
-            <p className="mt-3 font-display text-[2.4rem] leading-none font-bold tracking-[-0.06em] text-white lg:text-[4.7rem]">
-              10.01x
-            </p>
-          </div>
-          <div className="rounded-full border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] px-4 py-2 text-[11px] font-bold tracking-[0.24em] text-[#ffb18b] uppercase">
-            Cashout
-          </div>
-        </div>
-        <div className="mt-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[18px] border border-white/8 bg-[radial-gradient(circle_at_50%_24%,rgba(255,125,78,0.2),rgba(255,125,78,0)_38%),rgba(255,255,255,0.03)] p-5">
-            <div className="flex items-end justify-between">
-              {["1.3x", "2.1x", "3.8x", "6.5x", "9.8x"].map((value, index) => (
-                <div
-                  key={value}
-                  className="w-8 rounded-t-full bg-[linear-gradient(180deg,#ff8f64,#ff5a36)]"
-                  style={{ height: `${(index + 2) * 14}px` }}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="rounded-[18px] border border-white/8 bg-white/[0.03] p-5">
-            <p className="text-[10px] uppercase tracking-[0.22em] text-white/36">Bet controls</p>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              {["€ 2", "€ 5", "€ 10", "AUTO"].map((value) => (
-                <div
-                  key={value}
-                  className="rounded-xl border border-white/8 bg-white/[0.04] px-3 py-3 text-center text-sm font-semibold text-white/82"
-                >
-                  {value}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -690,10 +746,6 @@ export default function Home() {
   const statsBarRef = useRef<HTMLDivElement | null>(null);
   const playerCountRef = useRef<HTMLParagraphElement | null>(null);
   const transactionCountRef = useRef<HTMLParagraphElement | null>(null);
-  const magarbaSectionRef = useRef<HTMLElement | null>(null);
-  const magarbaCopyRef = useRef<HTMLDivElement | null>(null);
-  const magarbaTrackRef = useRef<HTMLDivElement | null>(null);
-  const magarbaProgressRef = useRef<HTMLDivElement | null>(null);
   const arenaSectionRef = useRef<HTMLElement | null>(null);
   const arenaCopyRef = useRef<HTMLDivElement | null>(null);
   const arenaTrackRef = useRef<HTMLDivElement | null>(null);
@@ -866,54 +918,6 @@ export default function Home() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
-      if (
-        magarbaSectionRef.current &&
-        magarbaTrackRef.current &&
-        magarbaCopyRef.current &&
-        magarbaProgressRef.current
-      ) {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: magarbaSectionRef.current,
-              start: "top top+=64",
-              end: "+=220%",
-              scrub: 1,
-              pin: true,
-              anticipatePin: 1,
-            },
-          })
-          .to(
-            magarbaTrackRef.current,
-            {
-              xPercent: -66.666,
-              ease: "none",
-            },
-            0,
-          )
-          .to(
-            magarbaCopyRef.current,
-            {
-              yPercent: -10,
-              autoAlpha: 0.35,
-              ease: "none",
-            },
-            0,
-          )
-          .fromTo(
-            magarbaProgressRef.current,
-            {
-              scaleX: 0,
-              transformOrigin: "left center",
-            },
-            {
-              scaleX: 1,
-              ease: "none",
-            },
-            0,
-          );
-      }
-
       if (
         arenaSectionRef.current &&
         arenaTrackRef.current &&
@@ -1223,15 +1227,16 @@ export default function Home() {
 
       <section
         id="hogamba"
-        ref={magarbaSectionRef}
         className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-0 lg:py-24"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
-        <div className="pointer-events-none absolute left-[-18rem] top-[8rem] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(125,255,0,0.38),rgba(125,255,0,0)_68%)] blur-[120px]" />
-        <div className="pointer-events-none absolute left-[7%] top-[20rem] h-[20rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(78,157,15,0.28),rgba(78,157,15,0)_75%)] blur-[90px]" />
+        {/* Green radial glow — left-center, cosmic feel */}
+        <div className="pointer-events-none absolute left-[-8rem] top-[4rem] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(93,222,42,0.22),rgba(93,222,42,0)_68%)] blur-[110px]" />
+        <div className="pointer-events-none absolute left-[2%] top-[14rem] h-[22rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(40,180,10,0.16),rgba(40,180,10,0)_75%)] blur-[90px]" />
 
         <div className="relative mx-auto max-w-[1180px]">
-          <div className="mb-8 lg:mb-10 flex justify-center">
+          {/* Logo */}
+          <div className="mb-8 flex justify-center lg:mb-10">
             <AssetImage
               src={hogambaLogoAsset}
               alt="Hogamba"
@@ -1240,153 +1245,57 @@ export default function Home() {
               fallback={<HogambaLogoFallback />}
             />
           </div>
+
+          {/* Main split: game panel left, mascot right */}
           <div
             data-reveal
-            className="relative overflow-hidden"
+            className="mt-8 flex flex-col gap-6 lg:mt-10 lg:flex-row lg:items-center lg:gap-10"
           >
-            <div
-              ref={magarbaTrackRef}
-              className="flex w-[300%] gap-0"
-            >
-              {magarbaSlides.map((slide, slideIndex) => (
-                <article
-                  key={slide.label}
-                  className="relative min-h-[44rem] w-full overflow-hidden rounded-[28px]"
-                >
-                  <div className="absolute inset-0">
-                    <div className="absolute left-[3%] top-[18%] h-[22rem] w-[30rem] rounded-[40px] bg-[rgba(94,206,0,0.12)] blur-[80px]" />
+            {/* Left: rocket game panel (~55% width) */}
+            <div className="flex-1">
+              <HogambaGameFallback />
+            </div>
 
-                    <div className="absolute left-[3%] top-[16%] w-[29rem] rounded-[20px] border border-[rgba(133,255,84,0.2)] bg-[linear-gradient(180deg,#10261a,#08120b)] p-3 shadow-[0_24px_70px_rgba(0,0,0,0.45)]">
-                      <div className="overflow-hidden rounded-[16px] border border-[rgba(182,255,143,0.18)] bg-[linear-gradient(180deg,#173223,#0b1510)] p-4">
-                        <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-white/55">
-                          <span>Hogamba</span>
-                          <span>Live round</span>
-                        </div>
-                        <div className="mt-4 grid grid-cols-[1.25fr_0.9fr] gap-4">
-                          <div className="rounded-[16px] border border-white/8 bg-[rgba(255,255,255,0.04)] p-4">
-                            <div className="grid grid-cols-5 gap-2">
-                              {Array.from({ length: 20 }).map((_, index) => (
-                                <div
-                                  key={`${slide.label}-left-${index}`}
-                                  className={cn(
-                                    "aspect-square rounded-[10px] border border-white/6",
-                                    (index + slideIndex) % 6 === 0
-                                      ? "bg-[rgba(90,255,106,0.38)]"
-                                      : (index + slideIndex) % 4 === 0
-                                        ? "bg-[rgba(255,185,76,0.25)]"
-                                        : "bg-[rgba(255,255,255,0.05)]",
-                                  )}
-                                />
-                              ))}
-                            </div>
-                            <div className="mt-4 rounded-[14px] border border-[rgba(166,255,119,0.18)] bg-[rgba(130,255,76,0.08)] px-4 py-3">
-                              <p className="text-[10px] uppercase tracking-[0.2em] text-white/55">
-                                Live multiplier
-                              </p>
-                              <p className="mt-1 text-[2.5rem] font-bold tracking-[-0.05em] text-white">
-                                {slideIndex === 0 ? "10.01x" : slideIndex === 1 ? "14.58x" : "21.32x"}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="space-y-3 rounded-[16px] border border-white/8 bg-[rgba(0,0,0,0.22)] p-4">
-                            <div className="rounded-[14px] border border-white/8 bg-white/5 px-4 py-3">
-                              <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">
-                                Bet amount
-                              </p>
-                              <p className="mt-1 text-2xl font-bold text-white">
-                                {slideIndex === 2 ? "€32.00" : "€20.00"}
-                              </p>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2">
-                              {["Auto", "Safe", "Turbo", "Max"].map((label) => (
-                                <div
-                                  key={`${slide.label}-chip-${label}`}
-                                  className="rounded-[12px] border border-white/8 bg-black/20 px-3 py-2 text-center text-xs text-white/75"
-                                >
-                                  {label}
-                                </div>
-                              ))}
-                            </div>
-                            <div className="rounded-[14px] bg-[linear-gradient(135deg,#70ff47,#2fb400)] px-4 py-3 text-center text-sm font-bold tracking-[0.12em] text-[#081109]">
-                              PLACE BET
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="absolute left-[34%] top-[30%] z-10 w-[11rem] rounded-[20px] border border-[rgba(255,255,255,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03))] p-3 shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-xl">
-                      <div className="rounded-[16px] bg-[linear-gradient(180deg,#121827,#090d14)] p-3">
-                        <div className="flex items-center justify-between text-[9px] uppercase tracking-[0.2em] text-white/45">
-                          <span>Cashout</span>
-                          <span>Now</span>
-                        </div>
-                        <p className="mt-5 text-center text-[2rem] font-bold tracking-[-0.06em] text-white">
-                          {slideIndex === 0 ? "10.01x" : slideIndex === 1 ? "12.84x" : "21.32x"}
-                        </p>
-                        <div className="mt-4 rounded-[12px] bg-[linear-gradient(135deg,#6bff46,#3ac500)] px-3 py-2 text-center text-[11px] font-bold uppercase tracking-[0.16em] text-[#091208]">
-                          Cash out
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="absolute left-[43%] top-[23%] z-20 flex h-[22rem] w-[12rem] items-end justify-center rounded-[2.4rem] border border-[rgba(255,255,255,0.14)] bg-[linear-gradient(180deg,#152034,#0b0f18)] p-3 shadow-[0_25px_70px_rgba(0,0,0,0.45)]">
-                      <div className="w-full rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,#203252,#111827)] px-4 pb-6 pt-5">
-                        <div className="mx-auto h-1.5 w-16 rounded-full bg-white/15" />
-                        <div className="mt-6 rounded-[1.5rem] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.2),rgba(255,255,255,0)_60%),linear-gradient(180deg,#15243c,#0d1525)] px-4 py-6 text-center">
-                          <p className="text-[10px] uppercase tracking-[0.2em] text-white/45">
-                            Live
-                          </p>
-                          <p className="mt-3 text-[2.7rem] font-bold tracking-[-0.06em] text-white">
-                            {slideIndex === 0 ? "10.01x" : slideIndex === 1 ? "16.48x" : "21.32x"}
-                          </p>
-                        </div>
-                        <div className="mt-4 grid grid-cols-3 gap-2">
-                          {Array.from({ length: 6 }).map((_, index) => (
-                            <div
-                              key={`${slide.label}-phone-${index}`}
-                              className={cn(
-                                "aspect-square rounded-xl border border-white/8",
-                                index === slideIndex + 1
-                                  ? "bg-[rgba(104,255,67,0.34)]"
-                                  : "bg-[rgba(255,255,255,0.06)]",
-                              )}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="absolute right-[9%] top-[20%] h-[14rem] w-[14rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.16),rgba(255,255,255,0)_70%)] blur-[4px]" />
-                    <div className="absolute right-[10.5%] top-[22%] flex h-[13rem] w-[13rem] items-center justify-center rounded-full border border-white/14 bg-[radial-gradient(circle_at_45%_35%,rgba(255,255,255,0.94),rgba(143,185,255,0.82)_48%,rgba(61,84,124,0.95)_78%)] shadow-[0_28px_70px_rgba(0,0,0,0.38)]">
-                      <div className="h-[4.8rem] w-[4.8rem] rounded-full border border-white/45 bg-[radial-gradient(circle_at_35%_35%,#ffffff,#d7e6ff_58%,#93aacd_100%)]" />
-                    </div>
-                    <div className="absolute right-[4%] top-[47%] text-right">
-                      <p className="text-[10px] uppercase tracking-[0.22em] text-white/32">
-                        Hogamba 0{slideIndex + 1}
-                      </p>
-                      <p className="mt-2 max-w-[11rem] text-sm leading-5 text-white/52">
-                        {slide.body}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              ))}
+            {/* Right: mascot (~45% width, capped) */}
+            <div className="flex justify-center lg:w-[380px] lg:justify-end">
+              <HogambaMascotFallback />
             </div>
           </div>
 
-          <div ref={magarbaCopyRef} className="mx-auto mt-8 max-w-[460px]" data-reveal>
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-              <div
-                ref={magarbaProgressRef}
-                className="h-full w-full rounded-full bg-[linear-gradient(90deg,#70ff47,#2fb400)]"
-              />
+          {/* Bottom: bet controls spanning full width */}
+          <div
+            data-reveal
+            className="mt-6 grid grid-cols-2 gap-4"
+          >
+            {/* PLACE BET */}
+            <div>
+              <button
+                type="button"
+                className="w-full rounded-[14px] bg-[linear-gradient(135deg,#5dde2a,#3aaa10)] py-4 text-center text-[15px] font-bold tracking-[0.12em] text-[#081109] shadow-[0_10px_30px_rgba(93,222,42,0.22)]"
+              >
+                PLACE BET
+              </button>
+              <div className="mt-2 flex items-center gap-2 px-1">
+                <span className="h-3.5 w-3.5 rounded-full border border-white/30 bg-transparent" />
+                <span className="text-[12px] text-white/50">Auto bet</span>
+              </div>
             </div>
-            <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-white/42">
-              {magarbaSlides.map((slide) => (
-                <span key={slide.label}>{slide.label}</span>
-              ))}
+
+            {/* CASHOUT */}
+            <div>
+              <button
+                type="button"
+                className="w-full rounded-[14px] bg-[linear-gradient(135deg,#ff8c42,#cc5500)] py-4 text-center text-[15px] font-bold tracking-[0.12em] text-white shadow-[0_10px_30px_rgba(255,107,53,0.22)]"
+              >
+                <span className="block">CASHOUT</span>
+                <span className="block text-[13px] font-normal tracking-normal text-white/80">
+                  23.80 🔒
+                </span>
+              </button>
+              <div className="mt-2 flex items-center gap-2 px-1">
+                <span className="h-3.5 w-3.5 rounded-full border border-white/30 bg-transparent" />
+                <span className="text-[12px] text-white/50">Auto cashout</span>
+              </div>
             </div>
           </div>
         </div>
