@@ -1221,18 +1221,6 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-[1440px] px-6 py-12 lg:px-0">
-        <div className="mx-auto flex max-w-[1180px] justify-center">
-          <AssetImage
-            src={hogambaLogoAsset}
-            alt="Hogamba"
-            wrapperClassName="h-8 min-w-[180px]"
-            imgClassName="h-full w-full object-contain transition-opacity duration-200"
-            fallback={<HogambaLogoFallback />}
-          />
-        </div>
-      </div>
-
       <section
         id="hogamba"
         ref={magarbaSectionRef}
@@ -1243,6 +1231,15 @@ export default function Home() {
         <div className="pointer-events-none absolute left-[7%] top-[20rem] h-[20rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(78,157,15,0.28),rgba(78,157,15,0)_75%)] blur-[90px]" />
 
         <div className="relative mx-auto max-w-[1180px]">
+          <div className="mb-8 lg:mb-10 flex justify-center">
+            <AssetImage
+              src={hogambaLogoAsset}
+              alt="Hogamba"
+              wrapperClassName="h-8 min-w-[180px]"
+              imgClassName="h-full w-full object-contain transition-opacity duration-200"
+              fallback={<HogambaLogoFallback />}
+            />
+          </div>
           <div
             data-reveal
             className="relative overflow-hidden"
