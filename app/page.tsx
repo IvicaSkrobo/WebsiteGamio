@@ -1218,18 +1218,6 @@ export default function Home() {
             ))}
           </div>
 
-          <div
-            data-reveal
-            className="relative z-10 mx-auto mt-14 max-w-[1180px] overflow-hidden rounded-[16px] border border-[rgba(255,162,222,0.16)] bg-[#180515] p-2"
-          >
-            <AssetImage
-              src={originalsCashoutAsset}
-              alt="Originals game preview"
-              wrapperClassName="aspect-[1180/612] w-full rounded-[10px]"
-              imgClassName="h-full w-full rounded-[10px] object-cover transition-opacity duration-200"
-              fallback={<OriginalsPreviewFallback />}
-            />
-          </div>
         </div>
       </section>
 
