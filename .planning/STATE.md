@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: execution
-stopped_at: Desktop fidelity pass in progress — CSS cascade bug fixed, hero z-index fixed; continuing desktop polish
+stopped_at: Hogamba section redesigned to match Figma single-view layout; next — swap in real Figma asset UUIDs when MCP available
 last_updated: "2026-04-23T00:00:00Z"
-last_activity: 2026-04-23 — Completed quick task 260423-1tz: Remove originals cashout preview block and fix Hogamba title position
+last_activity: 2026-04-23 — Completed quick task 260423-2dt: Redesign Hogamba section to match Figma single-view layout
 progress:
   total_phases: 5
   completed_phases: 3
@@ -98,6 +98,7 @@ Recent decisions affecting current work:
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260423-1tz | Remove originals cashout preview block and fix Hogamba title position | 2026-04-23 | d9b4871 | [260423-1tz-remove-originals-cashout-preview-block-a](.planning/quick/260423-1tz-remove-originals-cashout-preview-block-a/) |
+| 260423-2dt | Redesign Hogamba section to match Figma single-view layout | 2026-04-23 | b415fbb | [260423-2dt-redesign-hogamba-section-to-match-figma-](.planning/quick/260423-2dt-redesign-hogamba-section-to-match-figma-/) |
 
 ## Deferred Items
 
