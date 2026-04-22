@@ -186,6 +186,14 @@ body {
 
 ---
 
+## Visual Hierarchy
+
+**Primary visual anchor:** Hero "Gamio" display heading — 140px, weight-700, white-to-gray text gradient with orange glow underlay — draws the eye first on page load before any other element.
+
+**Hierarchy order:** Display heading (140px) → Section headings (56px) → Body copy (16px) → Labels/badges (13px)
+
+---
+
 ## Layout Contract
 
 | Property | Value |
