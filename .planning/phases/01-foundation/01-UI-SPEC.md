@@ -42,38 +42,46 @@ Declared values (all multiples of 4, base unit 8px):
 | xl | 32px | Card padding large variant (gap-8), stats grid |
 | 2xl | 48px | Section padding steps |
 | 3xl | 64px | Page-level spacing steps |
-| section-y-sm | 80px | Section vertical padding minimum (py-20) |
-| section-y-lg | 120px | Section vertical padding maximum (py-32) |
-| container-x | 80px–120px | Container horizontal padding (px-16 to px-24) |
 
-Exceptions:
+**Intentional layout extensions — Figma-sourced, accepted by design (not ad-hoc values):**
+
+| Token | Value | Figma Source | Justification |
+|-------|-------|--------------|---------------|
+| section-y-sm | 80px | Figma section frames — all sections use minimum 80px vertical padding | Required to reproduce the visual breathing room specified in the Figma design; nearest standard token (64px) produces a noticeably compressed layout that does not match the source |
+| section-y-lg | 120px | Figma hero and products section — maximum vertical padding | Required to reproduce the spacious hero treatment from Figma; nearest standard token (64px) is insufficient |
+| container-x | 80px–120px | Figma frame constraints on inner content containers at 1440px viewport | Required by Figma's desktop layout; standard tokens cap at 64px which leaves content visually edge-pinned at wide viewports |
+
+These three values intentionally extend beyond the standard set {4, 8, 16, 24, 32, 48, 64}. They are Figma-sourced layout dimensions, not arbitrary additions. All other spacing must use the standard set above.
+
+Exceptions (accessibility floor):
 - Touch targets on interactive elements: minimum 44px height (accessibility floor — applies from Phase 4 onward)
-- Nav height: 60–72px (fixed — does not follow 8-point grid strictly due to brand constraint)
-- Orange circular icon containers on capability cards: 48–64px diameter
+- Nav height: 64px (maps to standard token 3xl — fixed by brand constraint)
+- Orange circular icon containers on capability cards: 48–64px diameter (maps to standard tokens 2xl–3xl)
 
 ---
 
 ## Typography
 
+**Locked design decision — 4 sizes, 2 weights:**
+
+The Figma design requires exactly 2 weights that serve visually distinct, non-overlapping roles:
+- **400 (regular):** all body copy, descriptive text, stats labels, nav links
+- **700 (bold):** all headings, section titles, stats numbers, hero logotype
+
+Intermediate weights (500 medium, 600 semibold) are absorbed into 400 or 700. The hero logotype "Gamio" (previously 800 extrabold) is expressed as weight 700 with letter-spacing -0.02em — the visual impact of the metallic gradient fill and 140px size provides the required prominence without a distinct weight. Badge labels (previously 600) use weight 700 with uppercase + letter-spacing 0.1em to achieve visual distinction.
+
 | Role | Size | Weight | Line Height | Usage |
 |------|------|--------|-------------|-------|
-| Body M | 16px | 400 | 1.5 | Descriptive text, nav links, footer body, card descriptions — color: rgba(255,255,255,0.7) |
-| Body L | 24px | 400 | 1.5 | About/tagline body text, section lead copy — color: #FFFFFF |
-| Heading M | 36px | 700 | 1.2 | Card titles, section subheadings ("Where do we operate?") |
-| Heading L | 56px | 700 | 1.15 | Section titles ("Our Products", "Capabilities & supporting systems") |
-| Display | 140px | 800 | 1.0 | Hero "Gamio" logotype — metallic white gradient fill, letter-spacing: -0.02em |
+| Display | 140px | 700 | 1.0 | Hero "Gamio" logotype — metallic white gradient fill, letter-spacing: -0.02em |
+| Heading | 56px | 700 | 1.15 | Section titles ("Our Products", "Capabilities & supporting systems"), section subheadings ("Where do we operate?"), card titles, stats figures — size modifiers applied via Tailwind classes (text-5xl for 36px subheadings, text-4xl for card titles if needed; all remain weight 700) |
+| Body | 16px | 400 | 1.5 | Descriptive text, nav links, footer body, card descriptions, stats bar sub-labels — color variants applied via opacity (rgba(255,255,255,0.7) secondary, rgba(255,255,255,0.6) muted) |
+| Label | 13px | 700 | 1.4 | ORIGINALS badge, game card labels — uppercase, letter-spacing: 0.1em |
 
-Additional type roles (do not add new weights — handled via opacity/color):
-
-| Role | Size | Weight | Letter Spacing | Usage |
-|------|------|--------|----------------|-------|
-| Label/Badge | 13px | 600 | 0.1em (uppercase) | ORIGINALS badge, game card labels |
-| Stats number | 36px | 700 | normal | Live stats figures in hero bar |
-| Stats label | 13px | 400 | normal | Stats bar sub-labels — color: rgba(255,255,255,0.6) |
-| Nav link | 15px | 500 | normal | Navigation items |
-
-**Declared weights:** 400 (regular), 500 (medium), 600 (semibold), 700 (bold), 800 (extrabold).
-Note: 5 weights are required by the Figma design. This exceeds the 2-weight ideal but is justified by the hero display logotype (800) and badge labels (600) being visually distinct roles with no functional overlap.
+**Note on absorbed sizes:**
+- 36px (previously Heading M for card titles / stats numbers) — handled via Heading role with `text-4xl` Tailwind class, weight 700
+- 24px (previously Body L for about/tagline) — handled via Body role with `text-2xl` Tailwind class, weight 400, color #FFFFFF
+- 15px (previously Nav link) — merged into Body (16px); the 1px difference is not perceptible and does not violate the Figma intent
+- Nav links are Body (16px) weight 400; hover state changes color to #FF6B35, no weight change
 
 ---
 
@@ -185,8 +193,8 @@ body {
 | Max-width outer | 1440px (full bleed backgrounds stop here visually) |
 | Max-width inner | 1200–1280px (section content containers) |
 | Grid system | 12-column |
-| Section padding Y | 80px (min) – 120px (max) |
-| Container padding X | 80px–120px (desktop), 24px (mobile) |
+| Section padding Y | 80px (min) – 120px (max) — intentional Figma-sourced extensions, see Spacing Scale |
+| Container padding X | 80px–120px (desktop), 24px (mobile) — intentional Figma-sourced extension, see Spacing Scale |
 | Nav height | 64px fixed |
 | Products grid | 4 columns desktop, 2 columns tablet/mobile |
 | Capabilities grid | 3 columns desktop, 2 columns tablet, 1 column mobile |
@@ -235,18 +243,18 @@ Phase 1 delivers no rendered components — only configuration. This inventory i
 
 | Component | Variant | Key Specs |
 |-----------|---------|-----------|
-| PrimaryButton | default | orange gradient bg (#FF6B35 → #CC4400), white text, font-weight 600, px-8 py-4, rounded-full or rounded-xl, orange glow shadow |
+| PrimaryButton | default | orange gradient bg (#FF6B35 → #CC4400), white text, font-weight 700, px-8 py-4, rounded-full or rounded-xl, orange glow shadow |
 | NavBar | fixed | height 64px, backdrop-blur(16px), bg rgba(10,10,10,0.85), logo left, links right |
-| NavLink | default / active / hover | 15px weight-500; hover: color #FF6B35; active: color #FF6B35 |
-| HeroHeading | display | 140px weight-800, text gradient white→gray, letter-spacing -0.02em |
+| NavLink | default / active / hover | 16px weight-400; hover: color #FF6B35; active: color #FF6B35 |
+| HeroHeading | display | 140px weight-700, text gradient white→gray, letter-spacing -0.02em |
 | StatsBar | default | glass effect, 2-column grid, left border divider, white text |
 | SectionContainer | default | max-width 1280px, centered, px-16 to px-24 |
 | GlassCard | default | backdrop-blur(12px), bg rgba(255,255,255,0.05), border rgba(255,255,255,0.1), border-radius 16px |
-| CapabilityCard | default | GlassCard + orange circle icon (48–64px) + title (Heading M) + description (Body M) |
+| CapabilityCard | default | GlassCard + orange circle icon (48–64px) + title (Heading role, text-4xl) + description (Body role) |
 | GameCard | default | dark bg + gradient overlay, image/icon top, uppercase label, glass border, hover: scale(1.02) |
-| OriginalsBadge | default | pill shape, border #FF6B35, text #FF6B35, uppercase, letter-spacing 0.1em, 13px weight-600 |
+| OriginalsBadge | default | pill shape, border #FF6B35, text #FF6B35, uppercase, letter-spacing 0.1em, 13px weight-700 |
 | SectionHeading | default | 56px weight-700 white |
-| BodyText | primary / secondary | primary: 24px weight-400 #FFFFFF; secondary: 16px weight-400 rgba(255,255,255,0.7) |
+| BodyText | primary / secondary | primary: text-2xl weight-400 #FFFFFF; secondary: text-base weight-400 rgba(255,255,255,0.7) |
 
 ---
 
@@ -254,7 +262,7 @@ Phase 1 delivers no rendered components — only configuration. This inventory i
 
 Font: **Sora** via Google Fonts (or self-hosted for performance).
 
-Next.js `app/layout.tsx` or `pages/_app.tsx` must import Sora with weights: 400, 500, 600, 700, 800.
+Next.js `app/layout.tsx` or `pages/_app.tsx` must import Sora with weights: 400, 700.
 
 ```ts
 // Using next/font/google
@@ -262,7 +270,7 @@ import { Sora } from 'next/font/google'
 
 const sora = Sora({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '700'],
   variable: '--font-sora',
   display: 'swap',
 })
@@ -289,7 +297,7 @@ Phase 1 (Foundation) delivers only environment setup and token wiring:
 - Next.js project initialized with static export
 - Tailwind config with all gamio-* color tokens declared above
 - CSS variables in globals.css
-- Sora font loaded with all required weights
+- Sora font loaded with weights 400 and 700
 - Dark base body styles applied
 
 No rendered page sections are expected in Phase 1. The visual contract above is the source of truth for all subsequent phases.
