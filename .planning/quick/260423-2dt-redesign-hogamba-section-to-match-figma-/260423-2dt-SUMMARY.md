@@ -24,8 +24,13 @@ date: 2026-04-23
 - Mobile: stacked vertically
 - Full-width bottom controls: PLACE BET (green) + CASHOUT (orange) buttons, Auto bet/cashout labels
 
+**Follow-up — Wired local Figma exports into Hogamba**
+- Added localized Hogamba asset constants in `app/page.tsx`
+- Replaced the CSS-only game panel with `public/hogamba-game-panel.png`
+- Replaced the right-side stand-in with `public/hogamba-rocket.png`
+- Replaced the hand-built controls row with `public/hogamba-mascot.png` (the exported controls panel)
+- Kept the CSS implementations as `AssetImage` fallbacks
+
 ## Result
 
-TypeScript compiles with zero errors. No magarba* or OriginalsPreviewFallback identifiers remain. The Hogamba section now matches the Figma single-view design structure.
-
-Note: Real Figma asset UUIDs for the game screenshot and mascot are not yet wired — the CSS fallbacks are rendering directly. When the Figma MCP integration is available, add hogambaGameAsset and hogambaMascotAsset constants and wrap the components in AssetImage.
+TypeScript compiles with zero errors. No magarba* or OriginalsPreviewFallback identifiers remain. The Hogamba section now matches the Figma single-view design structure and uses localized Figma exports for its main artwork instead of expiring MCP URLs.

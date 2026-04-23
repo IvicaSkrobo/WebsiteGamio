@@ -41,6 +41,9 @@ const navLogoAsset =
   "https://www.figma.com/api/mcp/asset/a0b3b725-c38f-4623-815a-c48307def09f";
 const hogambaLogoAsset =
   "https://www.figma.com/api/mcp/asset/7c5f33f0-63a4-4970-9bdf-423a360b6c6f";
+const hogambaGamePanelAsset = "/hogamba-game-panel.png";
+const hogambaControlsAsset = "/hogamba-mascot.png";
+const hogambaRocketAsset = "/hogamba-rocket.png";
 const predictionStreamerAsset =
   "https://www.figma.com/api/mcp/asset/cf919977-5af0-4048-914c-88fe94334802";
 const predictionChatAsset =
@@ -403,6 +406,41 @@ function HogambaMascotFallback() {
               className="h-3 w-3 rounded-full bg-[#00e5c8] shadow-[0_0_8px_rgba(0,229,200,0.8)]"
             />
           ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HogambaControlsFallback() {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      <div>
+        <button
+          type="button"
+          className="w-full rounded-[14px] bg-[linear-gradient(135deg,#5dde2a,#3aaa10)] py-4 text-center text-[15px] font-bold tracking-[0.12em] text-[#081109] shadow-[0_10px_30px_rgba(93,222,42,0.22)]"
+        >
+          PLACE BET
+        </button>
+        <div className="mt-2 flex items-center gap-2 px-1">
+          <span className="h-3.5 w-3.5 rounded-full border border-white/30 bg-transparent" />
+          <span className="text-[12px] text-white/50">Auto bet</span>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          className="w-full rounded-[14px] bg-[linear-gradient(135deg,#ff8c42,#cc5500)] py-4 text-center text-[15px] font-bold tracking-[0.12em] text-white shadow-[0_10px_30px_rgba(255,107,53,0.22)]"
+        >
+          <span className="block">CASHOUT</span>
+          <span className="block text-[13px] font-normal tracking-normal text-white/80">
+            23.80 🔒
+          </span>
+        </button>
+        <div className="mt-2 flex items-center gap-2 px-1">
+          <span className="h-3.5 w-3.5 rounded-full border border-white/30 bg-transparent" />
+          <span className="text-[12px] text-white/50">Auto cashout</span>
         </div>
       </div>
     </div>
@@ -1253,50 +1291,39 @@ export default function Home() {
           >
             {/* Left: rocket game panel (~55% width) */}
             <div className="flex-1">
-              <HogambaGameFallback />
+              <AssetImage
+                src={hogambaGamePanelAsset}
+                alt="Hogamba game interface"
+                wrapperClassName="w-full overflow-hidden rounded-[20px]"
+                imgClassName="h-auto w-full rounded-[20px] object-contain transition-opacity duration-200"
+                fallback={<HogambaGameFallback />}
+              />
             </div>
 
             {/* Right: mascot (~45% width, capped) */}
             <div className="flex justify-center lg:w-[380px] lg:justify-end">
-              <HogambaMascotFallback />
+              <AssetImage
+                src={hogambaRocketAsset}
+                alt="Hogamba rocket"
+                wrapperClassName="w-full max-w-[420px]"
+                imgClassName="h-auto w-full object-contain transition-opacity duration-200"
+                fallback={<HogambaMascotFallback />}
+              />
             </div>
           </div>
 
           {/* Bottom: bet controls spanning full width */}
           <div
             data-reveal
-            className="mt-6 grid grid-cols-2 gap-4"
+            className="mt-6"
           >
-            {/* PLACE BET */}
-            <div>
-              <button
-                type="button"
-                className="w-full rounded-[14px] bg-[linear-gradient(135deg,#5dde2a,#3aaa10)] py-4 text-center text-[15px] font-bold tracking-[0.12em] text-[#081109] shadow-[0_10px_30px_rgba(93,222,42,0.22)]"
-              >
-                PLACE BET
-              </button>
-              <div className="mt-2 flex items-center gap-2 px-1">
-                <span className="h-3.5 w-3.5 rounded-full border border-white/30 bg-transparent" />
-                <span className="text-[12px] text-white/50">Auto bet</span>
-              </div>
-            </div>
-
-            {/* CASHOUT */}
-            <div>
-              <button
-                type="button"
-                className="w-full rounded-[14px] bg-[linear-gradient(135deg,#ff8c42,#cc5500)] py-4 text-center text-[15px] font-bold tracking-[0.12em] text-white shadow-[0_10px_30px_rgba(255,107,53,0.22)]"
-              >
-                <span className="block">CASHOUT</span>
-                <span className="block text-[13px] font-normal tracking-normal text-white/80">
-                  23.80 🔒
-                </span>
-              </button>
-              <div className="mt-2 flex items-center gap-2 px-1">
-                <span className="h-3.5 w-3.5 rounded-full border border-white/30 bg-transparent" />
-                <span className="text-[12px] text-white/50">Auto cashout</span>
-              </div>
-            </div>
+            <AssetImage
+              src={hogambaControlsAsset}
+              alt="Hogamba betting controls"
+              wrapperClassName="w-full overflow-hidden rounded-[20px]"
+              imgClassName="h-auto w-full rounded-[20px] object-contain transition-opacity duration-200"
+              fallback={<HogambaControlsFallback />}
+            />
           </div>
         </div>
       </section>

@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: execution
-stopped_at: Hogamba section redesigned to match Figma single-view layout; next — swap in real Figma asset UUIDs when MCP available
-last_updated: "2026-04-23T00:00:00Z"
-last_activity: 2026-04-23 — Completed quick task 260423-2dt: Redesign Hogamba section to match Figma single-view layout
+stopped_at: Hogamba section now uses localized Figma exports for the game panel, rocket, and controls; next — continue markets-down desktop fidelity and mobile pass
+last_updated: "2026-04-23T02:20:00Z"
+last_activity: 2026-04-23 — Wired localized Hogamba Figma exports into the redesigned Hogamba section
 progress:
   total_phases: 5
   completed_phases: 3
@@ -91,7 +91,7 @@ Recent decisions affecting current work:
 
 - Use the already-open dev server as the primary visual feedback loop; reserve full production builds for meaningful checkpoints.
 - Hero floating icon/parallax code still exists, but the current desktop composition has been simplified toward the Figma hero and may need a later reconciliation pass.
-- Remote Figma asset endpoints currently resolve to 404 in runtime checks, so any remaining direct `<img>` use should be treated as unstable until replaced or localized.
+- Remote Figma asset endpoints currently resolve to 404 in runtime checks, so any remaining direct `<img>` use should be treated as unstable until replaced or localized. Hogamba's main artwork is now localized in `public/`.
 
 ### Quick Tasks Completed
 
