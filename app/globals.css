@@ -1,10 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gamio-bg: #0a0a0a;
+  --color-gamio-bg: #080808;
   --color-gamio-bg-secondary: #111111;
-  --color-gamio-orange: #FF6B35;
-  --color-gamio-orange-dark: #CC4400;
+  --color-gamio-panel: #151515;
+  --color-gamio-panel-raised: #1d1b1b;
+  --color-gamio-graphite: #23201f;
+  --color-gamio-orange: #ff6b35;
+  --color-gamio-orange-dark: #cc4400;
+  --color-gamio-orange-soft: #ff9b6c;
+  --color-gamio-originals: #d1006f;
+  --color-gamio-hogamba: #8cff38;
+  --color-gamio-arena: #4f8cff;
+  --color-gamio-cyan: #45e0d0;
   --color-gamio-purple-bg: #1a0028;
   --color-gamio-purple-end: #2d0045;
 
@@ -17,17 +25,31 @@
 }
 
 :root {
-  --gamio-bg: #0a0a0a;
+  --gamio-bg: #080808;
   --gamio-bg-secondary: #111111;
-  --gamio-orange: #FF6B35;
-  --gamio-orange-dark: #CC4400;
+  --gamio-panel: #151515;
+  --gamio-panel-raised: #1d1b1b;
+  --gamio-graphite: #23201f;
+  --gamio-orange: #ff6b35;
+  --gamio-orange-dark: #cc4400;
+  --gamio-orange-soft: #ff9b6c;
+  --gamio-originals: #d1006f;
+  --gamio-hogamba: #8cff38;
+  --gamio-arena: #4f8cff;
+  --gamio-cyan: #45e0d0;
   --gamio-purple-bg: #1a0028;
   --gamio-purple-end: #2d0045;
-  --gamio-glass: rgba(255, 255, 255, 0.05);
-  --gamio-glass-border: rgba(255, 255, 255, 0.1);
+  --gamio-glass: rgba(255, 255, 255, 0.06);
+  --gamio-glass-strong: rgba(255, 255, 255, 0.11);
+  --gamio-glass-border: rgba(255, 255, 255, 0.12);
+  --gamio-hud: rgba(8, 8, 8, 0.64);
+  --gamio-hud-border: rgba(255, 255, 255, 0.16);
+  --gamio-grid-line: rgba(255, 255, 255, 0.045);
+  --gamio-focus: rgba(255, 107, 53, 0.48);
   --gamio-text: #ffffff;
   --gamio-text-muted: rgba(255, 255, 255, 0.7);
   --gamio-text-subtle: rgba(255, 255, 255, 0.6);
+  --gamio-text-faint: rgba(255, 255, 255, 0.42);
 }
 
 html {
@@ -45,7 +67,12 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--gamio-bg);
+  background:
+    radial-gradient(circle at 50% -10rem, rgba(255, 107, 53, 0.11), transparent 30rem),
+    linear-gradient(90deg, var(--gamio-grid-line) 1px, transparent 1px),
+    linear-gradient(180deg, var(--gamio-grid-line) 1px, transparent 1px),
+    var(--gamio-bg);
+  background-size: auto, 72px 72px, 72px 72px, auto;
   color: var(--gamio-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -67,4 +94,82 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+::selection {
+  background: rgba(255, 107, 53, 0.32);
+  color: var(--gamio-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gamio-focus);
+  outline-offset: 4px;
+}
+
+img {
+  max-width: 100%;
+}
+
+@layer components {
+  .gamio-surface {
+    border: 1px solid var(--gamio-glass-border);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+      var(--gamio-hud);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 24px 70px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(18px);
+  }
+
+  .gamio-hud {
+    border: 1px solid var(--gamio-hud-border);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 14px 38px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+  }
+
+  .gamio-section-label {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--gamio-orange-soft);
+  }
+
+  .gamio-product-frame {
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background:
+      linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(69, 224, 208, 0.05)),
+      var(--gamio-panel);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      0 36px 100px rgba(0, 0, 0, 0.38);
+  }
+
+  .gamio-product-rail {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(90deg, rgba(209, 0, 111, 0.12), rgba(255, 107, 53, 0.08), rgba(79, 140, 255, 0.1)),
+      rgba(255, 255, 255, 0.035);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

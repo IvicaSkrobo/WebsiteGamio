@@ -13,7 +13,6 @@ type ProductCard = {
   name: string;
   description: string;
   art: string;
-  artClassName?: string;
 };
 
 type CapabilityCard = {
@@ -41,35 +40,35 @@ const navLogoAsset =
   "https://www.figma.com/api/mcp/asset/a0b3b725-c38f-4623-815a-c48307def09f";
 const hogambaLogoAsset =
   "https://www.figma.com/api/mcp/asset/7c5f33f0-63a4-4970-9bdf-423a360b6c6f";
-const hogambaGamePanelAsset = "/hogamba-game-panel.png";
-const hogambaControlsAsset = "/hogamba-mascot.png";
-const hogambaRocketAsset = "/hogamba-rocket.png";
+const hogambaGamePanelAsset = "/images/hogamba/game-panel.png";
+const hogambaControlsAsset = "/images/hogamba/controls.png";
+const hogambaMascotAsset = "/images/hogamba/mascot.png";
 const predictionStreamerAsset =
-  "https://www.figma.com/api/mcp/asset/cf919977-5af0-4048-914c-88fe94334802";
+  "/images/prediction-arena/streamer.png";
 const predictionChatAsset =
-  "https://www.figma.com/api/mcp/asset/05ed8aa1-56d8-4c5d-be03-b95bb20d86d4";
+  "/images/prediction-arena/chat.png";
 const predictionTabletAsset =
-  "https://www.figma.com/api/mcp/asset/286b77a9-cf85-47f6-be06-c3b092ea2668";
+  "/images/prediction-arena/tablet.png";
 const predictionPotionAsset =
-  "https://www.figma.com/api/mcp/asset/b96056eb-e20e-407a-b2f4-ddd286a65102";
+  "/images/prediction-arena/potion.png";
 const predictionGameBadgeAsset =
-  "https://www.figma.com/api/mcp/asset/2a42a602-f2fe-44fb-868d-7f14e2f98d48";
+  "/images/prediction-arena/game-badge.png";
 const predictionCoinAsset =
-  "https://www.figma.com/api/mcp/asset/4320e570-bfee-4b05-8dc3-539fedf7afa8";
+  "/images/prediction-arena/coin.png";
 const predictionBombAsset =
-  "https://www.figma.com/api/mcp/asset/5b8ba966-e4e6-4c53-b112-333116805915";
+  "/images/prediction-arena/tnt.png";
 const predictionGunAsset =
-  "https://www.figma.com/api/mcp/asset/a43acb56-fbda-4495-838b-5605f5449922";
+  "/images/prediction-arena/gun.png";
 const predictionSkullCoinAsset =
-  "https://www.figma.com/api/mcp/asset/78ef9ebe-15f9-45d9-87df-06731f733b5c";
-const originalsPlinkoBallAsset =
-  "https://www.figma.com/api/mcp/asset/6dc5b3ac-d31b-4521-925a-6f0f7df17a77";
-const originalsMinesAsset =
-  "https://www.figma.com/api/mcp/asset/8012c92f-4a9d-4f5f-9311-e34e31e5753b";
-const originalsChickenAsset =
-  "https://www.figma.com/api/mcp/asset/7d9cd9c1-2d16-4327-8842-306002705ec3";
-const originalsDiceAsset =
-  "https://www.figma.com/api/mcp/asset/6c76508b-6328-49ee-aba7-939029646604";
+  "/images/prediction-arena/skull-coin.png";
+const originalsPlinkoThumbnailAsset =
+  "/images/originals/plinko-thumbnail.png";
+const originalsMinesThumbnailAsset =
+  "/images/originals/mines-thumbnail.png";
+const originalsChickenThumbnailAsset =
+  "/images/originals/chicken-thumbnail.png";
+const originalsDiceThumbnailAsset =
+  "/images/originals/dice-thumbnail.png";
 const originalsCashoutAsset =
   "https://www.figma.com/api/mcp/asset/474529f6-1b4b-4ed9-a559-9023571feedc";
 const originalsBadgeAsset =
@@ -140,28 +139,22 @@ const productCards: ProductCard[] = [
   {
     name: "PLINKO",
     description: "High-energy drops, sharp risk ladders, and immediate visual payoff.",
-    art: originalsPlinkoBallAsset,
-    artClassName:
-      "h-[8.8rem] w-[8.8rem] object-contain drop-shadow-[0_0_30px_rgba(255,207,236,0.35)]",
+    art: originalsPlinkoThumbnailAsset,
   },
   {
     name: "MINES",
     description: "Tense reveal loops built for repeat sessions and streamer drama.",
-    art: originalsMinesAsset,
-    artClassName:
-      "h-[10.5rem] w-[10.5rem] object-contain drop-shadow-[0_0_30px_rgba(255,188,211,0.28)]",
+    art: originalsMinesThumbnailAsset,
   },
   {
     name: "CHICKEN",
     description: "Chaos-forward pacing with bright reward cues and simple rounds.",
-    art: originalsChickenAsset,
-    artClassName: "h-full w-full object-cover",
+    art: originalsChickenThumbnailAsset,
   },
   {
     name: "DICE",
     description: "Fast, configurable risk gameplay for broad operator audiences.",
-    art: originalsDiceAsset,
-    artClassName: "h-[11rem] w-[11rem] scale-[1.5] object-contain",
+    art: originalsDiceThumbnailAsset,
   },
 ];
 
@@ -1014,9 +1007,7 @@ export default function Home() {
 
   return (
     <main ref={rootRef} className="relative overflow-x-clip bg-gamio-bg text-white">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_10rem,rgba(204,68,0,0.12),rgba(10,10,10,0.98)_40%)]" />
-      <div className="pointer-events-none absolute left-[-10rem] top-[38rem] h-[28rem] w-[28rem] rounded-full bg-[rgba(255,107,53,0.09)] blur-3xl" />
-      <div className="pointer-events-none absolute right-[-12rem] top-[95rem] h-[34rem] w-[34rem] rounded-full bg-[rgba(127,47,255,0.14)] blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] bg-[radial-gradient(circle_at_50%_0%,rgba(255,107,53,0.18),rgba(8,8,8,0.96)_46%,rgba(8,8,8,0)_82%)]" />
 
       <nav className="fixed inset-x-0 top-0 z-50 flex justify-center px-5 pt-3 lg:px-5 lg:pt-[14px]">
         <div className="flex h-20 w-full max-w-[1440px] items-center justify-center">
@@ -1068,55 +1059,130 @@ export default function Home() {
       <section
         id="about"
         ref={heroRef}
-        className="relative isolate mx-auto min-h-[38rem] w-full max-w-[1440px] overflow-hidden px-6 pb-20 pt-28 lg:h-[650px] lg:min-h-0 lg:px-0 lg:pb-0 lg:pt-0"
+        className="relative isolate mx-auto min-h-[720px] w-full max-w-[1440px] overflow-hidden px-6 pb-12 pt-28 lg:h-[760px] lg:px-12 lg:pb-0 lg:pt-0"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[#101010]" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,108,61,0.08),transparent_46%)]" />
-        <div className="pointer-events-none absolute left-1/2 top-[6rem] h-[24rem] w-[24rem] -translate-x-1/2 lg:top-[140px] lg:h-[1006.761px] lg:w-[1006.761px]">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,8,0.44),rgba(8,8,8,0.94)_78%)]" />
+        <div className="pointer-events-none absolute inset-x-8 top-24 hidden h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)] lg:block" />
+        <div className="pointer-events-none absolute left-1/2 top-[6rem] hidden h-[24rem] w-[24rem] -translate-x-1/2 lg:top-[140px] lg:h-[1006.761px] lg:w-[1006.761px]">
           <div className="absolute inset-[13.4%] rounded-full bg-[radial-gradient(circle,rgba(255,48,0,1)_0%,rgba(255,60,14,1)_15%,rgba(255,71,29,1)_30%,rgba(255,94,57,1)_60%,rgba(255,127,83,1)_80%,rgba(255,159,108,1)_100%)] blur-[90px] lg:blur-[120px]" />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.04)_40%,rgba(0,0,0,0.34)_72%,rgba(0,0,0,0.72)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,107,53,0.08),rgba(0,0,0,0)_36%,rgba(0,0,0,0.56)_100%)]" />
         {/* Dark curved mask — lives inside hero so overflow-hidden clips its bottom half, keeping it below stats bar (z-10) */}
         <div className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[204px] w-[1820px] -translate-x-1/2 translate-y-1/2 rounded-[50%] bg-[#121212] lg:block" />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-[560px] flex-col items-center justify-center text-center lg:absolute lg:left-1/2 lg:top-[161px] lg:h-[183px] lg:w-[529px] lg:-translate-x-1/2">
+        <div
+          ref={(node) => {
+            floatingOuterRefs.current[0] = node;
+          }}
+          className="pointer-events-none absolute left-1/2 top-[24rem] z-0 hidden w-[760px] -translate-x-1/2 lg:block"
+        >
+          <AssetImage
+            src={predictionTabletAsset}
+            alt=""
+            wrapperClassName="mx-auto w-[520px] rotate-[-4deg] opacity-80"
+            imgClassName="h-auto w-full object-contain drop-shadow-[0_38px_90px_rgba(0,0,0,0.56)]"
+            fallback={<PredictionAssetFallback kind="tablet" />}
+          />
+        </div>
+
+        <div
+          ref={(node) => {
+            floatingOuterRefs.current[1] = node;
+          }}
+          className="pointer-events-none absolute right-[6%] top-[8.5rem] z-0 hidden w-[260px] lg:block"
+        >
+          <AssetImage
+            src={hogambaMascotAsset}
+            alt=""
+            wrapperClassName="w-full"
+            imgClassName="h-auto w-full object-contain drop-shadow-[0_34px_74px_rgba(0,0,0,0.48)]"
+            fallback={<HogambaMascotFallback />}
+          />
+        </div>
+
+        <div
+          ref={(node) => {
+            floatingOuterRefs.current[2] = node;
+          }}
+          className="pointer-events-none absolute bottom-9 left-[5%] z-0 hidden w-[500px] grid-cols-4 gap-3 opacity-95 lg:grid"
+        >
+          {productCards.map((card) => (
+            <AssetImage
+              key={card.name}
+              src={card.art}
+              alt=""
+              wrapperClassName="aspect-[280/350] overflow-hidden rounded-[8px] border border-white/10 bg-[#181020] shadow-[0_18px_44px_rgba(0,0,0,0.38)]"
+              imgClassName="h-full w-full object-cover"
+              fallback={<ProductArtFallback name={card.name} />}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto flex w-full max-w-[720px] flex-col items-center justify-center text-center lg:absolute lg:left-1/2 lg:top-[166px] lg:w-[760px] lg:-translate-x-1/2">
+          <p data-reveal className="gamio-section-label mb-5">
+            B2B iGaming platform
+          </p>
           <h1
             data-reveal
-            className="font-display mx-auto w-full overflow-visible whitespace-nowrap bg-[linear-gradient(180deg,rgba(255,255,255,1)_13.312%,rgba(255,255,255,0)_88.636%)] bg-clip-text text-center text-[5.1rem] leading-[0.94] font-bold tracking-[-0.038em] text-transparent sm:text-[6rem] lg:absolute lg:left-1/2 lg:top-0 lg:min-w-[529px] lg:w-auto lg:-translate-x-1/2 lg:px-[14px] lg:pt-[10px] lg:text-[166px] lg:leading-[152px]"
+            className="font-display mx-auto w-full overflow-visible whitespace-nowrap bg-[linear-gradient(180deg,#ffffff_8%,rgba(255,255,255,0.82)_44%,rgba(255,255,255,0.18)_92%)] bg-clip-text text-center text-[5.1rem] leading-[0.9] font-bold tracking-[0] text-transparent sm:text-[6rem] lg:text-[166px] lg:leading-[150px]"
           >
             Gamio
           </h1>
           <p
             data-reveal
-            className="font-display mx-auto -mt-1 w-full text-center text-[1.85rem] leading-none font-bold tracking-[-0.03em] text-white sm:text-[2.15rem] lg:absolute lg:left-0 lg:right-0 lg:top-[142px] lg:mt-0 lg:text-[31px] lg:leading-[41px]"
+            className="font-display mx-auto -mt-1 w-full text-center text-[1.85rem] leading-none font-bold tracking-[0] text-white sm:text-[2.15rem] lg:-mt-3 lg:text-[34px] lg:leading-[42px]"
           >
             Game & Gain
           </p>
         </div>
 
+        <div className="relative z-10 mx-auto mt-10 grid w-full max-w-[520px] gap-3 sm:grid-cols-3 lg:hidden">
+          <AssetImage
+            src={productCards[0].art}
+            alt=""
+            wrapperClassName="aspect-[280/350] overflow-hidden rounded-[8px] border border-white/10 bg-[#181020]"
+            imgClassName="h-full w-full object-cover"
+            fallback={<ProductArtFallback name="PLINKO" />}
+          />
+          <AssetImage
+            src={hogambaMascotAsset}
+            alt=""
+            wrapperClassName="flex aspect-[280/350] items-center justify-center overflow-hidden rounded-[8px] border border-white/10 bg-[#111]"
+            imgClassName="h-full w-full object-contain"
+            fallback={<HogambaMascotFallback />}
+          />
+          <AssetImage
+            src={predictionTabletAsset}
+            alt=""
+            wrapperClassName="aspect-[280/350] overflow-hidden rounded-[8px] border border-white/10 bg-[#111]"
+            imgClassName="h-full w-full object-cover"
+            fallback={<PredictionAssetFallback kind="tablet" />}
+          />
+        </div>
+
         <div
           ref={statsBarRef}
           data-reveal
-          className="relative z-10 mx-auto mt-10 grid w-full max-w-[540px] gap-5 text-center whitespace-nowrap lg:absolute lg:left-1/2 lg:top-[386px] lg:mt-0 lg:w-[540px] lg:-translate-x-1/2 lg:grid-cols-2"
+          className="relative z-10 mx-auto mt-8 grid w-full max-w-[560px] gap-3 text-center whitespace-nowrap sm:grid-cols-2 lg:absolute lg:bottom-[68px] lg:left-1/2 lg:mt-0 lg:w-[560px] lg:-translate-x-1/2"
         >
-          <div className="flex min-h-[103px] flex-col items-center justify-center rounded-[10px] bg-white/16 px-6 py-4 text-center text-white">
-            <p className="font-display text-[18px] leading-[24px] font-normal text-white sm:text-[20px] sm:leading-[26px]">
+          <div className="gamio-hud flex min-h-[88px] flex-col items-center justify-center rounded-[8px] px-5 py-4 text-center text-white">
+            <p className="font-body text-[12px] leading-[16px] font-bold tracking-[0.08em] text-white/62 uppercase">
               Live number of players
             </p>
             <p
               ref={playerCountRef}
-              className="font-display mt-1 text-[2.35rem] font-bold tracking-[-0.04em] text-white sm:text-[2.55rem] sm:leading-[41px] lg:text-[31px]"
+              className="font-display mt-1 text-[2.35rem] leading-none font-bold tracking-[0] text-white sm:text-[2.55rem] lg:text-[31px]"
             >
               1,879
             </p>
           </div>
-          <div className="flex min-h-[103px] flex-col items-center justify-center rounded-[10px] border-4 border-[rgba(255,255,255,0.6)] bg-[rgba(255,255,255,0.28)] px-6 py-4 text-center text-[#fff5c9]">
-            <p className="font-display text-[18px] leading-[24px] font-normal text-[#fff5c9] sm:text-[20px] sm:leading-[26px]">
+          <div className="gamio-hud flex min-h-[88px] flex-col items-center justify-center rounded-[8px] px-5 py-4 text-center text-white">
+            <p className="font-body text-[12px] leading-[16px] font-bold tracking-[0.08em] text-white/62 uppercase">
               Total transactions
             </p>
             <p
               ref={transactionCountRef}
-              className="font-display mt-1 text-[2.35rem] font-bold tracking-[-0.04em] text-[#fff5c9] sm:text-[2.55rem] sm:leading-[41px] lg:text-[31px]"
+              className="font-display mt-1 text-[2.35rem] leading-none font-bold tracking-[0] text-[#ffd7a8] sm:text-[2.55rem] lg:text-[31px]"
             >
               € 303,980.99
             </p>
@@ -1124,21 +1190,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:-mt-[91px] lg:h-[454px] lg:overflow-visible lg:px-0 lg:py-0">
-        <AssetImage
-          src={aboutUsPanelAsset}
-          alt=""
-          wrapperClassName="pointer-events-none absolute inset-0"
-          imgClassName="h-full w-full object-cover transition-opacity duration-200"
-          fallback={<AboutPanelFallback />}
-        />
-        <div className="absolute inset-0 bg-[#121212]/94 lg:bg-transparent" />
-        <div
-          data-reveal
-          className="font-display relative mx-auto max-w-[795px] text-center text-[2rem] leading-[1.22] font-bold tracking-[0] text-white sm:text-[2.35rem] lg:absolute lg:left-1/2 lg:top-[176px] lg:w-[795px] lg:-translate-x-1/2 lg:text-[31px] lg:leading-[41px]"
-        >
-          We make things you actually want to play &mdash; and yes, sometimes there&apos;s
-          money involved.
+      <section className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:py-28">
+        <div className="gamio-product-rail absolute inset-x-6 top-0 h-px lg:inset-x-12" />
+        <div className="relative mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div data-reveal>
+            <p className="gamio-section-label">What we build</p>
+            <h2 className="font-display mt-5 max-w-[760px] text-[2.15rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[56px] lg:leading-[64px]">
+              We make things you actually want to play &mdash; and yes, sometimes there&apos;s
+              money involved.
+            </h2>
+          </div>
+          <div data-reveal className="gamio-surface rounded-[8px] p-5 lg:p-6">
+            <p className="font-body text-[1.05rem] leading-[1.55] text-white/78 lg:text-[18px]">
+              From prediction arenas to instant games and multiplayer chaos, we build
+              interactive stuff people come back to.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {["Prediction arenas", "Instant games", "Multiplayer chaos"].map((label) => (
+                <div
+                  key={label}
+                  className="rounded-[8px] border border-white/10 bg-white/[0.035] px-4 py-3 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-white/72"
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1146,32 +1223,9 @@ export default function Home() {
         id="markets"
         className="mx-auto w-full max-w-[1440px] px-6 py-16 lg:px-0 lg:pt-[40px] lg:pb-[140px]"
       >
-        <div className="mx-auto flex w-full max-w-[900px] flex-col items-center">
-          <div
-            data-reveal
-            className="font-display mx-auto max-w-[795px] text-center text-[1.6rem] leading-[1.28] font-bold tracking-[0] text-white sm:text-[1.95rem] lg:w-[795px] lg:text-[25px] lg:leading-[32px]"
-          >
-            From prediction arenas to instant games and multiplayer chaos, we build
-            interactive stuff people come back to.
-          </div>
-
-          <div
-            data-reveal
-            className="mx-auto mt-10 aspect-[900/473] w-full max-w-[900px] overflow-hidden rounded-[20px] lg:mt-[28px]"
-          >
-            <AssetImage
-              src={marketsVisualAsset}
-              alt="3D network visualization"
-              wrapperClassName="h-full w-full rounded-[20px]"
-              imgClassName="h-full w-full rounded-[20px] object-cover object-center transition-opacity duration-200"
-              fallback={<MarketsVisualFallback />}
-            />
-          </div>
-        </div>
-
         <div
           data-reveal
-          className="mx-auto mt-20 max-w-[795px] text-center lg:mt-[112px] lg:w-[795px]"
+          className="mx-auto max-w-[795px] text-center lg:w-[795px]"
         >
           <h2 className="font-display text-[2.75rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3.35rem] lg:text-[49px] lg:leading-[68px]">
             Where do we operate?
@@ -1216,46 +1270,15 @@ export default function Home() {
               <article
                 key={card.name}
                 data-reveal
-                className="overflow-hidden rounded-[12px] border border-[rgba(255,162,222,0.16)] bg-[linear-gradient(180deg,#7b0c4a,#37031f)] transition-transform duration-300 hover:scale-[1.015]"
+                className="group overflow-hidden rounded-[10px] border border-[rgba(255,162,222,0.16)] bg-[#181020] transition-transform duration-300 hover:scale-[1.015]"
               >
-                <div className="relative h-[350px] overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,192,230,0.55),rgba(255,255,255,0)_48%)] opacity-80" />
-                  {card.name === "CHICKEN" ? (
-                    <AssetImage
-                      src={card.art}
-                      alt=""
-                      wrapperClassName="absolute inset-0"
-                      imgClassName="h-full w-full object-cover transition-opacity duration-200"
-                      fallback={<ProductArtFallback name={card.name} />}
-                    />
-                  ) : (
-                    <AssetImage
-                      src={card.art}
-                      alt=""
-                      wrapperClassName="absolute inset-0 flex items-center justify-center"
-                      imgClassName={cn(card.artClassName, "transition-opacity duration-200")}
-                      fallback={<ProductArtFallback name={card.name} />}
-                    />
-                  )}
-                  {card.name === "PLINKO" && (
-                    <AssetImage
-                      src={originalsPlinkoBallAsset}
-                      alt=""
-                      wrapperClassName="absolute right-4 top-9 h-12 w-12"
-                      imgClassName="h-full w-full object-contain opacity-90 transition-opacity duration-200"
-                      fallback={<HeroFallbackIcon type="coin" />}
-                    />
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 h-[170px] bg-[linear-gradient(180deg,rgba(24,16,32,0),rgba(24,16,32,0.85)_58%,rgba(24,16,32,0.98))]" />
-                </div>
-                <div className="relative -mt-[84px] px-4 pb-5 pt-0 text-white">
-                  <p className="text-[11px] font-bold tracking-[0.08em] text-white/92">
-                    SUPERBET
-                  </p>
-                  <p className="mt-1 text-[2.15rem] leading-none font-bold tracking-[-0.05em]">
-                    {card.name}
-                  </p>
-                </div>
+                <AssetImage
+                  src={card.art}
+                  alt={`${card.name} game thumbnail`}
+                  wrapperClassName="block aspect-[280/350] w-full"
+                  imgClassName="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]"
+                  fallback={<ProductArtFallback name={card.name} />}
+                />
               </article>
             ))}
           </div>
@@ -1303,8 +1326,8 @@ export default function Home() {
             {/* Right: mascot (~45% width, capped) */}
             <div className="flex justify-center lg:w-[380px] lg:justify-end">
               <AssetImage
-                src={hogambaRocketAsset}
-                alt="Hogamba rocket"
+                src={hogambaMascotAsset}
+                alt="Hogamba mascot"
                 wrapperClassName="w-full max-w-[420px]"
                 imgClassName="h-auto w-full object-contain transition-opacity duration-200"
                 fallback={<HogambaMascotFallback />}

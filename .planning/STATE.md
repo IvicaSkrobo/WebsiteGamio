@@ -2,7 +2,7 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: execution
+status: planning
 stopped_at: Hogamba section now uses localized Figma exports for the game panel, rocket, and controls; next — continue markets-down desktop fidelity and mobile pass
 last_updated: "2026-04-23T02:20:00Z"
 last_activity: 2026-04-23 — Wired localized Hogamba Figma exports into the redesigned Hogamba section
@@ -100,6 +100,11 @@ Recent decisions affecting current work:
 | 260423-1tz | Remove originals cashout preview block and fix Hogamba title position | 2026-04-23 | d9b4871 | [260423-1tz-remove-originals-cashout-preview-block-a](.planning/quick/260423-1tz-remove-originals-cashout-preview-block-a/) |
 | 260423-2dt | Redesign Hogamba section to match Figma single-view layout | 2026-04-23 | b415fbb | [260423-2dt-redesign-hogamba-section-to-match-figma-](.planning/quick/260423-2dt-redesign-hogamba-section-to-match-figma-/) |
 | 260425-i2p | Update GSD package dependency to published version with SDK | 2026-04-25 | 990de40 | [260425-i2p-update-gsd-package-dependency-to-publish](.planning/quick/260425-i2p-update-gsd-package-dependency-to-publish/) |
+| 260425-rdp | Research and plan full-site Gamio redesign | 2026-04-25 | uncommitted | [260425-rdp-full-site-redesign-research-plan](.planning/quick/260425-rdp-full-site-redesign-research-plan/) |
+| 260425-assets | Localize Figma game images into public/images folders | 2026-04-25 | uncommitted | [260425-assets-localize-figma-game-images](.planning/quick/260425-assets-localize-figma-game-images/) |
+| 260425-phase1 | Phase 1 asset intake and content lock | 2026-04-25 | uncommitted | [260425-phase-1-asset-intake-content-lock](.planning/quick/260425-phase-1-asset-intake-content-lock/) |
+| 260425-phase2 | Phase 2 visual system reset | 2026-04-25 | uncommitted | [260425-phase-2-visual-system-reset](.planning/quick/260425-phase-2-visual-system-reset/) |
+| 260425-phase3 | Phase 3 hero and What We Build transition redesign | 2026-04-25 | uncommitted | [260425-phase-3-hero-transition-redesign](.planning/quick/260425-phase-3-hero-transition-redesign/) |
 
 ## Deferred Items
 
