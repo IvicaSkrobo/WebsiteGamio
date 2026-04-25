@@ -99,6 +99,7 @@ Recent decisions affecting current work:
 |---|-------------|------|--------|-----------|
 | 260423-1tz | Remove originals cashout preview block and fix Hogamba title position | 2026-04-23 | d9b4871 | [260423-1tz-remove-originals-cashout-preview-block-a](.planning/quick/260423-1tz-remove-originals-cashout-preview-block-a/) |
 | 260423-2dt | Redesign Hogamba section to match Figma single-view layout | 2026-04-23 | b415fbb | [260423-2dt-redesign-hogamba-section-to-match-figma-](.planning/quick/260423-2dt-redesign-hogamba-section-to-match-figma-/) |
+| 260425-i2p | Update GSD package dependency to published version with SDK | 2026-04-25 | b20b800 | [260425-i2p-update-gsd-package-dependency-to-publish](.planning/quick/260425-i2p-update-gsd-package-dependency-to-publish/) |
 
 ## Deferred Items
 
