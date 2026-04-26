@@ -1338,32 +1338,36 @@ export default function Home() {
               <div className="h-px w-16 bg-gradient-to-r from-[var(--gamio-orange)] to-transparent" style={{ opacity: 0.3 }} />
             </div>
           </div>
-          <div data-reveal className="gamio-about-card rounded-[12px] p-5 lg:p-7">
-            {/* Top row: description + floating image */}
-            <div className="flex items-start gap-4">
-              <p className="font-body flex-1 text-[1rem] leading-[1.6] text-white/72 lg:text-[16px]">
-                From prediction arenas to instant games and multiplayer chaos, we build
-                interactive stuff people come back to.
-              </p>
-              <div className="relative h-[90px] w-[90px] flex-shrink-0">
-                {[
-                  { label: "Prediction arenas", image: "/images/prediction-arena/coin.png" },
-                  { label: "Instant games",      image: "/images/originals/chicken.png" },
-                  { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png" },
-                ].map(({ label, image }, i) => {
-                  const active = hoveredBuildCategory === label || (hoveredBuildCategory === null && i === 0);
-                  return (
-                    <img
-                      key={label}
-                      src={image}
-                      alt=""
-                      className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.5)]"
-                      style={{ opacity: active ? 1 : 0, transition: "opacity 0.25s ease", pointerEvents: "none" }}
-                    />
-                  );
-                })}
-              </div>
+          <div data-reveal className="gamio-about-card relative overflow-visible rounded-[12px] p-5 lg:p-7">
+            {/* Image escapes the card — floats above top-right corner */}
+            <div className="pointer-events-none absolute -right-5 -top-14 z-20 h-[112px] w-[112px]">
+              {[
+                { label: "Prediction arenas", image: "/images/prediction-arena/coin.png" },
+                { label: "Instant games",      image: "/images/originals/chicken.png" },
+                { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png" },
+              ].map(({ label, image }, i) => {
+                const active = hoveredBuildCategory === label || (hoveredBuildCategory === null && i === 0);
+                return (
+                  <img
+                    key={label}
+                    src={image}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-contain"
+                    style={{
+                      opacity: active ? 1 : 0,
+                      transition: "opacity 0.25s ease, transform 0.25s ease",
+                      transform: active ? "translateY(0) scale(1)" : "translateY(6px) scale(0.92)",
+                      filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.65)) drop-shadow(0 0 8px rgba(255,107,53,0.18))",
+                      pointerEvents: "none",
+                    }}
+                  />
+                );
+              })}
             </div>
+            <p className="font-body text-[1rem] leading-[1.6] text-white/72 lg:text-[16px]">
+              From prediction arenas to instant games and multiplayer chaos, we build
+              interactive stuff people come back to.
+            </p>
             <div className="mt-5 flex flex-col gap-2">
               {[
                 { label: "Prediction arenas", color: "#ff6b35", tagline: "Real-time skill meets live outcomes" },
