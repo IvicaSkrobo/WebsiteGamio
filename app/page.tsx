@@ -1529,7 +1529,7 @@ export default function Home() {
       <section
         id="originals"
         data-motion-section
-        className="relative mx-auto w-full max-w-[1440px] scroll-mt-24 overflow-hidden px-6 py-20 lg:scroll-mt-24 lg:px-12 lg:py-34"
+        className="relative mx-auto w-full max-w-[1440px] scroll-mt-24 overflow-hidden px-6 py-16 lg:scroll-mt-24 lg:px-12 lg:pt-20 lg:pb-28"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-22rem] top-16 h-[41rem] w-[41rem] rounded-full bg-[radial-gradient(circle,rgba(255,0,132,0.34),rgba(255,0,132,0)_68%)] blur-[110px]" />
