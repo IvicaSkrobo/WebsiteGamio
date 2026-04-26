@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Main sync verified; all local feature branches are merged into main, GitHub main is at cfa759f, and localhost:3000 is running for review
-last_updated: "2026-04-26T14:11:51Z"
-last_activity: 2026-04-26 - Synced branch state, confirmed GitHub main at cfa759f, and started the local dev server
+stopped_at: Landing page visual checkpoint captured; current composition looks good and remaining work is QA, cleanup, and final responsive polish
+last_updated: "2026-04-26T14:28:00Z"
+last_activity: 2026-04-26 - Captured landing page polish checkpoint after hero, markets, originals, Hogamba, Prediction Arena, and capabilities improvements
 progress:
   total_phases: 5
   completed_phases: 3
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** A visually stunning, animated landing page that makes operators immediately understand what Gamio builds and want to get in touch.
-**Current focus:** In-browser visual QA and final art-direction polish after testing new Hogamba and Prediction Arena compositions
+**Current focus:** Final in-browser QA, asset cleanup, and responsive polish now that the landing page composition is in a good visual state
 
 ## Current Position
 
 Phase: 4 of 5 (Responsive & Mobile pending)
-Plan: Visual QA and final polish
+Plan: Final QA and landing page polish
 Status: In progress
-Last activity: 2026-04-22 — Re-centered Originals, Hogamba, Prediction Arena, and Capabilities so they share the same desktop content gutters and no longer feel left-heavy
+Last activity: 2026-04-26 - Captured landing page polish checkpoint; user confirmed the landing page is looking pretty good
 
 Progress: [██████░░░░] 60%
 
@@ -80,10 +80,17 @@ Recent decisions affecting current work:
 - Capabilities grid: changed from 2-column to 3-column desktop layout per UI-SPEC; expanded container from max-w-[794px] to max-w-[1180px]; increased card gap from gap-1 to gap-3; changed description from font-display to font-body with text-white/70
 - Placeholder text: replaced Croatian/English placeholder in Prediction Arena slide 1 with real copy
 - About section em dash: fixed hyphen to &mdash; per UI-SPEC copy contract
+- Landing page checkpoint: current visual direction is approved as "pretty good"; avoid large structural rebuilds unless a clear regression appears during QA.
+- Product storytelling: the page now reads as a cohesive product/company showcase with stronger real game imagery, clearer market/product cards, and more polished section transitions.
+- Hogamba: latest layout uses a tighter 2x2 feature grid, stronger local game artwork, improved lootbox/progression treatment, and cleaner visual balance.
+- What We Build / Markets: active-category visuals, ambient color shifts, green live/product status labels, and more symmetrical card imagery are now part of the accepted direction.
+- Prediction Arena and Capabilities: the lower page has been simplified into cleaner product surfaces and capability cards instead of oversized or stray floating assets.
 
 ### Pending Todos
 
-- Next: run the responsive pass, add mobile navigation, and verify the redesigned lower sections at 375px, 768px, 1024px, and 1440px.
+- Next: keep the current landing page direction and run a final QA pass across 375px, 768px, 1024px, and 1440px.
+- Clean up uncommitted/generated asset files once the visual QA confirms which Hogamba and site assets are still needed.
+- Re-run production build after asset cleanup and before any deployment handoff.
 - Phase 4 product-led section pass is complete; remaining lower-section work should be visual tuning and mobile QA rather than another structural rebuild.
 - Phase 5 mobile navigation shell is complete; remaining responsive work should be in-browser visual QA and fine tuning once the browser automation runtime is available.
 - Phase 6 motion polish is complete; lower product modules now have scoped desktop entrance/stagger/parallax hooks.
@@ -98,15 +105,17 @@ Recent decisions affecting current work:
 - Hero width and arena cleanup pass is complete; the hero now fills large screens better, thumbnail cards no longer sit under the stats block, and Prediction Arena uses only the core product surfaces instead of stray floating assets.
 - Main sync is complete; `claude/elated-panini-a023f2`, `claude/priceless-shtern-bd68e1`, and `claude/trusting-knuth-5974e9` are merged into `main`, and GitHub `main` is confirmed at `cfa759f`.
 - Local dev server is running at `http://localhost:3000` and returned HTTP 200 after startup.
+- Current landing page polish checkpoint is complete; user confirmed the page now looks pretty good, so next work should be QA and cleanup rather than another full redesign.
 
-- Continue desktop Figma fidelity pass — user confirmed hero is acceptable, issues start at markets section and below.
-- Audit each section from markets downward against Figma: markets, originals, hogamba, prediction arena, capabilities, footer.
-- Phase 4 planning remains pending: adapt the layout for mobile, introduce the hamburger navigation, and simplify pinned desktop interactions for smaller viewports.
+- Continue only targeted desktop/mobile polish from markets downward; broad redesign work is no longer the default path.
+- Verify footer and contact conversion path after visual QA.
+- Phase 4 planning remains mostly QA-focused: confirm mobile navigation, simplify heavy pinned interactions where needed, and fix any viewport-specific overlap.
 
 ### Blockers/Concerns
 
 - Use the already-open dev server as the primary visual feedback loop; reserve full production builds for meaningful checkpoints.
 - Working tree still contains uncommitted local asset changes and generated/downloaded files; they were not committed or pushed during the main sync.
+- Do not push to GitHub from this environment; user requested local-only commits.
 - Hero floating icon/parallax code still exists, but the current desktop composition has been simplified toward the Figma hero and may need a later reconciliation pass.
 - Remote Figma asset endpoints currently resolve to 404 in runtime checks, so any remaining direct `<img>` use should be treated as unstable until replaced or localized. Hogamba's main artwork is now localized in `public/`.
 
@@ -133,6 +142,7 @@ Recent decisions affecting current work:
 | 260425-prediction-figma | Prediction Arena Figma asset pass | 2026-04-25 | uncommitted | [260425-prediction-arena-figma-asset-pass](.planning/quick/260425-prediction-arena-figma-asset-pass/) |
 | 260425-visual-repair | Visual repair for Originals, Hogamba, Prediction Arena, and Capabilities | 2026-04-25 | uncommitted | [260425-visual-repair-hogamba-prediction-originals](.planning/quick/260425-visual-repair-hogamba-prediction-originals/) |
 | 260426-main-sync | Verify branch merges, update GitHub main, and start localhost | 2026-04-26 | cfa759f | [260426-main-sync-and-localhost](.planning/quick/260426-main-sync-and-localhost/) |
+| 260426-landing-checkpoint | Capture current landing page polish state | 2026-04-26 | local | [260426-landing-page-polish-checkpoint](.planning/quick/260426-landing-page-polish-checkpoint/) |
 
 ## Deferred Items
 
