@@ -791,6 +791,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
   const [activeOriginalIndex, setActiveOriginalIndex] = useState(0);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [hoveredBuildCategory, setHoveredBuildCategory] = useState<string | null>(null);
   const activeOriginal = productCards[activeOriginalIndex] ?? productCards[0];
 
   const rootRef = useRef<HTMLElement | null>(null);
@@ -1338,33 +1339,63 @@ export default function Home() {
             </div>
           </div>
           <div data-reveal className="gamio-about-card rounded-[12px] p-5 lg:p-7">
-            <p className="font-body text-[1.05rem] leading-[1.6] text-white/72 lg:text-[17px]">
-              From prediction arenas to instant games and multiplayer chaos, we build
-              interactive stuff people come back to.
-            </p>
-            <div className="mt-6 flex flex-col gap-2">
+            {/* Top row: description + floating image */}
+            <div className="flex items-start gap-4">
+              <p className="font-body flex-1 text-[1rem] leading-[1.6] text-white/72 lg:text-[16px]">
+                From prediction arenas to instant games and multiplayer chaos, we build
+                interactive stuff people come back to.
+              </p>
+              <div className="relative h-[90px] w-[90px] flex-shrink-0">
+                {[
+                  { label: "Prediction arenas", image: "/images/prediction-arena/coin.png" },
+                  { label: "Instant games",      image: "/images/originals/chicken.png" },
+                  { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png" },
+                ].map(({ label, image }, i) => {
+                  const active = hoveredBuildCategory === label || (hoveredBuildCategory === null && i === 0);
+                  return (
+                    <img
+                      key={label}
+                      src={image}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.5)]"
+                      style={{ opacity: active ? 1 : 0, transition: "opacity 0.25s ease", pointerEvents: "none" }}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            <div className="mt-5 flex flex-col gap-2">
               {[
                 { label: "Prediction arenas", color: "#ff6b35", tagline: "Real-time skill meets live outcomes" },
-                { label: "Instant games", color: "#d1006f", tagline: "One mechanic. Infinite replayability." },
-                { label: "Multiplayer chaos", color: "#4f8cff", tagline: "Social pressure, shared stakes" },
-              ].map(({ label, color, tagline }) => (
-                <div
-                  key={label}
-                  className="group flex items-center gap-4 rounded-[8px] border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 transition-all duration-200 hover:border-white/[0.14] hover:bg-white/[0.05]"
-                >
+                { label: "Instant games",      color: "#d1006f", tagline: "One mechanic. Infinite replayability." },
+                { label: "Multiplayer chaos",  color: "#4f8cff", tagline: "Social pressure, shared stakes" },
+              ].map(({ label, color, tagline }) => {
+                const isActive = hoveredBuildCategory === label;
+                return (
                   <div
-                    className="h-2 w-2 flex-shrink-0 rounded-full"
-                    style={{ backgroundColor: color, boxShadow: `0 0 8px 3px ${color}55` }}
-                  />
-                  <div className="min-w-0 flex-1">
-                    <p className="font-body text-[12px] font-bold uppercase leading-none tracking-[0.14em] text-white/88">{label}</p>
-                    <p className="font-body mt-1 text-[11px] leading-none text-white/42">{tagline}</p>
+                    key={label}
+                    className="flex items-center gap-4 rounded-[8px] border px-4 py-3.5 transition-all duration-200 cursor-default"
+                    style={{
+                      borderColor: isActive ? `${color}44` : "rgba(255,255,255,0.08)",
+                      background: isActive ? `${color}0d` : "rgba(255,255,255,0.03)",
+                    }}
+                    onMouseEnter={() => setHoveredBuildCategory(label)}
+                    onMouseLeave={() => setHoveredBuildCategory(null)}
+                  >
+                    <div
+                      className="h-2 w-2 flex-shrink-0 rounded-full transition-all duration-200"
+                      style={{
+                        backgroundColor: color,
+                        boxShadow: isActive ? `0 0 10px 4px ${color}66` : `0 0 6px 2px ${color}33`,
+                      }}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="font-body text-[12px] font-bold uppercase leading-none tracking-[0.14em] text-white/88">{label}</p>
+                      <p className="font-body mt-1 text-[11px] leading-none text-white/42">{tagline}</p>
+                    </div>
                   </div>
-                  <svg className="h-3.5 w-3.5 flex-shrink-0 text-white/20 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-white/48" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
