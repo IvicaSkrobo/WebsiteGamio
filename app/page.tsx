@@ -795,16 +795,22 @@ export default function Home() {
   const swipeTouchStartX = useRef<number | null>(null);
   const tabStripRef = useRef<HTMLDivElement | null>(null);
   const tabButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const isTransitioning = useRef(false);
+  const isProgrammaticScroll = useRef(false);
 
   const changeOriginal = (index: number) => {
-    if (originalsTransitioning || index === activeOriginalIndex) return;
+    if (isTransitioning.current || index === activeOriginalIndex) return;
+    isTransitioning.current = true;
+    isProgrammaticScroll.current = true;
     setOriginalsTransitioning(true);
     setTimeout(() => {
       setActiveOriginalIndex(index);
       setOriginalsTransitioning(false);
-      // scroll the tab strip so the active button is centered
+      isTransitioning.current = false;
       const btn = tabButtonRefs.current[index];
       btn?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      // keep blocking onScroll until the smooth scroll finishes (~400ms)
+      setTimeout(() => { isProgrammaticScroll.current = false; }, 450);
     }, 150);
   };
 
@@ -1585,6 +1591,7 @@ export default function Home() {
             className="relative z-10 mt-8 flex gap-2 overflow-x-auto pb-1 lg:hidden"
             style={{ scrollbarWidth: "none" }}
             onScroll={() => {
+              if (isProgrammaticScroll.current) return;
               const strip = tabStripRef.current;
               if (!strip) return;
               const center = strip.scrollLeft + strip.clientWidth / 2;
