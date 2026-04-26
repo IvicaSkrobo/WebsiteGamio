@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Originals featured art now uses a transparent SVG treatment without the inner white border or bright backing panel
-last_updated: "2026-04-26T14:19:23Z"
-last_activity: 2026-04-26 - Removed the competing light gradient/white-border treatment from the Originals featured image frame
+stopped_at: Navigation labels, contact email, section anchor offsets, Prediction Arena fit, and section reveal timing are tuned
+last_updated: "2026-04-26T14:27:06Z"
+last_activity: 2026-04-26 - Synced scroll reveal timing and adjusted navbar targets/content polish from the live browser review
 progress:
   total_phases: 5
   completed_phases: 3
@@ -86,6 +86,9 @@ Recent decisions affecting current work:
 - What We Build / Markets: active-category visuals, ambient color shifts, green live/product status labels, and more symmetrical card imagery are now part of the accepted direction.
 - Prediction Arena and Capabilities: the lower page has been simplified into cleaner product surfaces and capability cards instead of oversized or stray floating assets.
 - Originals featured art: removed the embedded SVG background rectangle and white stroke, then changed the page frame to use object-contain on a subtler dark/pink backing so the transparent asset fits naturally.
+- Navigation/content polish: changed `Reach` to `Markets`, replaced `hello@gamio.io` with `socials@gamio.gg`, and tuned section scroll offsets so anchored navigation clears the fixed navbar more cleanly.
+- Motion polish: section reveals now run through one timeline per section instead of independent element triggers plus duplicate card/visual triggers, keeping labels, buttons, cards, and divs in a more synchronized scroll entrance.
+- Prediction Arena: reduced the central product image and section vertical spacing so the full composition fits better in one viewport and lands slightly higher from navbar navigation.
 
 ### Pending Todos
 
@@ -145,6 +148,7 @@ Recent decisions affecting current work:
 | 260426-main-sync | Verify branch merges, update GitHub main, and start localhost | 2026-04-26 | cfa759f | [260426-main-sync-and-localhost](.planning/quick/260426-main-sync-and-localhost/) |
 | 260426-landing-checkpoint | Capture current landing page polish state | 2026-04-26 | local | [260426-landing-page-polish-checkpoint](.planning/quick/260426-landing-page-polish-checkpoint/) |
 | 260426-originals-frame | Soften Originals featured art frame | 2026-04-26 | local | [260426-originals-transparent-frame-fix](.planning/quick/260426-originals-transparent-frame-fix/) |
+| 260426-scroll-nav-polish | Tune navbar labels, anchors, contact email, Prediction Arena fit, and scroll reveals | 2026-04-26 | local | [260426-scroll-nav-animation-polish](.planning/quick/260426-scroll-nav-animation-polish/) |
 
 ## Deferred Items
 

@@ -79,7 +79,7 @@ const capabilityWhitelabelAsset = "/images/site/capability-whitelabel.svg";
 
 const navItems: NavItem[] = [
   { id: "about", label: "About" },
-  { id: "markets", label: "Reach" },
+  { id: "markets", label: "Markets" },
   { id: "originals", label: "Originals" },
   { id: "hogamba", label: "Hogamba" },
   { id: "prediction-arena", label: "Prediction arena" },
@@ -890,21 +890,51 @@ export default function Home() {
         return;
       }
 
-      gsap.set(revealElements, { autoAlpha: 0, y: 48 });
-      revealElements.forEach((element, index) => {
-        gsap.to(element, {
+      gsap.set(revealElements, { autoAlpha: 0, y: 36 });
+
+      const motionSections = gsap.utils.toArray<HTMLElement>("[data-motion-section]");
+      motionSections.forEach((section) => {
+        const sectionReveals = gsap.utils.toArray<HTMLElement>(
+          section.querySelectorAll("[data-reveal]"),
+        );
+
+        if (!sectionReveals.length) {
+          return;
+        }
+
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 76%",
+            once: true,
+          },
+        }).to(sectionReveals, {
           autoAlpha: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.78,
           ease: "power3.out",
-          delay: (index % 3) * 0.04,
-          scrollTrigger: {
-            trigger: element,
-            start: "top 84%",
-            once: true,
+          stagger: {
+            each: 0.055,
+            from: "start",
           },
         });
       });
+
+      revealElements
+        .filter((element) => !element.closest("[data-motion-section]"))
+        .forEach((element) => {
+          gsap.to(element, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.78,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 84%",
+              once: true,
+            },
+          });
+        });
 
       if (
         statsBarRef.current &&
@@ -989,61 +1019,9 @@ export default function Home() {
 
     mm.add("(min-width: 1024px)", () => {
       gsap.utils.toArray<HTMLElement>("[data-motion-section]").forEach((section) => {
-        const visuals = gsap.utils.toArray<HTMLElement>(
-          section.querySelectorAll("[data-motion-visual]"),
-        );
-        const cards = gsap.utils.toArray<HTMLElement>(
-          section.querySelectorAll("[data-motion-card]"),
-        );
         const floaters = gsap.utils.toArray<HTMLElement>(
           section.querySelectorAll("[data-motion-float]"),
         );
-
-        if (visuals.length) {
-          gsap.fromTo(
-            visuals,
-            {
-              autoAlpha: 0.82,
-              scale: 0.965,
-              y: 56,
-            },
-            {
-              autoAlpha: 1,
-              scale: 1,
-              y: 0,
-              duration: 1.15,
-              ease: "power3.out",
-              stagger: 0.08,
-              scrollTrigger: {
-                trigger: section,
-                start: "top 72%",
-                once: true,
-              },
-            },
-          );
-        }
-
-        if (cards.length) {
-          gsap.fromTo(
-            cards,
-            {
-              autoAlpha: 0,
-              y: 34,
-            },
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.85,
-              ease: "power3.out",
-              stagger: 0.055,
-              scrollTrigger: {
-                trigger: section,
-                start: "top 76%",
-                once: true,
-              },
-            },
-          );
-        }
 
         floaters.forEach((floater, index) => {
           gsap.to(floater, {
@@ -1110,7 +1088,7 @@ export default function Home() {
 
             <div className="flex h-[44px] items-center justify-end">
               <a
-                href="mailto:hello@gamio.io"
+                href="mailto:socials@gamio.gg"
                 className="font-display flex h-[44px] w-[133px] translate-x-[10px] items-center justify-center rounded-[8px] bg-[#ff5e39] px-5 text-[16px] leading-5 font-bold text-white shadow-[0_10px_24px_rgba(255,94,57,0.22)] transition-transform duration-200 hover:scale-[1.02]"
               >
                 Get in touch
@@ -1187,7 +1165,7 @@ export default function Home() {
               </a>
             ))}
             <a
-              href="mailto:hello@gamio.io"
+              href="mailto:socials@gamio.gg"
               onClick={() => setIsMobileNavOpen(false)}
               className="mt-2 rounded-[8px] bg-[#ff5e39] px-4 py-3 text-center text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(255,94,57,0.22)]"
             >
@@ -1447,7 +1425,7 @@ export default function Home() {
       <section
         id="markets"
         data-motion-section
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-10 lg:px-12 lg:py-14"
+        className="relative mx-auto w-full max-w-[1440px] scroll-mt-28 overflow-hidden px-6 py-10 lg:scroll-mt-32 lg:px-12 lg:py-14"
       >
         <div className="pointer-events-none absolute inset-x-12 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute right-[-16rem] top-[-4rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.14),rgba(255,107,53,0)_68%)] blur-[120px]" />
@@ -1551,7 +1529,7 @@ export default function Home() {
       <section
         id="originals"
         data-motion-section
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:py-34"
+        className="relative mx-auto w-full max-w-[1440px] scroll-mt-24 overflow-hidden px-6 py-20 lg:scroll-mt-24 lg:px-12 lg:py-34"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-22rem] top-16 h-[41rem] w-[41rem] rounded-full bg-[radial-gradient(circle,rgba(255,0,132,0.34),rgba(255,0,132,0)_68%)] blur-[110px]" />
@@ -1656,7 +1634,7 @@ export default function Home() {
       <section
         id="hogamba"
         data-motion-section
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-12 lg:py-24"
+        className="relative mx-auto w-full max-w-[1440px] scroll-mt-20 overflow-hidden px-6 py-16 lg:scroll-mt-20 lg:px-12 lg:py-24"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         {/* Green radial glow — left-center, cosmic feel */}
@@ -1812,7 +1790,7 @@ export default function Home() {
       <section
         id="prediction-arena"
         data-motion-section
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-14 lg:px-12 lg:pt-[72px] lg:pb-[60px]"
+        className="relative mx-auto w-full max-w-[1440px] scroll-mt-20 overflow-hidden px-6 py-12 lg:scroll-mt-20 lg:px-12 lg:pt-[60px] lg:pb-[48px]"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-26rem] top-[18rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(255,97,59,0.14),rgba(255,97,59,0)_68%)] blur-[130px]" />
@@ -1845,16 +1823,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div data-reveal data-motion-visual className="relative mt-12">
+          <div data-reveal data-motion-visual className="relative mt-8 lg:mt-9">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(79,140,255,0.14),rgba(79,140,255,0)_28%),radial-gradient(circle_at_22%_82%,rgba(255,79,59,0.08),rgba(255,79,59,0)_24%)]" />
             {/* Main ChatArena image */}
             <img
               src={chatArenaGroupedAsset}
               alt="Prediction Arena interface"
-              className="relative z-10 mx-auto h-auto w-full max-w-[960px] object-contain drop-shadow-[0_30px_100px_rgba(0,0,0,0.48)]"
+              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)]"
             />
             {/* Strong bottom fade — hides sharp image cut */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-64 bg-gradient-to-t from-[#080808] via-[rgba(8,8,8,0.92)] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-48 bg-gradient-to-t from-[#080808] via-[rgba(8,8,8,0.9)] to-transparent" />
             {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
             <div className="absolute top-[68%] left-1/2 z-30 w-[44%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[32%] lg:w-[22%]">
               <p className="font-display text-center text-[15px] leading-none font-bold text-white">
@@ -1941,17 +1919,17 @@ export default function Home() {
             </h2>
             <a
               data-reveal
-              href="mailto:hello@gamio.io"
+              href="mailto:socials@gamio.gg"
               className="mt-8 inline-block text-lg text-white/72 transition-colors duration-300 hover:text-gamio-orange"
             >
-              hello@gamio.io
+              socials@gamio.gg
             </a>
           </div>
 
           <div className="flex flex-col items-start gap-6 lg:items-end">
             <a
               data-reveal
-              href="mailto:hello@gamio.io"
+              href="mailto:socials@gamio.gg"
               className="rounded-[8px] bg-[linear-gradient(135deg,#FF6B35,#CC4400)] px-8 py-4 text-sm font-bold tracking-[0.14em] text-white shadow-[0_0_40px_rgba(255,107,53,0.3)] transition-transform duration-300 hover:scale-[1.02]"
             >
               GET IN TOUCH
