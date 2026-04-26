@@ -1498,7 +1498,7 @@ export default function Home() {
                   >
                     {/* Live chip */}
                     <div className="absolute right-3 top-3">
-                      <span className="font-body rounded-full border border-[rgba(255,107,53,0.25)] bg-[rgba(255,107,53,0.08)] px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.18em] text-[rgba(255,107,53,0.7)]">
+                      <span className="font-body rounded-full border border-[rgba(140,255,56,0.3)] bg-[rgba(140,255,56,0.08)] px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.18em] text-[rgba(140,255,56,0.8)]">
                         Live
                       </span>
                     </div>
