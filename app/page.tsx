@@ -40,7 +40,8 @@ const hogambaParachuteAsset = "/images/hogamba/parachute_hogamba 1.png";
 const hogambaChipsAsset = "/images/hogamba/Chips hogamba.png";
 const hogambaSkinTorsoAsset = "/images/hogamba/common_japan_torso.png";
 const hogambaDeathHeadAsset = "/images/hogamba/death_head.png";
-const hogambaDesktopViewportAsset = "/images/hogamba/mobilepnghogamba.png";
+const hogambaDesktopViewportAsset = "/images/hogamba/pchogamba.png";
+const hogambaMobileViewportAsset = "/images/hogamba/mobilepnghogamba.png";
 const hogambaRocketSvgAsset = "/images/hogamba/Hogamba Rocket 1.svg";
 const predictionStreamerAsset =
   "/images/prediction-arena/streamer.png";
@@ -1619,6 +1620,15 @@ export default function Home() {
                     imgClassName="h-auto w-full object-contain"
                     fallback={<HogambaGameFallback />}
                   />
+                  <div className="absolute bottom-3 right-3 w-[28%] drop-shadow-[0_16px_48px_rgba(0,0,0,0.72)]">
+                    <AssetImage
+                      src={hogambaMobileViewportAsset}
+                      alt="Hogamba mobile viewport"
+                      wrapperClassName="w-full rounded-[8px] overflow-hidden border border-white/10"
+                      imgClassName="h-auto w-full object-contain"
+                      fallback={null}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
