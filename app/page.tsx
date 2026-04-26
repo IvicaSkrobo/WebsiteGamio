@@ -1356,8 +1356,8 @@ export default function Home() {
             {/* Prediction Arenas image — top-right, above card */}
             {[
               { label: "Prediction arenas", image: "/images/prediction-arena/coin.png",  color: "#ff6b35", pos: "absolute -top-10 -right-4 z-20 h-[88px] w-[88px]" },
-              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-[38%] -right-7 z-20 h-[88px] w-[88px]" },
-              { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png",          color: "#4f8cff", pos: "absolute -bottom-10 -right-4 z-20 h-[88px] w-[88px]" },
+              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-[12%] -right-2 z-20 h-[132px] w-[132px]" },
+              { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png",          color: "#4f8cff", pos: "absolute -bottom-14 -right-6 z-20 h-[132px] w-[132px]" },
             ].map(({ label, image, color, pos }) => {
               const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
               return (
@@ -1666,18 +1666,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid gap-3">
-              {/* Main card — lootbox breaks WAY out of the top */}
-              <div data-reveal data-motion-card className="gamio-surface relative overflow-visible rounded-[8px] p-5 lg:p-6">
-                <div className="pointer-events-none absolute -top-20 right-3 w-[130px]">
-                  <img
-                    src="/images/hogamba/Lootbox Epic Closed.svg"
-                    alt=""
-                    className="h-auto w-full"
-                    style={{ filter: "drop-shadow(0 16px 40px rgba(140,255,56,0.35)) drop-shadow(0 0 18px rgba(140,255,56,0.28))" }}
-                  />
-                </div>
-                <p className="font-display text-[1.4rem] leading-tight font-bold text-white pr-16 lg:text-[1.5rem]">
+            <div className="relative grid gap-3">
+              {/* Lootbox — breaks out right side of column */}
+              <div className="pointer-events-none absolute -right-14 top-2 z-20 w-[120px]">
+                <img
+                  src="/images/hogamba/Lootbox Epic Closed.png"
+                  alt=""
+                  className="h-auto w-full drop-shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
+                />
+              </div>
+              <div data-reveal data-motion-card className="gamio-surface rounded-[8px] p-5 lg:p-6">
+                <p className="font-display text-[1.4rem] leading-tight font-bold text-white lg:text-[1.5rem]">
                   Progression, loot moments and a strong visual identity — all in one world.
                 </p>
                 <p className="font-body mt-3 text-[13px] leading-[1.55] text-white/60">
@@ -1757,7 +1756,7 @@ export default function Home() {
       <section
         id="prediction-arena"
         data-motion-section
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:pt-[120px] lg:pb-[130px]"
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-14 lg:px-12 lg:pt-[72px] lg:pb-[60px]"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-26rem] top-[18rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(255,97,59,0.14),rgba(255,97,59,0)_68%)] blur-[130px]" />
@@ -1798,6 +1797,8 @@ export default function Home() {
               alt="Prediction Arena interface"
               className="relative z-10 mx-auto h-auto w-full max-w-[960px] object-contain drop-shadow-[0_30px_100px_rgba(0,0,0,0.48)]"
             />
+            {/* Strong bottom fade — hides sharp image cut */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-64 bg-gradient-to-t from-[#080808] via-[rgba(8,8,8,0.92)] to-transparent" />
             {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
             <div className="absolute top-[68%] left-1/2 z-30 w-[44%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[32%] lg:w-[22%]">
               <p className="font-display text-center text-[15px] leading-none font-bold text-white">
