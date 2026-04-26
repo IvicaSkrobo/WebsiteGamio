@@ -802,7 +802,7 @@ export default function Home() {
   const transactionCountRef = useRef<HTMLParagraphElement | null>(null);
   const floatingOuterRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  // Auto-rotate "What We Build" categories every 3s when not hovering
+  // Auto-rotate "What We Build" categories every 5s when not hovering
   useEffect(() => {
     if (hoveredBuildCategory !== null) return;
     const order = ["Prediction arenas", "Instant games", "Multiplayer chaos"];
@@ -811,7 +811,7 @@ export default function Home() {
         const i = order.indexOf(prev);
         return order[(i + 1) % order.length];
       });
-    }, 3000);
+    }, 5000);
     return () => clearInterval(id);
   }, [hoveredBuildCategory]);
 
@@ -1355,8 +1355,8 @@ export default function Home() {
           <div data-reveal className="gamio-about-card relative overflow-visible rounded-[12px] p-5 lg:p-7">
             {/* Prediction Arenas image — top-right, above card */}
             {[
-              { label: "Prediction arenas", image: "/images/prediction-arena/coin.png",  color: "#ff6b35", pos: "absolute -top-10 -right-4 z-20 h-[88px] w-[88px]" },
-              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-[12%] -right-2 z-20 h-[132px] w-[132px]" },
+              { label: "Prediction arenas", image: "/images/prediction-arena/coin.png",  color: "#ff6b35", pos: "absolute top-[4.5rem] right-3 z-20 h-[84px] w-[84px]" },
+              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-1/2 right-1 z-20 h-[124px] w-[124px] -translate-y-1/2" },
               { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png",          color: "#4f8cff", pos: "absolute -bottom-14 -right-6 z-20 h-[132px] w-[132px]" },
             ].map(({ label, image, color, pos }) => {
               const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
@@ -1376,7 +1376,7 @@ export default function Home() {
               );
             })}
 
-            <p className="font-body text-[1rem] leading-[1.6] text-white/72 lg:text-[16px]">
+            <p className="font-body pr-20 text-[1rem] leading-[1.6] text-white/72 lg:pr-24 lg:text-[16px]">
               From prediction arenas to instant games and multiplayer chaos, we build
               interactive stuff people come back to.
             </p>
@@ -1423,10 +1423,11 @@ export default function Home() {
         className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-10 lg:px-12 lg:py-14"
       >
         <div className="pointer-events-none absolute inset-x-12 top-0 h-px bg-white/8" />
-        <div className="pointer-events-none absolute right-[-16rem] top-[-4rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.2),rgba(255,107,53,0)_68%)] blur-[120px]" />
+        <div className="pointer-events-none absolute right-[-16rem] top-[-4rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.14),rgba(255,107,53,0)_68%)] blur-[120px]" />
+        <div className="pointer-events-none absolute left-[30%] top-1/2 h-[20rem] w-[20rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(140,255,56,0.04),transparent_70%)] blur-[80px]" />
 
-        <div className="relative mx-auto max-w-[1180px] space-y-5">
-          {/* Compact header */}
+        <div className="relative mx-auto max-w-[1180px] space-y-6">
+          {/* Header */}
           <div data-reveal className="flex items-end justify-between gap-6">
             <div>
               <p className="gamio-section-label">Where our work travels</p>
@@ -1434,61 +1435,93 @@ export default function Home() {
                 Where do people meet our games?
               </h2>
             </div>
-            <p className="hidden font-body text-[12px] leading-[1.6] text-white/35 lg:block lg:text-right">
-              Belgium · Poland · Romania<br />Greece · Turkey · Brazil
-            </p>
+            <div className="hidden items-center gap-2 lg:flex">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8cff38] opacity-50" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8cff38]" />
+              </span>
+              <span className="font-body text-[11px] font-bold uppercase tracking-[0.2em] text-white/30">6 active markets</span>
+            </div>
           </div>
 
-          {/* Stat strip + markets in a single horizontal layout */}
-          <div data-reveal data-motion-visual className="grid gap-3 lg:grid-cols-[1fr_2fr]">
-            {/* Stat cards stacked */}
+          <div data-reveal data-motion-visual className="grid gap-3 lg:grid-cols-[220px_1fr]">
+            {/* Stat pills — vertical stack */}
             <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
-              {marketCards.map((card) => (
-                <article
+              {[
+                { label: "Markets live", value: "6", accent: "#8cff38", icon: "◈" },
+                { label: "Studio model", value: "Games", accent: "#ff6b35", icon: "◉" },
+                { label: "Approach", value: "Player-first", accent: "#4f8cff", icon: "◎" },
+              ].map((card) => (
+                <div
                   key={card.label}
                   data-motion-card
-                  className="rounded-[8px] border border-white/10 bg-white/[0.035] px-4 py-3"
+                  className="group relative overflow-hidden rounded-[10px] border border-white/[0.08] bg-[rgba(255,255,255,0.03)] px-4 py-4 transition-colors duration-300 hover:border-white/[0.13] hover:bg-[rgba(255,255,255,0.05)]"
                 >
-                  <p className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-white/40">
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: `radial-gradient(circle at 0% 100%, ${card.accent}10, transparent 60%)` }} />
+                  <p className="font-body text-[9px] font-bold uppercase tracking-[0.22em]" style={{ color: card.accent + "80" }}>
                     {card.label}
                   </p>
-                  <p className="font-display mt-2 text-[1.6rem] leading-none font-bold text-white lg:text-[22px]">
+                  <p className="font-display mt-2 text-[1.3rem] leading-none font-bold text-white lg:text-[18px]">
                     {card.value}
                   </p>
-                </article>
+                </div>
               ))}
             </div>
 
-            {/* Markets board */}
-            <div className="overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))]">
-              <div className="flex items-center justify-between border-b border-white/[0.08] px-5 py-3">
-                <div className="flex items-center gap-2.5">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8cff38] opacity-60" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8cff38]" />
-                  </span>
-                  <span className="font-body text-[11px] font-bold uppercase tracking-[0.22em] text-white/45">
-                    Active markets
-                  </span>
+            {/* Country cards grid */}
+            <div className="overflow-hidden rounded-[10px] border border-white/[0.08] bg-[linear-gradient(160deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
+              {/* Top bar */}
+              <div className="flex items-center justify-between border-b border-white/[0.07] px-4 py-2.5">
+                <span className="font-body text-[10px] font-bold uppercase tracking-[0.24em] text-white/30">Signal · Active Markets</span>
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1">
+                    {[1,2,3,4,5,6].map((i) => (
+                      <div key={i} className="h-[10px] w-[3px] rounded-full bg-[#8cff38]" style={{ opacity: 0.3 + i * 0.12, height: `${8 + i * 2}px`, alignSelf: "flex-end" }} />
+                    ))}
+                  </div>
+                  <span className="font-body text-[10px] font-bold text-[#8cff38]/60">6/6</span>
                 </div>
-                <span className="font-body text-[11px] font-bold text-white/22">6 / 6</span>
               </div>
-              <div className="divide-y divide-white/[0.06]">
+
+              {/* Flag cards grid */}
+              <div className="grid grid-cols-2 divide-x divide-y divide-white/[0.06] sm:grid-cols-3">
                 {[
-                  { n: "01", country: "Belgium",  region: "W. Europe",   bar: 68 },
-                  { n: "02", country: "Poland",   region: "C. Europe",   bar: 82 },
-                  { n: "03", country: "Romania",  region: "S.E. Europe", bar: 55 },
-                  { n: "04", country: "Greece",   region: "S. Europe",   bar: 63 },
-                  { n: "05", country: "Turkey",   region: "MENA",        bar: 74 },
-                  { n: "06", country: "Brazil",   region: "S. America",  bar: 91 },
-                ].map(({ n, country, region, bar }) => (
-                  <div key={country} className="flex items-center gap-4 px-5 py-3">
-                    <span className="font-body w-5 shrink-0 text-[11px] font-bold text-white/20">{n}</span>
-                    <span className="font-display min-w-[88px] text-[14px] font-bold text-white">{country}</span>
-                    <span className="font-body flex-1 text-[12px] text-white/38">{region}</span>
-                    <div className="h-[3px] w-[72px] shrink-0 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full rounded-full bg-[linear-gradient(90deg,#8cff38,#ff6b35)]" style={{ width: `${bar}%` }} />
+                  { flag: "🇧🇪", country: "Belgium",  region: "W. Europe",   bar: 68, color: "#ff6b35" },
+                  { flag: "🇵🇱", country: "Poland",   region: "C. Europe",   bar: 82, color: "#8cff38" },
+                  { flag: "🇷🇴", country: "Romania",  region: "S.E. Europe", bar: 55, color: "#ff6b35" },
+                  { flag: "🇬🇷", country: "Greece",   region: "S. Europe",   bar: 63, color: "#8cff38" },
+                  { flag: "🇹🇷", country: "Turkey",   region: "MENA",        bar: 74, color: "#ff6b35" },
+                  { flag: "🇧🇷", country: "Brazil",   region: "S. America",  bar: 91, color: "#8cff38" },
+                ].map(({ flag, country, region, bar, color }) => (
+                  <div
+                    key={country}
+                    className="group relative flex flex-col gap-2.5 p-4 transition-colors duration-200 hover:bg-white/[0.03]"
+                  >
+                    {/* Pulse dot */}
+                    <div className="absolute right-3 top-3 flex items-center gap-1">
+                      <span className="relative flex h-[6px] w-[6px]">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-40" style={{ backgroundColor: color }} />
+                        <span className="relative inline-flex h-[6px] w-[6px] rounded-full" style={{ backgroundColor: color }} />
+                      </span>
                     </div>
+
+                    {/* Flag + name */}
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-[2rem] leading-none">{flag}</span>
+                      <div>
+                        <p className="font-display text-[13px] font-bold leading-none text-white">{country}</p>
+                        <p className="font-body mt-1 text-[10px] uppercase tracking-[0.14em] text-white/30">{region}</p>
+                      </div>
+                    </div>
+
+                    {/* Activity bar */}
+                    <div className="h-[2px] w-full overflow-hidden rounded-full bg-white/[0.07]">
+                      <div
+                        className="h-full rounded-full transition-all duration-700"
+                        style={{ width: `${bar}%`, background: `linear-gradient(90deg, ${color}cc, ${color}44)` }}
+                      />
+                    </div>
+                    <p className="font-body text-[10px] font-bold tabular-nums" style={{ color: color + "99" }}>{bar}% signal</p>
                   </div>
                 ))}
               </div>
