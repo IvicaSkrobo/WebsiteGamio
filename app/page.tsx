@@ -1356,7 +1356,7 @@ export default function Home() {
             {/* Prediction Arenas image — top-right, above card */}
             {[
               { label: "Prediction arenas", image: "/images/prediction-arena/coin.png",  color: "#ff6b35", pos: "absolute -top-10 -right-6 z-20 h-[84px] w-[84px]" },
-              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-1/2 -right-4 z-20 h-[124px] w-[124px] -translate-y-1/2" },
+              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-1/2 -right-10 z-20 h-[124px] w-[124px] -translate-y-1/2" },
               { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png",          color: "#4f8cff", pos: "absolute -bottom-14 -right-6 z-20 h-[132px] w-[132px]" },
             ].map(({ label, image, color, pos }) => {
               const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
