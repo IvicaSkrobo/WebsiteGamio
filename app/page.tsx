@@ -779,6 +779,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
   const [activeOriginalIndex, setActiveOriginalIndex] = useState(0);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [isNavHidden, setIsNavHidden] = useState(false);
   const [hoveredBuildCategory, setHoveredBuildCategory] = useState<string | null>(null);
   const [autoBuildCategory, setAutoBuildCategory] = useState("Prediction arenas");
   const activeOriginal = productCards[activeOriginalIndex] ?? productCards[0];
@@ -789,6 +790,7 @@ export default function Home() {
   const playerCountRef = useRef<HTMLParagraphElement | null>(null);
   const transactionCountRef = useRef<HTMLParagraphElement | null>(null);
   const floatingOuterRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const lastScrollY = useRef(0);
 
   // Auto-rotate "What We Build" categories every 5s when not hovering
   useEffect(() => {
@@ -852,6 +854,22 @@ export default function Home() {
 
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isMobileNavOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setIsNavHidden(true);
+        setIsMobileNavOpen(false);
+      } else {
+        setIsNavHidden(false);
+      }
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (!rootRef.current) {
@@ -1039,7 +1057,10 @@ export default function Home() {
     <main ref={rootRef} className="relative overflow-x-clip bg-gamio-bg text-white">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] bg-[radial-gradient(circle_at_50%_0%,rgba(255,107,53,0.18),rgba(8,8,8,0.96)_46%,rgba(8,8,8,0)_82%)]" />
 
-      <nav className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 lg:px-5 lg:pt-[14px]">
+      <nav className={cn(
+        "fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 transition-transform duration-300 lg:translate-y-0 lg:px-5 lg:pt-[14px]",
+        isNavHidden && "-translate-y-full",
+      )}>
         <div className="flex h-20 w-full max-w-[1440px] items-center justify-center">
           <a
             href="#about"
@@ -1241,54 +1262,48 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative z-10 mx-auto mt-12 h-[258px] w-full max-w-[560px] lg:hidden sm:mt-8 sm:h-[342px]">
-          <div className="absolute inset-x-4 bottom-3 h-28 rounded-[50%] bg-[radial-gradient(circle,rgba(255,107,53,0.18),rgba(255,107,53,0)_68%)] blur-[34px]" />
-          <AssetImage
-            src={productCards[0].art}
-            alt=""
-            wrapperClassName="absolute bottom-[18%] left-0 z-10 aspect-square w-[34%] overflow-hidden rounded-[8px] shadow-[0_18px_48px_rgba(0,0,0,0.42)] sm:bottom-0 sm:aspect-[280/350] sm:w-[38%]"
-            imgClassName="h-full w-full object-cover"
-            fallback={<ProductArtFallback name="PLINKO" />}
-          />
-          <AssetImage
-            src={predictionTabletAsset}
-            alt=""
-            wrapperClassName="absolute bottom-3 right-0 z-0 w-[64%] overflow-hidden rounded-[8px] border border-white/10 bg-black/20 shadow-[0_22px_54px_rgba(0,0,0,0.48)]"
-            imgClassName="h-auto w-full object-contain"
-            fallback={<PredictionAssetFallback kind="tablet" />}
-          />
-          <AssetImage
-            src={hogambaMascotAsset}
-            alt=""
-            wrapperClassName="absolute left-[37%] top-2 z-20 w-[30%] -translate-x-1/2 sm:top-0 sm:w-[37%]"
-            imgClassName="h-auto w-full object-contain drop-shadow-[0_18px_38px_rgba(0,0,0,0.62)]"
-            fallback={<HogambaMascotFallback />}
-          />
+        <div className="relative z-10 mx-auto mt-8 w-full max-w-[420px] lg:hidden">
+          <div className="grid grid-cols-2 gap-2">
+            {productCards.map((card) => (
+              <div key={card.name} className="relative aspect-[4/3] overflow-hidden rounded-[10px] border border-white/[0.08] bg-[rgba(255,255,255,0.03)]">
+                <AssetImage
+                  src={card.art}
+                  alt={card.name}
+                  wrapperClassName="absolute inset-0"
+                  imgClassName="h-full w-full object-cover"
+                  fallback={<ProductArtFallback name={card.name} />}
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-3 pb-2.5 pt-8">
+                  <span className="font-display text-[11px] font-bold tracking-[0.1em] text-white/90">{card.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div
           ref={statsBarRef}
           data-reveal
-          className="relative z-10 mx-auto mt-8 grid w-full max-w-[560px] gap-3 text-center whitespace-nowrap sm:grid-cols-2 lg:absolute lg:bottom-[68px] lg:left-1/2 lg:mt-0 lg:w-[560px] lg:-translate-x-1/2"
+          className="relative z-10 mx-auto mt-8 grid w-full max-w-[560px] gap-3 text-center sm:grid-cols-2 lg:absolute lg:bottom-[68px] lg:left-1/2 lg:mt-0 lg:w-[560px] lg:-translate-x-1/2"
         >
-          <div className="gamio-hud flex min-h-[88px] flex-col items-center justify-center rounded-[8px] px-5 py-4 text-center text-white">
-            <p className="font-body text-[12px] leading-[16px] font-bold tracking-[0.08em] text-white/62 uppercase">
+          <div className="gamio-hud flex min-h-[88px] flex-col items-center justify-center rounded-[8px] px-3 py-4 text-center text-white sm:px-5">
+            <p className="font-body text-[11px] leading-[16px] font-bold tracking-[0.08em] text-white/62 uppercase sm:text-[12px]">
               Live number of players
             </p>
             <p
               ref={playerCountRef}
-              className="font-display mt-1 text-[2.35rem] leading-none font-bold tracking-[0] text-white sm:text-[2.55rem] lg:text-[31px]"
+              className="font-display mt-1 text-[2rem] leading-none font-bold tracking-[0] text-white sm:text-[2.35rem] lg:text-[31px]"
             >
               1,879
             </p>
           </div>
-          <div className="gamio-hud flex min-h-[88px] flex-col items-center justify-center rounded-[8px] px-5 py-4 text-center text-white">
-            <p className="font-body text-[12px] leading-[16px] font-bold tracking-[0.08em] text-white/62 uppercase">
+          <div className="gamio-hud flex min-h-[88px] flex-col items-center justify-center rounded-[8px] px-3 py-4 text-center text-white sm:px-5">
+            <p className="font-body text-[11px] leading-[16px] font-bold tracking-[0.08em] text-white/62 uppercase sm:text-[12px]">
               Total transactions
             </p>
             <p
               ref={transactionCountRef}
-              className="font-display mt-1 text-[2.35rem] leading-none font-bold tracking-[0] text-[#ffd7a8] sm:text-[2.55rem] lg:text-[31px]"
+              className="font-display mt-1 text-[2rem] leading-none font-bold tracking-[0] text-[#ffd7a8] sm:text-[2.35rem] lg:text-[31px]"
             >
               € 303,980.99
             </p>
@@ -1356,7 +1371,7 @@ export default function Home() {
                   key={label}
                   src={image}
                   alt=""
-                  className={`pointer-events-none object-contain ${pos}`}
+                  className={`pointer-events-none object-contain hidden lg:block ${pos}`}
                   style={{
                     opacity: isActive ? 1 : 0,
                     transform: isActive ? "scale(1)" : "scale(0.7)",
@@ -1367,7 +1382,7 @@ export default function Home() {
               );
             })}
 
-            <p className="font-body pr-20 text-[1rem] leading-[1.6] text-white/72 lg:pr-24 lg:text-[16px]">
+            <p className="font-body text-[1rem] leading-[1.6] text-white/72 lg:pr-24 lg:text-[16px]">
               From prediction arenas to instant games and multiplayer chaos, we build
               interactive stuff people come back to.
             </p>
@@ -1438,8 +1453,27 @@ export default function Home() {
           </div>
 
           <div data-reveal data-motion-visual className="grid gap-3 lg:grid-cols-[220px_1fr]">
-            {/* Stat pills — vertical stack */}
-            <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
+            {/* Stat pills — mobile: horizontal scroll row; desktop: vertical stack */}
+            <div className="flex gap-2 overflow-x-auto pb-1 lg:hidden" style={{ scrollbarWidth: "none" }}>
+              {[
+                { label: "Markets live", value: "6" },
+                { label: "Studio model", value: "Games" },
+                { label: "Approach", value: "Player-first" },
+              ].map((card) => (
+                <div
+                  key={card.label}
+                  className="flex-shrink-0 rounded-[10px] border border-white/[0.08] bg-[rgba(255,255,255,0.03)] px-4 py-3"
+                >
+                  <p className="font-body text-[9px] font-bold uppercase tracking-[0.22em] text-[rgba(255,107,53,0.6)] whitespace-nowrap">
+                    {card.label}
+                  </p>
+                  <p className="font-display mt-1.5 text-[1.5rem] leading-none font-bold text-white whitespace-nowrap">
+                    {card.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="hidden gap-2 lg:grid lg:grid-cols-1">
               {[
                 { label: "Markets live", value: "6" },
                 { label: "Studio model", value: "Games" },
@@ -1548,7 +1582,38 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative z-10 mt-12 grid gap-5 lg:mt-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
+          {/* Mobile-only product tab strip */}
+          <div className="relative z-10 mt-8 flex gap-2 overflow-x-auto pb-1 lg:hidden" style={{ scrollbarWidth: "none" }}>
+            {productCards.map((card, index) => {
+              const isActive = index === activeOriginalIndex;
+              return (
+                <button
+                  key={card.name}
+                  type="button"
+                  onClick={() => setActiveOriginalIndex(index)}
+                  className={cn(
+                    "flex shrink-0 items-center gap-2.5 rounded-[8px] border px-3 py-2 text-left transition duration-200",
+                    isActive ? "bg-white/[0.09]" : "border-white/10 bg-white/[0.04]",
+                  )}
+                  style={isActive ? { borderColor: card.accent + "66" } : undefined}
+                >
+                  <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-[5px] bg-[rgba(255,255,255,0.04)]">
+                    <img src={card.art} alt="" className="h-full w-full object-cover" />
+                  </div>
+                  <div>
+                    <span className="font-body block text-[9px] font-bold uppercase tracking-[0.14em]" style={{ color: isActive ? card.accent : "rgba(255,255,255,0.4)" }}>
+                      {card.metric}
+                    </span>
+                    <span className="font-display mt-0.5 block text-[13px] font-bold leading-none text-white">
+                      {card.name}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="relative z-10 mt-4 grid gap-5 lg:mt-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
             <div
               data-reveal
               data-motion-visual
@@ -1583,7 +1648,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="hidden gap-3 lg:grid lg:grid-cols-1">
               {productCards.map((card, index) => (
                 <button
                   key={card.name}
@@ -1647,7 +1712,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div data-reveal className="grid gap-3 sm:grid-cols-4">
+            <div data-reveal className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {["Skins", "Influencers", "Milestones", "Branding"].map((label) => (
                 <div
                   key={label}
@@ -1696,11 +1761,12 @@ export default function Home() {
 
             <div className="relative grid gap-3">
               {/* Progression header card */}
-              <div data-reveal data-motion-card className="gamio-surface rounded-[8px] p-5 lg:p-6">
-                <p className="font-display text-[1.4rem] leading-tight font-bold text-white lg:text-[1.5rem]">
+              <div data-reveal data-motion-card className="gamio-surface rounded-[8px] p-4 lg:p-6">
+                <p className="font-display text-[1.2rem] leading-tight font-bold text-white lg:text-[1.5rem]">
                   Progression, loot moments and a strong visual identity — all in one world.
                 </p>
-                <p className="font-body mt-3 text-[13px] leading-[1.55] text-white/60">
+                {/* Body copy hidden on mobile — too much text */}
+                <p className="font-body mt-3 hidden text-[13px] leading-[1.55] text-white/60 lg:block">
                   The round, the surface, the progression layer, the lootbox logic
                   and the branded world all belong together.
                 </p>
@@ -1713,28 +1779,29 @@ export default function Home() {
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[0].title}
                   </h3>
-                  <p className="font-body mt-2 text-[12px] leading-[1.4] text-white/55">
+                  {/* Description hidden on mobile */}
+                  <p className="font-body mt-2 hidden text-[12px] leading-[1.4] text-white/55 lg:block">
                     {hogambaFeatureCards[0].description}
                   </p>
-                  <div className="mt-4 flex items-end gap-2">
+                  <div className="mt-3 flex items-end gap-2">
                     {/* COMMON — blue */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
-                        <img src={`${BASE}/images/hogamba/christmas_hat_3 1.png`} alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
+                        <img src={`${BASE}/images/hogamba/christmas_hat_3 1.png`} alt="" className="h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Common</span>
                     </div>
                     {/* EPIC — purple */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
-                        <img src={`${BASE}/images/hogamba/parachute_hogamba 1.png`} alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
+                        <img src={`${BASE}/images/hogamba/parachute_hogamba 1.png`} alt="" className="h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
                     </div>
                     {/* LEGENDARY — gold */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
-                        <img src={`${BASE}/images/hogamba/death_head.png`} alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
+                        <img src={`${BASE}/images/hogamba/death_head.png`} alt="" className="h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
                     </div>
@@ -1747,7 +1814,7 @@ export default function Home() {
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[1].title}
                   </h3>
-                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
+                  <p className="font-body mt-2 hidden text-[12px] leading-[1.45] text-white/62 lg:block">
                     {hogambaFeatureCards[1].description}
                   </p>
                 </article>
@@ -1757,7 +1824,7 @@ export default function Home() {
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[2].title}
                   </h3>
-                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
+                  <p className="font-body mt-2 hidden text-[12px] leading-[1.45] text-white/62 lg:block">
                     {hogambaFeatureCards[2].description}
                   </p>
                 </article>
@@ -1767,7 +1834,7 @@ export default function Home() {
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[3].title}
                   </h3>
-                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
+                  <p className="font-body mt-2 hidden text-[12px] leading-[1.45] text-white/62 lg:block">
                     {hogambaFeatureCards[3].description}
                   </p>
                 </article>
@@ -1786,17 +1853,19 @@ export default function Home() {
         <div className="pointer-events-none absolute left-[-26rem] top-[18rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(255,97,59,0.14),rgba(255,97,59,0)_68%)] blur-[130px]" />
 
         <div className="mx-auto max-w-[1180px]">
+          {/* Heading — full on desktop, compact on mobile */}
           <div data-reveal className="mx-auto max-w-[760px] text-center">
             <p className="gamio-section-label text-[var(--gamio-arena)]">Live participation</p>
-            <h2 className="font-display mt-5 text-[2.6rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[49px] lg:leading-[58px]">
+            <h2 className="font-display mt-5 text-[2.2rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[49px] lg:leading-[58px]">
               Gamio Prediction Arena
             </h2>
-            <p className="font-body mx-auto mt-6 max-w-[620px] text-[15px] leading-[1.55] text-white/68">
+            {/* Description + bullets hidden on mobile — appear below image instead */}
+            <p className="font-body mx-auto mt-6 hidden max-w-[620px] text-[15px] leading-[1.55] text-white/68 lg:block">
               Prediction Arena should feel like one live product surface: clear entry,
               visible odds movement, chat energy and enough visual drama that the next
               round feels close.
             </p>
-            <div className="mt-6 grid gap-3 md:grid-cols-3">
+            <div className="mt-6 hidden gap-3 sm:grid-cols-3 lg:grid">
               {[
                 "Live event framing that reads instantly.",
                 "Chat, odds and motion cues kept in the same surface.",
@@ -1813,18 +1882,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div data-reveal data-motion-visual className="relative mt-8 lg:mt-9">
+          <div data-reveal data-motion-visual className="relative mt-6 lg:mt-9">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(79,140,255,0.14),rgba(79,140,255,0)_28%),radial-gradient(circle_at_22%_82%,rgba(255,79,59,0.08),rgba(255,79,59,0)_24%)]" />
             {/* Main ChatArena image */}
             <img
               src={chatArenaGroupedAsset}
               alt="Prediction Arena interface"
-              className="relative z-10 mx-auto h-auto w-full max-w-[840px] translate-x-[7%] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)]"
+              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] lg:translate-x-[-7%]"
             />
             {/* Strong bottom fade — hides sharp image cut */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-48 bg-gradient-to-t from-[#080808] via-[rgba(8,8,8,0.9)] to-transparent" />
             {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
-            <div className="absolute top-[68%] left-1/2 z-30 w-[44%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[32%] lg:w-[22%]">
+            <div className="absolute top-[68%] left-1/2 z-30 w-[48%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[36%] lg:w-[22%]">
               <p className="font-display text-center text-[15px] leading-none font-bold text-white">
                 Prediction
               </p>
@@ -1837,6 +1906,22 @@ export default function Home() {
                 <span>FAIL</span>
               </div>
             </div>
+          </div>
+
+          {/* Mobile-only: 3 feature bullets appear BELOW the image */}
+          <div className="mt-4 grid gap-2 sm:grid-cols-3 lg:hidden">
+            {[
+              "Live event framing that reads instantly.",
+              "Chat, odds and motion cues kept in the same surface.",
+              "Collectibles and tokens used as accents, not scattered clutter.",
+            ].map((line) => (
+              <div
+                key={line}
+                className="rounded-[8px] border border-[rgba(79,140,255,0.16)] bg-[rgba(79,140,255,0.045)] px-3 py-2.5 text-[13px] leading-[1.4] text-white/68"
+              >
+                {line}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1851,7 +1936,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div data-reveal className="lg:sticky lg:top-28">
             <p className="gamio-section-label text-[var(--gamio-cyan)]">How we build</p>
-            <h2 className="font-display mt-5 max-w-[12ch] text-[3rem] leading-[1.08] font-bold tracking-[0] text-white lg:text-[49px] lg:leading-[58px]">
+            <h2 className="font-display mt-5 text-[2.1rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[2.6rem] lg:max-w-[12ch] lg:text-[49px] lg:leading-[58px]">
               Capabilities & supporting systems
             </h2>
             <p className="font-body mt-6 max-w-[390px] text-[15px] leading-[1.55] text-white/65">
@@ -1861,7 +1946,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div data-motion-visual className="grid gap-3 md:grid-cols-2">
+          <div data-motion-visual className="grid gap-3 sm:grid-cols-2">
               {capabilityCards.map((card) => (
                 <article
                   key={card.title}
