@@ -30,52 +30,41 @@ type MarketCard = {
   description: string;
 };
 
-const navLogoAsset = "/images/site/gamio-logo.svg";
-const hogambaLogoAsset = "/images/hogamba/live-logo.png";
-const hogambaGamePanelAsset = "/images/hogamba/game-panel.png";
-const hogambaControlsAsset = "/images/hogamba/controls.png";
-const hogambaMascotAsset = "/images/hogamba/mascot.png";
-const hogambaLiveRocketAsset = "/images/hogamba/rocket.png";
-const hogambaParachuteAsset = "/images/hogamba/parachute_hogamba 1.png";
-const hogambaChipsAsset = "/images/hogamba/Chips hogamba.png";
-const hogambaSkinTorsoAsset = "/images/hogamba/common_japan_torso.png";
-const hogambaDeathHeadAsset = "/images/hogamba/death_head.png";
-const hogambaDesktopViewportAsset = "/images/hogamba/pchogamba.png";
-const hogambaMobileViewportAsset = "/images/hogamba/mobilepnghogamba.png";
-const hogambaRocketSvgAsset = "/images/hogamba/Hogamba Rocket 1.svg";
-const predictionStreamerAsset =
-  "/images/prediction-arena/streamer.png";
-const predictionChatAsset =
-  "/images/prediction-arena/chat.png";
-const predictionTabletAsset =
-  "/images/prediction-arena/tablet.png";
-const predictionCoinAsset =
-  "/images/prediction-arena/coin.png";
-const chatArenaGroupedAsset =
-  "/images/prediction-arena/ChatArenaGrouped.svg";
-const predictionBombAsset =
-  "/images/prediction-arena/tnt.png";
-const predictionGunAsset =
-  "/images/prediction-arena/gun.png";
-const predictionSkullCoinAsset =
-  "/images/prediction-arena/skull-coin.png";
-const originalsPlinkoThumbnailAsset =
-  "/images/originals/plinko-thumbnail.png";
-const originalsMinesThumbnailAsset =
-  "/images/originals/mines-thumbnail.png";
-const originalsChickenThumbnailAsset =
-  "/images/originals/chicken-thumbnail.png";
-const originalsDiceThumbnailAsset =
-  "/images/originals/dice-thumbnail.png";
-const originalsFeaturedGameAsset =
-  "/images/originals/OriginalsChickenFullGame Graphic.svg";
-const originalsBadgeAsset = "/images/site/originals-badge.svg";
-const capabilityF2PAsset = "/images/site/capability-f2p.svg";
-const capabilityRngTopAsset = "/images/site/capability-rng-top.svg";
-const capabilityAffiliateAsset = "/images/site/capability-affiliate.svg";
-const capabilityAnalyticsAsset = "/images/site/capability-analytics.svg";
-const capabilityStreamingAsset = "/images/site/capability-streaming.svg";
-const capabilityWhitelabelAsset = "/images/site/capability-whitelabel.svg";
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+const navLogoAsset = `${BASE}/images/site/gamio-logo.svg`;
+const hogambaLogoAsset = `${BASE}/images/hogamba/live-logo.png`;
+const hogambaGamePanelAsset = `${BASE}/images/hogamba/game-panel.png`;
+const hogambaControlsAsset = `${BASE}/images/hogamba/controls.png`;
+const hogambaMascotAsset = `${BASE}/images/hogamba/mascot.png`;
+const hogambaLiveRocketAsset = `${BASE}/images/hogamba/rocket.png`;
+const hogambaParachuteAsset = `${BASE}/images/hogamba/parachute_hogamba 1.png`;
+const hogambaChipsAsset = `${BASE}/images/hogamba/Chips hogamba.png`;
+const hogambaSkinTorsoAsset = `${BASE}/images/hogamba/common_japan_torso.png`;
+const hogambaDeathHeadAsset = `${BASE}/images/hogamba/death_head.png`;
+const hogambaDesktopViewportAsset = `${BASE}/images/hogamba/pchogamba.png`;
+const hogambaMobileViewportAsset = `${BASE}/images/hogamba/mobilepnghogamba.png`;
+const hogambaRocketSvgAsset = `${BASE}/images/hogamba/Hogamba Rocket 1.svg`;
+const predictionStreamerAsset = `${BASE}/images/prediction-arena/streamer.png`;
+const predictionChatAsset = `${BASE}/images/prediction-arena/chat.png`;
+const predictionTabletAsset = `${BASE}/images/prediction-arena/tablet.png`;
+const predictionCoinAsset = `${BASE}/images/prediction-arena/coin.png`;
+const chatArenaGroupedAsset = `${BASE}/images/prediction-arena/ChatArenaGrouped.svg`;
+const predictionBombAsset = `${BASE}/images/prediction-arena/tnt.png`;
+const predictionGunAsset = `${BASE}/images/prediction-arena/gun.png`;
+const predictionSkullCoinAsset = `${BASE}/images/prediction-arena/skull-coin.png`;
+const originalsPlinkoThumbnailAsset = `${BASE}/images/originals/plinko-thumbnail.png`;
+const originalsMinesThumbnailAsset = `${BASE}/images/originals/mines-thumbnail.png`;
+const originalsChickenThumbnailAsset = `${BASE}/images/originals/chicken-thumbnail.png`;
+const originalsDiceThumbnailAsset = `${BASE}/images/originals/dice-thumbnail.png`;
+const originalsFeaturedGameAsset = `${BASE}/images/originals/OriginalsChickenFullGame Graphic.svg`;
+const originalsBadgeAsset = `${BASE}/images/site/originals-badge.svg`;
+const capabilityF2PAsset = `${BASE}/images/site/capability-f2p.svg`;
+const capabilityRngTopAsset = `${BASE}/images/site/capability-rng-top.svg`;
+const capabilityAffiliateAsset = `${BASE}/images/site/capability-affiliate.svg`;
+const capabilityAnalyticsAsset = `${BASE}/images/site/capability-analytics.svg`;
+const capabilityStreamingAsset = `${BASE}/images/site/capability-streaming.svg`;
+const capabilityWhitelabelAsset = `${BASE}/images/site/capability-whitelabel.svg`;
 
 const navItems: NavItem[] = [
   { id: "markets", label: "Markets" },

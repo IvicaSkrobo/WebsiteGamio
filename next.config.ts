@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   output: "export",
   basePath: isProd ? "/WebsiteGamio" : "",
   assetPrefix: isProd ? "/WebsiteGamio" : "",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? "/WebsiteGamio" : "",
+  },
   images: {
     unoptimized: true,
   },
