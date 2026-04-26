@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Hogamba section now uses localized Figma exports for the game panel, rocket, and controls; next — continue markets-down desktop fidelity and mobile pass
-last_updated: "2026-04-25T14:35:00Z"
-last_activity: 2026-04-23 — Wired localized Hogamba Figma exports into the redesigned Hogamba section
+status: in_progress
+stopped_at: Main sync verified; all local feature branches are merged into main, GitHub main is at cfa759f, and localhost:3000 is running for review
+last_updated: "2026-04-26T14:11:51Z"
+last_activity: 2026-04-26 - Synced branch state, confirmed GitHub main at cfa759f, and started the local dev server
 progress:
   total_phases: 5
   completed_phases: 3
@@ -96,6 +96,8 @@ Recent decisions affecting current work:
 - Visual repair pass is complete; Originals thumbnails are tighter, Hogamba now uses full local viewport SVGs, Prediction Arena no longer uses the slide track, and Capabilities has a simpler layout treatment.
 - Follow-up visual repair is complete; Markets now uses a single collage, `Our Products` previews temporarily reuse the full Chicken game art, Hogamba keeps a fixed viewport crop, and Prediction Arena uses a centered one-scene composition with square coin framing.
 - Hero width and arena cleanup pass is complete; the hero now fills large screens better, thumbnail cards no longer sit under the stats block, and Prediction Arena uses only the core product surfaces instead of stray floating assets.
+- Main sync is complete; `claude/elated-panini-a023f2`, `claude/priceless-shtern-bd68e1`, and `claude/trusting-knuth-5974e9` are merged into `main`, and GitHub `main` is confirmed at `cfa759f`.
+- Local dev server is running at `http://localhost:3000` and returned HTTP 200 after startup.
 
 - Continue desktop Figma fidelity pass — user confirmed hero is acceptable, issues start at markets section and below.
 - Audit each section from markets downward against Figma: markets, originals, hogamba, prediction arena, capabilities, footer.
@@ -104,6 +106,7 @@ Recent decisions affecting current work:
 ### Blockers/Concerns
 
 - Use the already-open dev server as the primary visual feedback loop; reserve full production builds for meaningful checkpoints.
+- Working tree still contains uncommitted local asset changes and generated/downloaded files; they were not committed or pushed during the main sync.
 - Hero floating icon/parallax code still exists, but the current desktop composition has been simplified toward the Figma hero and may need a later reconciliation pass.
 - Remote Figma asset endpoints currently resolve to 404 in runtime checks, so any remaining direct `<img>` use should be treated as unstable until replaced or localized. Hogamba's main artwork is now localized in `public/`.
 
@@ -129,6 +132,7 @@ Recent decisions affecting current work:
 | 260425-new-hogamba-art | Try new Hogamba art | 2026-04-25 | uncommitted | [260425-try-new-hogamba-art](.planning/quick/260425-try-new-hogamba-art/) |
 | 260425-prediction-figma | Prediction Arena Figma asset pass | 2026-04-25 | uncommitted | [260425-prediction-arena-figma-asset-pass](.planning/quick/260425-prediction-arena-figma-asset-pass/) |
 | 260425-visual-repair | Visual repair for Originals, Hogamba, Prediction Arena, and Capabilities | 2026-04-25 | uncommitted | [260425-visual-repair-hogamba-prediction-originals](.planning/quick/260425-visual-repair-hogamba-prediction-originals/) |
+| 260426-main-sync | Verify branch merges, update GitHub main, and start localhost | 2026-04-26 | cfa759f | [260426-main-sync-and-localhost](.planning/quick/260426-main-sync-and-localhost/) |
 
 ## Deferred Items
 
