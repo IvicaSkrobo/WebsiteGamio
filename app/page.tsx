@@ -1332,29 +1332,23 @@ export default function Home() {
 
       <section className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:py-28">
         <div className="gamio-product-rail absolute inset-x-6 top-0 h-px lg:inset-x-12" />
-        {/* Ghost background text */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden pr-[3%]">
-          <span className="font-display select-none text-[clamp(80px,16vw,240px)] font-bold leading-none tracking-[-0.04em] text-white opacity-[0.022]">
-            BUILD
-          </span>
-        </div>
-        {/* Ambient glow — separate divs per color, opacity-transitioned */}
-        {[
-          { label: "Prediction arenas", color: "rgba(255,107,53,0.1)" },
-          { label: "Instant games",      color: "rgba(209,0,111,0.1)" },
-          { label: "Multiplayer chaos",  color: "rgba(79,140,255,0.1)" },
-        ].map(({ label, color }) => (
-          <div
-            key={label}
-            className="pointer-events-none absolute right-[10%] top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full blur-[80px]"
-            style={{
-              background: `radial-gradient(circle, ${color}, transparent 70%)`,
-              opacity: (hoveredBuildCategory ?? autoBuildCategory) === label ? 1 : 0,
-              transition: "opacity 0.6s ease",
-            }}
-          />
-        ))}
         <div className="relative mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          {/* Ambient glow — inside content wrapper so overflow-hidden on section doesn't clip */}
+          {[
+            { label: "Prediction arenas", color: "rgba(255,107,53,0.12)" },
+            { label: "Instant games",      color: "rgba(209,0,111,0.12)" },
+            { label: "Multiplayer chaos",  color: "rgba(79,140,255,0.12)" },
+          ].map(({ label, color }) => (
+            <div
+              key={label}
+              className="pointer-events-none absolute right-0 top-1/2 h-[380px] w-[380px] -translate-y-1/2 rounded-full blur-[90px]"
+              style={{
+                background: `radial-gradient(circle, ${color}, transparent 70%)`,
+                opacity: (hoveredBuildCategory ?? autoBuildCategory) === label ? 1 : 0,
+                transition: "opacity 0.6s ease",
+              }}
+            />
+          ))}
           <div data-reveal>
             <p className="gamio-section-label">What we build</p>
             <h2 className="font-display mt-5 max-w-[760px] text-[2.15rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[56px] lg:leading-[64px]">
