@@ -1262,25 +1262,6 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="relative z-10 mx-auto mt-8 w-full max-w-[420px] lg:hidden">
-          <div className="grid grid-cols-2 gap-2">
-            {productCards.map((card) => (
-              <div key={card.name} className="relative aspect-[4/3] overflow-hidden rounded-[10px] border border-white/[0.08] bg-[rgba(255,255,255,0.03)]">
-                <AssetImage
-                  src={card.art}
-                  alt={card.name}
-                  wrapperClassName="absolute inset-0"
-                  imgClassName="h-full w-full object-cover"
-                  fallback={<ProductArtFallback name={card.name} />}
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-3 pb-2.5 pt-8">
-                  <span className="font-display text-[11px] font-bold tracking-[0.1em] text-white/90">{card.name}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div
           ref={statsBarRef}
           data-reveal
