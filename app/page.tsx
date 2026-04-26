@@ -1346,9 +1346,9 @@ export default function Home() {
             }}
           >
             {[
-              { label: "Prediction arenas", image: "/images/prediction-arena/coin.png",  color: "#ff6b35", pos: "absolute -top-10 -right-6 z-20 h-[84px] w-[84px]" },
-              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-[40%] -right-10 z-20 h-[124px] w-[124px] -translate-y-1/2" },
-              { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png",          color: "#4f8cff", pos: "absolute -bottom-14 -right-10 z-20 h-[132px] w-[132px]" },
+              { label: "Prediction arenas", image: `${BASE}/images/prediction-arena/coin.png`,  color: "#ff6b35", pos: "absolute -top-10 -right-6 z-20 h-[84px] w-[84px]" },
+              { label: "Instant games",      image: `${BASE}/images/originals/chicken.png`,       color: "#d1006f", pos: "absolute top-[40%] -right-10 z-20 h-[124px] w-[124px] -translate-y-1/2" },
+              { label: "Multiplayer chaos",  image: `${BASE}/images/hogamba/mascot.png`,          color: "#4f8cff", pos: "absolute -bottom-14 -right-10 z-20 h-[132px] w-[132px]" },
             ].map(({ label, image, color, pos }) => {
               const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
               return (
@@ -1684,7 +1684,7 @@ export default function Home() {
               </div>
               <div className="pointer-events-none absolute bottom-[-24px] left-[31%] z-20 w-[132px] -translate-x-1/2 -rotate-6 drop-shadow-[0_22px_54px_rgba(0,0,0,0.72)] sm:w-[156px] lg:bottom-[-40px] lg:left-[67%] lg:w-[190px]">
                 <img
-                  src="/images/hogamba/Lootbox Epic Closed.png"
+                  src={`${BASE}/images/hogamba/Lootbox Epic Closed.png`}
                   alt=""
                   className="h-auto w-full"
                 />
@@ -1717,21 +1717,21 @@ export default function Home() {
                     {/* COMMON — blue */}
                     <div className="relative flex-shrink-0">
                       <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
-                        <img src="/images/hogamba/christmas_hat_3 1.png" alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                        <img src={`${BASE}/images/hogamba/christmas_hat_3 1.png`} alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Common</span>
                     </div>
                     {/* EPIC — purple */}
                     <div className="relative flex-shrink-0">
                       <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
-                        <img src="/images/hogamba/parachute_hogamba 1.png" alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                        <img src={`${BASE}/images/hogamba/parachute_hogamba 1.png`} alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
                     </div>
                     {/* LEGENDARY — gold */}
                     <div className="relative flex-shrink-0">
                       <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
-                        <img src="/images/hogamba/death_head.png" alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                        <img src={`${BASE}/images/hogamba/death_head.png`} alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
                     </div>
