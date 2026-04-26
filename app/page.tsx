@@ -78,7 +78,6 @@ const capabilityStreamingAsset = "/images/site/capability-streaming.svg";
 const capabilityWhitelabelAsset = "/images/site/capability-whitelabel.svg";
 
 const navItems: NavItem[] = [
-  { id: "about", label: "About" },
   { id: "markets", label: "Markets" },
   { id: "originals", label: "Originals" },
   { id: "hogamba", label: "Hogamba" },
@@ -1532,7 +1531,6 @@ export default function Home() {
         className="relative mx-auto w-full max-w-[1440px] scroll-mt-16 overflow-hidden px-6 py-16 lg:scroll-mt-16 lg:px-12 lg:pt-20 lg:pb-28"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
-        <div className="pointer-events-none absolute left-[-22rem] top-16 h-[41rem] w-[41rem] rounded-full bg-[radial-gradient(circle,rgba(255,0,132,0.34),rgba(255,0,132,0)_68%)] blur-[110px]" />
         <div className="relative mx-auto max-w-[1180px]">
           <div className="relative z-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
