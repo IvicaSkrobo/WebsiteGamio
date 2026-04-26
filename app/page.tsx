@@ -1693,7 +1693,7 @@ export default function Home() {
                   fallback={null}
                 />
               </div>
-              <div className="pointer-events-none absolute left-[-18px] top-[8%] z-20 w-[118px] -rotate-6 drop-shadow-[0_22px_54px_rgba(0,0,0,0.72)] sm:w-[140px] lg:left-[-26px] lg:top-[10%] lg:w-[168px]">
+              <div className="pointer-events-none absolute bottom-[-22px] left-[18px] z-20 w-[118px] -rotate-6 drop-shadow-[0_22px_54px_rgba(0,0,0,0.72)] sm:w-[140px] lg:bottom-[-34px] lg:left-[34px] lg:w-[168px]">
                 <img
                   src="/images/hogamba/Lootbox Epic Closed.png"
                   alt=""
