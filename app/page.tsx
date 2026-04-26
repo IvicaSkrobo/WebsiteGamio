@@ -1601,9 +1601,10 @@ export default function Home() {
                   className={cn(
                     "group grid grid-cols-[86px_1fr] gap-4 rounded-[8px] border p-3 text-left transition duration-300",
                     index === activeOriginalIndex
-                      ? "border-white/24 bg-white/[0.09]"
-                      : "border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.065]",
+                      ? "bg-white/[0.09]"
+                      : "border-white/10 bg-white/[0.035] hover:bg-white/[0.065]",
                   )}
+                  style={index === activeOriginalIndex ? { borderColor: card.accent + "66" } : undefined}
                 >
                   <AssetImage
                     src={card.art}
