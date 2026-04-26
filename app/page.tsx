@@ -792,6 +792,7 @@ export default function Home() {
   const [activeOriginalIndex, setActiveOriginalIndex] = useState(0);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [hoveredBuildCategory, setHoveredBuildCategory] = useState<string | null>(null);
+  const [autoBuildCategory, setAutoBuildCategory] = useState("Prediction arenas");
   const activeOriginal = productCards[activeOriginalIndex] ?? productCards[0];
 
   const rootRef = useRef<HTMLElement | null>(null);
@@ -800,6 +801,19 @@ export default function Home() {
   const playerCountRef = useRef<HTMLParagraphElement | null>(null);
   const transactionCountRef = useRef<HTMLParagraphElement | null>(null);
   const floatingOuterRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  // Auto-rotate "What We Build" categories every 3s when not hovering
+  useEffect(() => {
+    if (hoveredBuildCategory !== null) return;
+    const order = ["Prediction arenas", "Instant games", "Multiplayer chaos"];
+    const id = setInterval(() => {
+      setAutoBuildCategory((prev) => {
+        const i = order.indexOf(prev);
+        return order[(i + 1) % order.length];
+      });
+    }, 3000);
+    return () => clearInterval(id);
+  }, [hoveredBuildCategory]);
 
   useEffect(() => {
     const sections = navItems
@@ -1338,47 +1352,22 @@ export default function Home() {
               <div className="h-px w-16 bg-gradient-to-r from-[var(--gamio-orange)] to-transparent" style={{ opacity: 0.3 }} />
             </div>
           </div>
-          <div data-reveal className="gamio-about-card relative overflow-visible rounded-[12px] p-5 lg:p-7">
-            {/* Image escapes the card — floats above top-right corner */}
-            <div className="pointer-events-none absolute -right-5 -top-14 z-20 h-[112px] w-[112px]">
-              {[
-                { label: "Prediction arenas", image: "/images/prediction-arena/coin.png" },
-                { label: "Instant games",      image: "/images/originals/chicken.png" },
-                { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png" },
-              ].map(({ label, image }, i) => {
-                const active = hoveredBuildCategory === label || (hoveredBuildCategory === null && i === 0);
-                return (
-                  <img
-                    key={label}
-                    src={image}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-contain"
-                    style={{
-                      opacity: active ? 1 : 0,
-                      transition: "opacity 0.25s ease, transform 0.25s ease",
-                      transform: active ? "translateY(0) scale(1)" : "translateY(6px) scale(0.92)",
-                      filter: "drop-shadow(0 12px 28px rgba(0,0,0,0.65)) drop-shadow(0 0 8px rgba(255,107,53,0.18))",
-                      pointerEvents: "none",
-                    }}
-                  />
-                );
-              })}
-            </div>
+          <div data-reveal className="gamio-about-card rounded-[12px] p-5 lg:p-7">
             <p className="font-body text-[1rem] leading-[1.6] text-white/72 lg:text-[16px]">
               From prediction arenas to instant games and multiplayer chaos, we build
               interactive stuff people come back to.
             </p>
             <div className="mt-5 flex flex-col gap-2">
               {[
-                { label: "Prediction arenas", color: "#ff6b35", tagline: "Real-time skill meets live outcomes" },
-                { label: "Instant games",      color: "#d1006f", tagline: "One mechanic. Infinite replayability." },
-                { label: "Multiplayer chaos",  color: "#4f8cff", tagline: "Social pressure, shared stakes" },
-              ].map(({ label, color, tagline }) => {
-                const isActive = hoveredBuildCategory === label;
+                { label: "Prediction arenas", color: "#ff6b35", tagline: "Real-time skill meets live outcomes", image: "/images/prediction-arena/coin.png" },
+                { label: "Instant games",      color: "#d1006f", tagline: "One mechanic. Infinite replayability.",   image: "/images/originals/chicken.png" },
+                { label: "Multiplayer chaos",  color: "#4f8cff", tagline: "Social pressure, shared stakes",          image: "/images/hogamba/mascot.png" },
+              ].map(({ label, color, tagline, image }) => {
+                const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
                 return (
                   <div
                     key={label}
-                    className="flex items-center gap-4 rounded-[8px] border px-4 py-3.5 transition-all duration-200 cursor-default"
+                    className="flex cursor-default items-center gap-3 rounded-[8px] border px-4 py-3 transition-all duration-300"
                     style={{
                       borderColor: isActive ? `${color}44` : "rgba(255,255,255,0.08)",
                       background: isActive ? `${color}0d` : "rgba(255,255,255,0.03)",
@@ -1387,15 +1376,32 @@ export default function Home() {
                     onMouseLeave={() => setHoveredBuildCategory(null)}
                   >
                     <div
-                      className="h-2 w-2 flex-shrink-0 rounded-full transition-all duration-200"
+                      className="h-2 w-2 flex-shrink-0 rounded-full transition-all duration-300"
                       style={{
                         backgroundColor: color,
-                        boxShadow: isActive ? `0 0 10px 4px ${color}66` : `0 0 6px 2px ${color}33`,
+                        boxShadow: isActive ? `0 0 10px 4px ${color}66` : `0 0 5px 1px ${color}33`,
                       }}
                     />
                     <div className="min-w-0 flex-1">
                       <p className="font-body text-[12px] font-bold uppercase leading-none tracking-[0.14em] text-white/88">{label}</p>
                       <p className="font-body mt-1 text-[11px] leading-none text-white/42">{tagline}</p>
+                    </div>
+                    {/* Each row has its own image on the right */}
+                    <div className="flex-shrink-0">
+                      <img
+                        src={image}
+                        alt=""
+                        className="h-12 w-12 object-contain"
+                        style={{
+                          opacity: isActive ? 1 : 0.18,
+                          transform: isActive ? "scale(1.15) translateY(-2px)" : "scale(0.88)",
+                          transition: "all 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+                          filter: isActive
+                            ? `drop-shadow(0 6px 16px rgba(0,0,0,0.6)) drop-shadow(0 0 8px ${color}55)`
+                            : "none",
+                          pointerEvents: "none",
+                        }}
+                      />
                     </div>
                   </div>
                 );
