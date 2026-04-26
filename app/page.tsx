@@ -1565,6 +1565,7 @@ export default function Home() {
               data-motion-visual
               className="gamio-product-frame overflow-hidden rounded-[8px] p-3 sm:p-4"
               style={{
+                borderColor: activeOriginal.accent + "55",
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 34px 110px rgba(209,0,111,0.14)",
               }}
             >
