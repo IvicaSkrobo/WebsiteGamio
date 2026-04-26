@@ -1352,17 +1352,40 @@ export default function Home() {
               <div className="h-px w-16 bg-gradient-to-r from-[var(--gamio-orange)] to-transparent" style={{ opacity: 0.3 }} />
             </div>
           </div>
-          <div data-reveal className="gamio-about-card rounded-[12px] p-5 lg:p-7">
+          <div data-reveal className="gamio-about-card relative overflow-visible rounded-[12px] p-5 lg:p-7">
+            {/* Prediction Arenas image — top-right, above card */}
+            {[
+              { label: "Prediction arenas", image: "/images/prediction-arena/coin.png",  color: "#ff6b35", pos: "absolute -top-10 -right-4 z-20 h-[88px] w-[88px]" },
+              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-[38%] -right-7 z-20 h-[88px] w-[88px]" },
+              { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png",          color: "#4f8cff", pos: "absolute -bottom-10 -right-4 z-20 h-[88px] w-[88px]" },
+            ].map(({ label, image, color, pos }) => {
+              const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
+              return (
+                <img
+                  key={label}
+                  src={image}
+                  alt=""
+                  className={`pointer-events-none object-contain ${pos}`}
+                  style={{
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive ? "scale(1)" : "scale(0.7)",
+                    transition: "opacity 0.3s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+                    filter: `drop-shadow(0 10px 24px rgba(0,0,0,0.7)) drop-shadow(0 0 12px ${color}55)`,
+                  }}
+                />
+              );
+            })}
+
             <p className="font-body text-[1rem] leading-[1.6] text-white/72 lg:text-[16px]">
               From prediction arenas to instant games and multiplayer chaos, we build
               interactive stuff people come back to.
             </p>
             <div className="mt-5 flex flex-col gap-2">
               {[
-                { label: "Prediction arenas", color: "#ff6b35", tagline: "Real-time skill meets live outcomes", image: "/images/prediction-arena/coin.png" },
-                { label: "Instant games",      color: "#d1006f", tagline: "One mechanic. Infinite replayability.",   image: "/images/originals/chicken.png" },
-                { label: "Multiplayer chaos",  color: "#4f8cff", tagline: "Social pressure, shared stakes",          image: "/images/hogamba/mascot.png" },
-              ].map(({ label, color, tagline, image }) => {
+                { label: "Prediction arenas", color: "#ff6b35", tagline: "Real-time skill meets live outcomes" },
+                { label: "Instant games",      color: "#d1006f", tagline: "One mechanic. Infinite replayability." },
+                { label: "Multiplayer chaos",  color: "#4f8cff", tagline: "Social pressure, shared stakes" },
+              ].map(({ label, color, tagline }) => {
                 const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
                 return (
                   <div
@@ -1385,23 +1408,6 @@ export default function Home() {
                     <div className="min-w-0 flex-1">
                       <p className="font-body text-[12px] font-bold uppercase leading-none tracking-[0.14em] text-white/88">{label}</p>
                       <p className="font-body mt-1 text-[11px] leading-none text-white/42">{tagline}</p>
-                    </div>
-                    {/* Each row has its own image on the right */}
-                    <div className="flex-shrink-0">
-                      <img
-                        src={image}
-                        alt=""
-                        className="h-12 w-12 object-contain"
-                        style={{
-                          opacity: isActive ? 1 : 0.18,
-                          transform: isActive ? "scale(1.15) translateY(-2px)" : "scale(0.88)",
-                          transition: "all 0.35s cubic-bezier(0.34,1.56,0.64,1)",
-                          filter: isActive
-                            ? `drop-shadow(0 6px 16px rgba(0,0,0,0.6)) drop-shadow(0 0 8px ${color}55)`
-                            : "none",
-                          pointerEvents: "none",
-                        }}
-                      />
                     </div>
                   </div>
                 );
@@ -1690,12 +1696,12 @@ export default function Home() {
                     {hogambaFeatureCards[0].description}
                   </p>
                   <div className="mt-4 flex items-end gap-3">
-                    {/* LEGENDARY — gold */}
+                    {/* COMMON — blue */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#ffd700] bg-[rgba(255,215,0,0.08)]" style={{ boxShadow: "0 0 12px rgba(255,215,0,0.3), inset 0 0 8px rgba(255,215,0,0.06)" }}>
+                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
                         <img src="/images/hogamba/christmas_hat_3 1.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#ffd700] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Common</span>
                     </div>
                     {/* EPIC — purple */}
                     <div className="relative flex-shrink-0">
@@ -1704,12 +1710,12 @@ export default function Home() {
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
                     </div>
-                    {/* EPIC — purple */}
+                    {/* LEGENDARY — gold */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
+                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
                         <img src="/images/hogamba/death_head.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
                     </div>
                     <span className="font-body mb-1 ml-auto text-[10px] font-bold text-white/35">+200<br/>items</span>
                   </div>
