@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Landing page visual checkpoint captured; current composition looks good and remaining work is QA, cleanup, and final responsive polish
-last_updated: "2026-04-26T14:28:00Z"
-last_activity: 2026-04-26 - Captured landing page polish checkpoint after hero, markets, originals, Hogamba, Prediction Arena, and capabilities improvements
+stopped_at: Originals featured art now uses a transparent SVG treatment without the inner white border or bright backing panel
+last_updated: "2026-04-26T14:19:23Z"
+last_activity: 2026-04-26 - Removed the competing light gradient/white-border treatment from the Originals featured image frame
 progress:
   total_phases: 5
   completed_phases: 3
@@ -85,6 +85,7 @@ Recent decisions affecting current work:
 - Hogamba: latest layout uses a tighter 2x2 feature grid, stronger local game artwork, improved lootbox/progression treatment, and cleaner visual balance.
 - What We Build / Markets: active-category visuals, ambient color shifts, green live/product status labels, and more symmetrical card imagery are now part of the accepted direction.
 - Prediction Arena and Capabilities: the lower page has been simplified into cleaner product surfaces and capability cards instead of oversized or stray floating assets.
+- Originals featured art: removed the embedded SVG background rectangle and white stroke, then changed the page frame to use object-contain on a subtler dark/pink backing so the transparent asset fits naturally.
 
 ### Pending Todos
 
@@ -143,6 +144,7 @@ Recent decisions affecting current work:
 | 260425-visual-repair | Visual repair for Originals, Hogamba, Prediction Arena, and Capabilities | 2026-04-25 | uncommitted | [260425-visual-repair-hogamba-prediction-originals](.planning/quick/260425-visual-repair-hogamba-prediction-originals/) |
 | 260426-main-sync | Verify branch merges, update GitHub main, and start localhost | 2026-04-26 | cfa759f | [260426-main-sync-and-localhost](.planning/quick/260426-main-sync-and-localhost/) |
 | 260426-landing-checkpoint | Capture current landing page polish state | 2026-04-26 | local | [260426-landing-page-polish-checkpoint](.planning/quick/260426-landing-page-polish-checkpoint/) |
+| 260426-originals-frame | Soften Originals featured art frame | 2026-04-26 | local | [260426-originals-transparent-frame-fix](.planning/quick/260426-originals-transparent-frame-fix/) |
 
 ## Deferred Items
 

@@ -1595,8 +1595,8 @@ export default function Home() {
               <AssetImage
                 src={originalsFeaturedGameAsset}
                 alt={`${activeOriginal.name} featured game art`}
-                wrapperClassName="aspect-[16/10] w-full overflow-hidden rounded-[6px] bg-[rgba(255,255,255,0.03)]"
-                imgClassName="h-full w-full object-cover transition-opacity duration-200"
+                wrapperClassName="aspect-[16/10] w-full overflow-hidden rounded-[6px] bg-[radial-gradient(circle_at_50%_52%,rgba(209,0,111,0.16),rgba(209,0,111,0)_58%),linear-gradient(180deg,rgba(255,255,255,0.025),rgba(255,255,255,0.008))]"
+                imgClassName="h-full w-full object-contain p-2 transition-opacity duration-200 sm:p-3"
                 fallback={<ProductArtFallback name={activeOriginal.name} />}
               />
               <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
