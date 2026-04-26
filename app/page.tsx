@@ -40,7 +40,7 @@ const hogambaParachuteAsset = "/images/hogamba/parachute_hogamba 1.png";
 const hogambaChipsAsset = "/images/hogamba/Chips hogamba.png";
 const hogambaSkinTorsoAsset = "/images/hogamba/common_japan_torso.png";
 const hogambaDeathHeadAsset = "/images/hogamba/death_head.png";
-const hogambaDesktopViewportAsset = "/images/hogamba/pchogamba.svg";
+const hogambaDesktopViewportAsset = "/images/hogamba/pchogamba.png";
 const hogambaRocketSvgAsset = "/images/hogamba/Hogamba Rocket 1.svg";
 const predictionStreamerAsset =
   "/images/prediction-arena/streamer.png";
@@ -50,6 +50,8 @@ const predictionTabletAsset =
   "/images/prediction-arena/tablet.png";
 const predictionCoinAsset =
   "/images/prediction-arena/coin.png";
+const chatArenaGroupedAsset =
+  "/images/prediction-arena/ChatArenaGrouped.svg";
 const predictionBombAsset =
   "/images/prediction-arena/tnt.png";
 const predictionGunAsset =
@@ -629,39 +631,88 @@ function PredictionAssetFallback({
   return <HeroFallbackIcon type={kind === "bomb" ? "bomb" : "coin"} />;
 }
 
-function CapabilityIcon({
-  card,
-}: {
-  card: CapabilityCard;
-}) {
-  const glowMap: Record<string, string> = {
-    "F2P engagement":
-      "bg-[radial-gradient(circle,rgba(255,154,107,0.42),rgba(255,154,107,0)_70%)]",
-    "Scalable RNG systems":
-      "bg-[radial-gradient(circle,rgba(112,255,71,0.38),rgba(112,255,71,0)_72%)]",
-    "Affiliate & referral systems":
-      "bg-[radial-gradient(circle,rgba(255,86,163,0.34),rgba(255,86,163,0)_72%)]",
-    "Data & analytics":
-      "bg-[radial-gradient(circle,rgba(121,160,255,0.34),rgba(121,160,255,0)_72%)]",
-    "Streaming-ready software":
-      "bg-[radial-gradient(circle,rgba(255,188,92,0.34),rgba(255,188,92,0)_72%)]",
-    "Whitelabel solutions":
-      "bg-[radial-gradient(circle,rgba(198,136,255,0.34),rgba(198,136,255,0)_72%)]",
+function CapabilityIcon({ card }: { card: CapabilityCard }) {
+  const config: Record<string, { bg: string; border: string; glow: string; icon: React.ReactNode }> = {
+    "F2P engagement": {
+      bg: "bg-[rgba(255,130,80,0.10)]", border: "border-[rgba(255,130,80,0.30)]",
+      glow: "bg-[radial-gradient(circle_at_40%_30%,rgba(255,130,80,0.45),transparent_70%)]",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M6 21v-1a6 6 0 0 1 6-6"/>
+          <path d="M17 17l-2.5 2.5L16 21l4-4-3-3-1.5 1.5z" fill="white" stroke="none"/>
+          <path d="M20 14l-3 3" />
+        </svg>
+      ),
+    },
+    "Scalable RNG systems": {
+      bg: "bg-[rgba(112,255,71,0.08)]", border: "border-[rgba(112,255,71,0.28)]",
+      glow: "bg-[radial-gradient(circle_at_40%_30%,rgba(112,255,71,0.42),transparent_70%)]",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="4"/>
+          <circle cx="8" cy="8" r="1.2" fill="white" stroke="none"/>
+          <circle cx="16" cy="8" r="1.2" fill="white" stroke="none"/>
+          <circle cx="8" cy="16" r="1.2" fill="white" stroke="none"/>
+          <circle cx="16" cy="16" r="1.2" fill="white" stroke="none"/>
+          <circle cx="12" cy="12" r="1.2" fill="white" stroke="none"/>
+        </svg>
+      ),
+    },
+    "Affiliate & referral systems": {
+      bg: "bg-[rgba(255,86,163,0.09)]", border: "border-[rgba(255,86,163,0.28)]",
+      glow: "bg-[radial-gradient(circle_at_40%_30%,rgba(255,86,163,0.42),transparent_70%)]",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="9" cy="7" r="3"/>
+          <path d="M3 21v-1a6 6 0 0 1 9.17-5.08"/>
+          <circle cx="18" cy="9" r="2.5"/>
+          <path d="M14.5 21v-.5a3.5 3.5 0 0 1 7 0v.5"/>
+        </svg>
+      ),
+    },
+    "Data & analytics": {
+      bg: "bg-[rgba(100,150,255,0.09)]", border: "border-[rgba(100,150,255,0.28)]",
+      glow: "bg-[radial-gradient(circle_at_40%_30%,rgba(100,150,255,0.42),transparent_70%)]",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+          <line x1="3" y1="20" x2="21" y2="20"/>
+        </svg>
+      ),
+    },
+    "Streaming-ready software": {
+      bg: "bg-[rgba(255,188,92,0.09)]", border: "border-[rgba(255,188,92,0.28)]",
+      glow: "bg-[radial-gradient(circle_at_40%_30%,rgba(255,188,92,0.42),transparent_70%)]",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+          <polygon points="10,8 10,13 15,10.5" fill="white" stroke="none"/>
+        </svg>
+      ),
+    },
+    "Whitelabel solutions": {
+      bg: "bg-[rgba(198,136,255,0.09)]", border: "border-[rgba(198,136,255,0.28)]",
+      glow: "bg-[radial-gradient(circle_at_40%_30%,rgba(198,136,255,0.42),transparent_70%)]",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+          <line x1="7" y1="7" x2="7.01" y2="7" strokeWidth="2.5" strokeLinecap="round"/>
+        </svg>
+      ),
+    },
   };
 
+  const c = config[card.title] ?? { bg: "bg-white/5", border: "border-white/12", glow: "", icon: null };
+
   return (
-    <div className="relative h-[130px] w-[130px] shrink-0">
-      <div className={cn("absolute left-[18px] top-[18px] h-[94px] w-[94px] scale-[1.25]", glowMap[card.title])} />
-      <div className="absolute inset-0 rounded-full border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
-      <AssetImage
-        src={card.symbolAsset}
-        alt=""
-        wrapperClassName="absolute inset-[20px]"
-        imgClassName="h-full w-full object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.35)]"
-        fallback={
-          <div className="absolute inset-3 rounded-full border border-white/12 bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.22),rgba(255,255,255,0.06)_55%,rgba(255,255,255,0.02)_100%)]" />
-        }
-      />
+    <div className={cn("relative h-[54px] w-[54px] shrink-0 overflow-hidden rounded-[12px] border", c.bg, c.border)}>
+      <div className={cn("absolute inset-0", c.glow)} />
+      <div className="absolute inset-[11px]">{c.icon}</div>
     </div>
   );
 }
@@ -1135,24 +1186,23 @@ export default function Home() {
         ref={heroRef}
         className="relative isolate mx-auto min-h-[760px] w-full max-w-[1560px] overflow-visible px-6 pb-12 pt-28 lg:min-h-[860px] lg:px-12 lg:pb-20 lg:pt-0"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,8,0.44),rgba(8,8,8,0.94)_78%)]" />
+        <div className="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-[linear-gradient(180deg,rgba(8,8,8,0.44),rgba(8,8,8,0.94)_78%)]" />
         <div className="pointer-events-none absolute inset-x-8 top-24 hidden h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)] lg:block" />
         <div className="pointer-events-none absolute left-1/2 top-[6rem] hidden h-[24rem] w-[24rem] -translate-x-1/2 lg:top-[140px] lg:h-[1006.761px] lg:w-[1006.761px]">
           <div className="absolute inset-[13.4%] rounded-full bg-[radial-gradient(circle,rgba(255,48,0,1)_0%,rgba(255,60,14,1)_15%,rgba(255,71,29,1)_30%,rgba(255,94,57,1)_60%,rgba(255,127,83,1)_80%,rgba(255,159,108,1)_100%)] blur-[90px] lg:blur-[120px]" />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,107,53,0.08),rgba(0,0,0,0)_36%,rgba(0,0,0,0.56)_100%)]" />
-        <div className="pointer-events-none absolute bottom-[-88px] left-1/2 hidden h-[260px] w-[2100px] -translate-x-1/2 rounded-[50%] bg-[#121212] lg:block" />
+        <div className="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-[radial-gradient(circle_at_50%_42%,rgba(255,107,53,0.08),rgba(0,0,0,0)_36%,rgba(0,0,0,0.56)_100%)]" />
 
         <div
           ref={(node) => {
             floatingOuterRefs.current[0] = node;
           }}
-          className="pointer-events-none absolute left-1/2 top-[24rem] z-0 hidden w-[760px] -translate-x-1/2 lg:block"
+          className="pointer-events-none absolute right-[-2%] top-[28rem] z-0 hidden w-[520px] lg:block"
         >
           <AssetImage
             src={predictionTabletAsset}
             alt=""
-            wrapperClassName="mx-auto w-[520px] rotate-[-4deg] opacity-80"
+            wrapperClassName="w-full rotate-[-4deg] opacity-80"
             imgClassName="h-auto w-full object-contain drop-shadow-[0_38px_90px_rgba(0,0,0,0.56)]"
             fallback={<PredictionAssetFallback kind="tablet" />}
           />
@@ -1162,7 +1212,7 @@ export default function Home() {
           ref={(node) => {
             floatingOuterRefs.current[1] = node;
           }}
-          className="pointer-events-none absolute right-[6%] top-[8.5rem] z-0 hidden w-[260px] lg:block"
+          className="pointer-events-none absolute right-[6%] top-[16rem] z-10 hidden w-[260px] lg:block"
         >
           <AssetImage
             src={hogambaMascotAsset}
@@ -1331,38 +1381,58 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <div className="relative min-h-[330px] overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-4 sm:min-h-[400px] lg:min-h-[460px]">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(255,107,53,0.12),rgba(255,107,53,0)_28%),radial-gradient(circle_at_18%_76%,rgba(127,255,89,0.08),rgba(127,255,89,0)_24%)]" />
-              <AssetImage
-                src={hogambaDesktopViewportAsset}
-                alt="Hogamba full product viewport"
-                wrapperClassName="absolute left-[2%] top-[16%] w-[62%] overflow-hidden rounded-[8px] shadow-[0_26px_90px_rgba(0,0,0,0.44)] sm:left-[3%] sm:top-[12%] sm:w-[58%]"
-                imgClassName="h-auto w-full object-cover"
-                fallback={<HogambaGameFallback />}
-              />
-              <AssetImage
-                src={originalsFeaturedGameAsset}
-                alt="Gamio Originals featured game art"
-                wrapperClassName="absolute right-[3%] top-[4%] w-[42%] overflow-hidden rounded-[8px] shadow-[0_24px_72px_rgba(0,0,0,0.36)] sm:right-[5%] sm:w-[36%]"
-                imgClassName="h-auto w-full object-cover"
-                fallback={<ProductArtFallback name="CHICKEN" />}
-              />
-              <AssetImage
-                src={predictionTabletAsset}
-                alt="Prediction Arena interface"
-                wrapperClassName="absolute bottom-[4%] right-[3%] w-[44%] overflow-hidden rounded-[8px] shadow-[0_26px_72px_rgba(0,0,0,0.44)] sm:right-[5%] sm:w-[38%]"
-                imgClassName="h-auto w-full object-contain"
-                fallback={<PredictionAssetFallback kind="tablet" />}
-              />
-              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-4 border-t border-white/10 pt-4">
-                <p className="max-w-[42ch] text-[12px] leading-[1.45] text-white/62 sm:text-[13px]">
+            <div className="overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))]">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-white/[0.08] px-5 py-3.5">
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8cff38] opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8cff38]" />
+                  </span>
+                  <span className="font-body text-[11px] font-bold uppercase tracking-[0.22em] text-white/45">
+                    Active markets
+                  </span>
+                </div>
+                <span className="font-body text-[11px] font-bold text-white/22">6 / 6</span>
+              </div>
+
+              {/* Market rows */}
+              <div className="divide-y divide-white/[0.06]">
+                {[
+                  { n: "01", country: "Belgium",  region: "W. Europe",   bar: 68 },
+                  { n: "02", country: "Poland",   region: "C. Europe",   bar: 82 },
+                  { n: "03", country: "Romania",  region: "S.E. Europe", bar: 55 },
+                  { n: "04", country: "Greece",   region: "S. Europe",   bar: 63 },
+                  { n: "05", country: "Turkey",   region: "MENA",        bar: 74 },
+                  { n: "06", country: "Brazil",   region: "S. America",  bar: 91 },
+                ].map(({ n, country, region, bar }) => (
+                  <div key={country} className="flex items-center gap-4 px-5 py-4">
+                    <span className="font-body w-5 shrink-0 text-[11px] font-bold text-white/20">
+                      {n}
+                    </span>
+                    <span className="font-display min-w-[88px] text-[15px] font-bold text-white">
+                      {country}
+                    </span>
+                    <span className="font-body flex-1 text-[12px] text-white/38">
+                      {region}
+                    </span>
+                    <div className="h-[3px] w-[72px] shrink-0 overflow-hidden rounded-full bg-white/10">
+                      <div
+                        className="h-full rounded-full bg-[linear-gradient(90deg,#8cff38,#ff6b35)]"
+                        style={{ width: `${bar}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div className="border-t border-white/[0.08] px-5 py-4">
+                <p className="font-body text-[12px] leading-[1.5] text-white/40">
                   Gamio is easiest to understand through the things we make:
                   fast games, prediction moments, social loops and product worlds
                   players can recognize quickly.
                 </p>
-                <div className="hidden rounded-full border border-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/54 sm:block">
-                  Playable product surfaces
-                </div>
               </div>
             </div>
           </div>
@@ -1512,21 +1582,19 @@ export default function Home() {
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <div data-reveal data-motion-visual className="gamio-product-frame relative overflow-hidden rounded-[8px] p-3">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_78%,rgba(124,255,63,0.15),rgba(124,255,63,0)_26%),radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.07),rgba(255,255,255,0)_24%)]" />
-              <AssetImage
-                src={hogambaDesktopViewportAsset}
-                alt="Hogamba desktop viewport"
-                wrapperClassName="aspect-[16/11] overflow-hidden rounded-[6px]"
-                imgClassName="h-full w-full object-cover object-top"
-                fallback={<HogambaGameFallback />}
-              />
-              <AssetImage
-                src={hogambaRocketSvgAsset}
-                alt=""
-                wrapperClassName="pointer-events-none absolute right-[4%] top-[6%] hidden w-[18%] rotate-[8deg] lg:block"
-                imgClassName="h-auto w-full object-contain drop-shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
-              />
+            <div className="relative">
+              <div data-reveal data-motion-visual className="gamio-product-frame relative overflow-hidden rounded-[8px] p-3">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_78%,rgba(124,255,63,0.15),rgba(124,255,63,0)_26%),radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.07),rgba(255,255,255,0)_24%)]" />
+                <div className="relative overflow-hidden rounded-[6px]">
+                  <AssetImage
+                    src={hogambaDesktopViewportAsset}
+                    alt="Hogamba desktop viewport"
+                    wrapperClassName="w-full"
+                    imgClassName="h-auto w-full object-contain"
+                    fallback={<HogambaGameFallback />}
+                  />
+                </div>
+              </div>
             </div>
 
             <div className="grid gap-3">
@@ -1617,49 +1685,28 @@ export default function Home() {
             </div>
           </div>
 
-          <div data-reveal data-motion-visual className="relative mt-12 min-h-[340px] sm:min-h-[500px] lg:min-h-[560px]">
+          <div data-reveal data-motion-visual className="relative mt-12">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(79,140,255,0.14),rgba(79,140,255,0)_28%),radial-gradient(circle_at_22%_82%,rgba(255,79,59,0.08),rgba(255,79,59,0)_24%)]" />
-            <AssetImage
-              src={predictionTabletAsset}
+            {/* Main ChatArena image */}
+            <img
+              src={chatArenaGroupedAsset}
               alt="Prediction Arena interface"
-              wrapperClassName="absolute left-1/2 top-[4%] z-20 w-[104%] -translate-x-1/2 sm:top-[2%] sm:w-[88%] lg:w-[72%]"
-              imgClassName="h-auto w-full object-contain drop-shadow-[0_30px_100px_rgba(0,0,0,0.48)]"
-              fallback={<PredictionAssetFallback kind="tablet" />}
+              className="relative z-10 mx-auto h-auto w-full max-w-[960px] object-contain drop-shadow-[0_30px_100px_rgba(0,0,0,0.48)]"
             />
-            <AssetImage
-              src={predictionChatAsset}
-              alt="Prediction Arena chat and odds"
-              wrapperClassName="absolute left-[62%] top-[25%] z-40 w-[31%] rotate-[-5deg] sm:left-[65%] sm:top-[24%] sm:w-[24%] lg:left-[67%] lg:top-[24%] lg:w-[18%]"
-              imgClassName="h-auto w-full object-contain drop-shadow-[0_22px_64px_rgba(0,0,0,0.44)]"
-              fallback={<PredictionAssetFallback kind="chat" />}
-            />
-            <AssetImage
-              src={predictionStreamerAsset}
-              alt="Prediction Arena streamer view"
-              wrapperClassName="absolute left-[9%] top-[42%] z-40 w-[38%] overflow-hidden sm:left-[17%] sm:top-[40%] sm:w-[30%] lg:left-[24%] lg:top-[38%] lg:w-[21%]"
-              imgClassName="h-auto w-full object-cover drop-shadow-[0_22px_64px_rgba(0,0,0,0.44)]"
-              fallback={<PredictionAssetFallback kind="streamer" />}
-            />
-            <div className="absolute left-[45%] top-[58%] z-50 w-[39%] rounded-[8px] border border-[#f9bcae] bg-[rgba(38,12,7,0.82)] px-3 py-3 backdrop-blur-[10px] sm:left-[48%] sm:top-[58%] sm:w-[25%] sm:px-4 lg:left-[52%] lg:top-[58%] lg:w-[17%]">
+            {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
+            <div className="absolute top-[68%] left-1/2 z-30 w-[44%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[32%] lg:w-[22%]">
               <p className="font-display text-center text-[15px] leading-none font-bold text-white">
                 Prediction
               </p>
-              <div className="mt-5 flex overflow-hidden rounded-full">
+              <div className="mt-4 flex overflow-hidden rounded-full">
                 <div className="h-2.5 w-[64%] bg-[linear-gradient(90deg,#0056c6,#507fff)]" />
                 <div className="h-2.5 w-[36%] bg-[linear-gradient(90deg,#ff364f,#ee001e)]" />
               </div>
-              <div className="mt-2 flex justify-between text-[9px] leading-none text-white">
+              <div className="mt-2 flex justify-between text-[9px] leading-none text-white/70">
                 <span>COMPLETE</span>
                 <span>FAIL</span>
               </div>
             </div>
-            <AssetImage
-              src={predictionCoinAsset}
-              alt=""
-              wrapperClassName="pointer-events-none absolute left-[30%] top-[67%] z-50 aspect-square w-[15%] sm:left-[37%] sm:top-[68%] sm:w-[10%] lg:left-[42%] lg:top-[69%] lg:w-[7%]"
-              imgClassName="h-full w-full object-contain drop-shadow-[0_16px_42px_rgba(0,0,0,0.42)]"
-              fallback={<PredictionAssetFallback kind="coin" />}
-            />
           </div>
         </div>
       </section>
@@ -1690,17 +1737,16 @@ export default function Home() {
                   key={card.title}
                   data-reveal
                   data-motion-card
-                  className="rounded-[8px] border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                  className="group relative overflow-hidden rounded-[10px] border border-white/8 bg-white/[0.03] p-5 transition-all duration-300 hover:border-white/16 hover:bg-white/[0.055]"
                 >
-                  <div className="flex items-start gap-5">
-                    <div className="shrink-0">
-                      <CapabilityIcon card={card} />
-                    </div>
-                    <div className="min-w-0 pt-1">
-                      <h3 className="font-display text-[15px] leading-[1.15] font-bold tracking-[0] text-white">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent_10%,rgba(255,255,255,0.14)_50%,transparent_90%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="flex items-center gap-4">
+                    <CapabilityIcon card={card} />
+                    <div className="min-w-0">
+                      <h3 className="font-display text-[14px] leading-[1.2] font-bold tracking-[0] text-white">
                         {card.title}
                       </h3>
-                      <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/70">
+                      <p className="font-body mt-2 text-[12.5px] leading-[1.45] text-white/62">
                         {card.description}
                       </p>
                     </div>
