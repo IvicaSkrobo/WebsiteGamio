@@ -1718,14 +1718,16 @@ export default function Home() {
             </div>
 
             <div className="relative grid gap-3">
-              {/* Lootbox — breaks out right side of column */}
-              <div className="pointer-events-none absolute -right-14 top-2 z-20 w-[120px]">
+              {/* Lootbox — floats above top card, clear of text */}
+              <div className="pointer-events-none absolute -top-14 -right-10 z-20 w-[110px]">
                 <img
                   src="/images/hogamba/Lootbox Epic Closed.png"
                   alt=""
                   className="h-auto w-full drop-shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
                 />
               </div>
+
+              {/* Progression header card */}
               <div data-reveal data-motion-card className="gamio-surface rounded-[8px] p-5 lg:p-6">
                 <p className="font-display text-[1.4rem] leading-tight font-bold text-white lg:text-[1.5rem]">
                   Progression, loot moments and a strong visual identity — all in one world.
@@ -1736,34 +1738,35 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid gap-3 md:grid-cols-2">
-                {/* Skins card — rarity showcase */}
+              {/* All 4 feature cards in 2×2 grid */}
+              <div className="grid gap-3 sm:grid-cols-2">
+                {/* Skins — with rarity showcase */}
                 <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
-                  <h3 className="font-display text-[16px] leading-tight font-bold text-white">
+                  <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[0].title}
                   </h3>
                   <p className="font-body mt-2 text-[12px] leading-[1.4] text-white/55">
                     {hogambaFeatureCards[0].description}
                   </p>
-                  <div className="mt-4 flex items-end gap-3">
+                  <div className="mt-4 flex items-end gap-2">
                     {/* COMMON — blue */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
-                        <img src="/images/hogamba/christmas_hat_3 1.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
+                        <img src="/images/hogamba/christmas_hat_3 1.png" alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Common</span>
                     </div>
                     {/* EPIC — purple */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
-                        <img src="/images/hogamba/parachute_hogamba 1.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
+                        <img src="/images/hogamba/parachute_hogamba 1.png" alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
                     </div>
                     {/* LEGENDARY — gold */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
-                        <img src="/images/hogamba/death_head.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[48px] w-[48px] items-center justify-center rounded-[8px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
+                        <img src="/images/hogamba/death_head.png" alt="" className="h-9 w-9 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                       </div>
                       <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
                     </div>
@@ -1771,35 +1774,37 @@ export default function Home() {
                   </div>
                 </article>
 
-                {/* Influencer card — unchanged */}
+                {/* Influencer */}
                 <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
-                  <h3 className="font-display text-[16px] leading-tight font-bold text-white">
+                  <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[1].title}
                   </h3>
-                  <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
+                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
                     {hogambaFeatureCards[1].description}
+                  </p>
+                </article>
+
+                {/* Progress milestones */}
+                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                  <h3 className="font-display text-[15px] leading-tight font-bold text-white">
+                    {hogambaFeatureCards[2].title}
+                  </h3>
+                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
+                    {hogambaFeatureCards[2].description}
+                  </p>
+                </article>
+
+                {/* Brand worlds */}
+                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                  <h3 className="font-display text-[15px] leading-tight font-bold text-white">
+                    {hogambaFeatureCards[3].title}
+                  </h3>
+                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
+                    {hogambaFeatureCards[3].description}
                   </p>
                 </article>
               </div>
             </div>
-          </div>
-
-          <div className="mt-5 grid gap-3 md:grid-cols-2">
-            {hogambaFeatureCards.slice(2).map((card) => (
-              <article
-                key={card.title}
-                data-reveal
-                data-motion-card
-                className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4"
-              >
-                <h3 className="font-display text-[16px] leading-tight font-bold text-white">
-                  {card.title}
-                </h3>
-                <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
-                  {card.description}
-                </p>
-              </article>
-            ))}
           </div>
         </div>
       </section>
