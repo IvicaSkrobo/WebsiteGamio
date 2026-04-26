@@ -890,7 +890,7 @@ export default function Home() {
         return;
       }
 
-      gsap.set(revealElements, { autoAlpha: 0, y: 36 });
+      gsap.set(revealElements, { autoAlpha: 0, y: 24 });
 
       const motionSections = gsap.utils.toArray<HTMLElement>("[data-motion-section]");
       motionSections.forEach((section) => {
@@ -905,16 +905,16 @@ export default function Home() {
         gsap.timeline({
           scrollTrigger: {
             trigger: section,
-            start: "top 76%",
+            start: "top 90%",
             once: true,
           },
         }).to(sectionReveals, {
           autoAlpha: 1,
           y: 0,
-          duration: 0.78,
+          duration: 0.58,
           ease: "power3.out",
           stagger: {
-            each: 0.055,
+            each: 0.035,
             from: "start",
           },
         });
