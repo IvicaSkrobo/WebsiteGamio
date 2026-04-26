@@ -1338,8 +1338,25 @@ export default function Home() {
             BUILD
           </span>
         </div>
-        {/* Ambient glow */}
-        <div className="pointer-events-none absolute right-[10%] top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.07),transparent_70%)] blur-[80px]" />
+        {/* Ambient glow — color follows active category */}
+        {(() => {
+          const activeCategory = hoveredBuildCategory ?? autoBuildCategory;
+          const glowColor: Record<string, string> = {
+            "Prediction arenas": "rgba(255,107,53,0.09)",
+            "Instant games": "rgba(209,0,111,0.09)",
+            "Multiplayer chaos": "rgba(79,140,255,0.09)",
+          };
+          const c = glowColor[activeCategory] ?? "rgba(255,107,53,0.09)";
+          return (
+            <div
+              className="pointer-events-none absolute right-[10%] top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full blur-[80px]"
+              style={{
+                background: `radial-gradient(circle, ${c}, transparent 70%)`,
+                transition: "background 0.6s ease",
+              }}
+            />
+          );
+        })()}
         <div className="relative mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div data-reveal>
             <p className="gamio-section-label">What we build</p>
