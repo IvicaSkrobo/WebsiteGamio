@@ -1475,10 +1475,10 @@ export default function Home() {
                 <span className="font-body text-[10px] font-bold uppercase tracking-[0.24em] text-white/30">Deployed markets</span>
                 <div className="flex items-center gap-1.5">
                   <span className="relative flex h-[6px] w-[6px]">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ff6b35] opacity-40" />
-                    <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-[#ff6b35]" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8cff38] opacity-40" />
+                    <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-[#8cff38]" />
                   </span>
-                  <span className="font-body text-[10px] font-bold text-[rgba(255,107,53,0.5)]">All live</span>
+                  <span className="font-body text-[10px] font-bold text-[rgba(140,255,56,0.6)]">All live</span>
                 </div>
               </div>
 
