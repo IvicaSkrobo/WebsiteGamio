@@ -1364,9 +1364,9 @@ export default function Home() {
             }}
           >
             {[
-              { label: "Prediction arenas", image: `${BASE}/images/prediction-arena/coin.png`,  color: "#ff6b35", pos: "absolute -top-10 -right-6 z-20 h-[84px] w-[84px]" },
-              { label: "Instant games",      image: `${BASE}/images/originals/chicken.png`,       color: "#d1006f", pos: "absolute top-[40%] -right-10 z-20 h-[124px] w-[124px] -translate-y-1/2" },
-              { label: "Multiplayer chaos",  image: `${BASE}/images/hogamba/mascot.png`,          color: "#4f8cff", pos: "absolute -bottom-14 -right-10 z-20 h-[132px] w-[132px]" },
+              { label: "Prediction arenas", image: `${BASE}/images/prediction-arena/coin.png`,  color: "#ff6b35", pos: "absolute top-2 right-2 z-20 h-[60px] w-[60px] lg:-top-10 lg:-right-6 lg:h-[84px] lg:w-[84px]" },
+              { label: "Instant games",      image: `${BASE}/images/originals/chicken.png`,       color: "#d1006f", pos: "absolute top-2 right-2 z-20 h-[60px] w-[60px] lg:top-[40%] lg:-right-10 lg:h-[124px] lg:w-[124px] lg:-translate-y-1/2" },
+              { label: "Multiplayer chaos",  image: `${BASE}/images/hogamba/mascot.png`,          color: "#4f8cff", pos: "absolute top-2 right-2 z-20 h-[60px] w-[60px] lg:-bottom-14 lg:top-auto lg:-right-10 lg:h-[132px] lg:w-[132px]" },
             ].map(({ label, image, color, pos }) => {
               const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
               return (
@@ -1374,7 +1374,7 @@ export default function Home() {
                   key={label}
                   src={image}
                   alt=""
-                  className={`pointer-events-none object-contain hidden lg:block ${pos}`}
+                  className={`pointer-events-none object-contain ${pos}`}
                   style={{
                     opacity: isActive ? 1 : 0,
                     transform: isActive ? "scale(1)" : "scale(0.7)",
@@ -1385,7 +1385,7 @@ export default function Home() {
               );
             })}
 
-            <p className="font-body text-[1rem] leading-[1.6] text-white/72 lg:pr-24 lg:text-[16px]">
+            <p className="font-body pr-16 text-[1rem] leading-[1.6] text-white/72 lg:pr-24 lg:text-[16px]">
               From prediction arenas to instant games and multiplayer chaos, we build
               interactive stuff people come back to.
             </p>
