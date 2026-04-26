@@ -40,7 +40,7 @@ const hogambaParachuteAsset = "/images/hogamba/parachute_hogamba 1.png";
 const hogambaChipsAsset = "/images/hogamba/Chips hogamba.png";
 const hogambaSkinTorsoAsset = "/images/hogamba/common_japan_torso.png";
 const hogambaDeathHeadAsset = "/images/hogamba/death_head.png";
-const hogambaDesktopViewportAsset = "/images/hogamba/pchogamba.png";
+const hogambaDesktopViewportAsset = "/images/hogamba/mobilepnghogamba.png";
 const hogambaRocketSvgAsset = "/images/hogamba/Hogamba Rocket 1.svg";
 const predictionStreamerAsset =
   "/images/prediction-arena/streamer.png";
@@ -1316,26 +1316,52 @@ export default function Home() {
 
       <section className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:py-28">
         <div className="gamio-product-rail absolute inset-x-6 top-0 h-px lg:inset-x-12" />
-        <div className="relative mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+        {/* Ghost background text */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden pr-[3%]">
+          <span className="font-display select-none text-[clamp(80px,16vw,240px)] font-bold leading-none tracking-[-0.04em] text-white opacity-[0.022]">
+            BUILD
+          </span>
+        </div>
+        {/* Ambient glow */}
+        <div className="pointer-events-none absolute right-[10%] top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.07),transparent_70%)] blur-[80px]" />
+        <div className="relative mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div data-reveal>
             <p className="gamio-section-label">What we build</p>
             <h2 className="font-display mt-5 max-w-[760px] text-[2.15rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[56px] lg:leading-[64px]">
-              We make things you actually want to play &mdash; and yes, sometimes there&apos;s
-              money involved.
+              We make things you actually want to play{" "}
+              <span className="text-[var(--gamio-orange)]">&mdash;</span> and yes, sometimes there&apos;s money involved.
             </h2>
+            <div className="mt-8 flex items-center gap-0">
+              <div className="h-px w-10 bg-[var(--gamio-orange)]" style={{ opacity: 0.7 }} />
+              <div className="h-px w-16 bg-gradient-to-r from-[var(--gamio-orange)] to-transparent" style={{ opacity: 0.3 }} />
+            </div>
           </div>
-          <div data-reveal className="gamio-surface rounded-[8px] p-5 lg:p-6">
-            <p className="font-body text-[1.05rem] leading-[1.55] text-white/78 lg:text-[18px]">
+          <div data-reveal className="gamio-about-card rounded-[12px] p-5 lg:p-7">
+            <p className="font-body text-[1.05rem] leading-[1.6] text-white/72 lg:text-[17px]">
               From prediction arenas to instant games and multiplayer chaos, we build
               interactive stuff people come back to.
             </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              {["Prediction arenas", "Instant games", "Multiplayer chaos"].map((label) => (
+            <div className="mt-6 flex flex-col gap-2">
+              {[
+                { label: "Prediction arenas", color: "#ff6b35", tagline: "Real-time skill meets live outcomes" },
+                { label: "Instant games", color: "#d1006f", tagline: "One mechanic. Infinite replayability." },
+                { label: "Multiplayer chaos", color: "#4f8cff", tagline: "Social pressure, shared stakes" },
+              ].map(({ label, color, tagline }) => (
                 <div
                   key={label}
-                  className="rounded-[8px] border border-white/10 bg-white/[0.035] px-4 py-3 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-white/72"
+                  className="group flex items-center gap-4 rounded-[8px] border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 transition-all duration-200 hover:border-white/[0.14] hover:bg-white/[0.05]"
                 >
-                  {label}
+                  <div
+                    className="h-2 w-2 flex-shrink-0 rounded-full"
+                    style={{ backgroundColor: color, boxShadow: `0 0 8px 3px ${color}55` }}
+                  />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-body text-[12px] font-bold uppercase leading-none tracking-[0.14em] text-white/88">{label}</p>
+                    <p className="font-body mt-1 text-[11px] leading-none text-white/42">{tagline}</p>
+                  </div>
+                  <svg className="h-3.5 w-3.5 flex-shrink-0 text-white/20 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-white/48" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
               ))}
             </div>
