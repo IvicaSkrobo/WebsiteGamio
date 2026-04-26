@@ -1373,44 +1373,48 @@ export default function Home() {
       <section
         id="markets"
         data-motion-section
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-12 lg:pt-[40px] lg:pb-[120px]"
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-10 lg:px-12 lg:py-14"
       >
         <div className="pointer-events-none absolute inset-x-12 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute right-[-16rem] top-[-4rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.2),rgba(255,107,53,0)_68%)] blur-[120px]" />
-        <div className="relative mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div data-reveal>
-            <p className="gamio-section-label">Where our work travels</p>
-            <h2 className="font-display mt-5 text-[2.75rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3.35rem] lg:text-[49px] lg:leading-[58px]">
-              Where do people meet our games?
-            </h2>
-            <p className="font-body mt-7 max-w-[520px] text-[1rem] leading-[1.55] tracking-[0] text-white/78 lg:text-[17px]">
-              Our work has reached players across Belgium, Poland, Romania, Greece, Turkey and Brazil.
+
+        <div className="relative mx-auto max-w-[1180px] space-y-5">
+          {/* Compact header */}
+          <div data-reveal className="flex items-end justify-between gap-6">
+            <div>
+              <p className="gamio-section-label">Where our work travels</p>
+              <h2 className="font-display mt-3 text-[1.75rem] leading-tight font-bold tracking-[0] text-white sm:text-[2.25rem] lg:text-[32px]">
+                Where do people meet our games?
+              </h2>
+            </div>
+            <p className="hidden font-body text-[12px] leading-[1.6] text-white/35 lg:block lg:text-right">
+              Belgium · Poland · Romania<br />Greece · Turkey · Brazil
             </p>
           </div>
 
-          <div data-reveal data-motion-visual className="grid gap-4">
-            <div className="grid gap-3 sm:grid-cols-3">
+          {/* Stat strip + markets in a single horizontal layout */}
+          <div data-reveal data-motion-visual className="grid gap-3 lg:grid-cols-[1fr_2fr]">
+            {/* Stat cards stacked */}
+            <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
               {marketCards.map((card) => (
                 <article
                   key={card.label}
                   data-motion-card
-                  className="rounded-[8px] border border-white/10 bg-white/[0.035] p-4"
+                  className="rounded-[8px] border border-white/10 bg-white/[0.035] px-4 py-3"
                 >
-                  <p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
+                  <p className="font-body text-[10px] font-bold uppercase tracking-[0.18em] text-white/40">
                     {card.label}
                   </p>
-                  <p className="font-display mt-4 text-[2.4rem] leading-none font-bold text-white">
+                  <p className="font-display mt-2 text-[1.6rem] leading-none font-bold text-white lg:text-[22px]">
                     {card.value}
-                  </p>
-                  <p className="font-body mt-4 text-[13px] leading-[1.45] text-white/65">
-                    {card.description}
                   </p>
                 </article>
               ))}
             </div>
+
+            {/* Markets board */}
             <div className="overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))]">
-              {/* Header */}
-              <div className="flex items-center justify-between border-b border-white/[0.08] px-5 py-3.5">
+              <div className="flex items-center justify-between border-b border-white/[0.08] px-5 py-3">
                 <div className="flex items-center gap-2.5">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8cff38] opacity-60" />
@@ -1422,8 +1426,6 @@ export default function Home() {
                 </div>
                 <span className="font-body text-[11px] font-bold text-white/22">6 / 6</span>
               </div>
-
-              {/* Market rows */}
               <div className="divide-y divide-white/[0.06]">
                 {[
                   { n: "01", country: "Belgium",  region: "W. Europe",   bar: 68 },
@@ -1433,33 +1435,15 @@ export default function Home() {
                   { n: "05", country: "Turkey",   region: "MENA",        bar: 74 },
                   { n: "06", country: "Brazil",   region: "S. America",  bar: 91 },
                 ].map(({ n, country, region, bar }) => (
-                  <div key={country} className="flex items-center gap-4 px-5 py-4">
-                    <span className="font-body w-5 shrink-0 text-[11px] font-bold text-white/20">
-                      {n}
-                    </span>
-                    <span className="font-display min-w-[88px] text-[15px] font-bold text-white">
-                      {country}
-                    </span>
-                    <span className="font-body flex-1 text-[12px] text-white/38">
-                      {region}
-                    </span>
+                  <div key={country} className="flex items-center gap-4 px-5 py-3">
+                    <span className="font-body w-5 shrink-0 text-[11px] font-bold text-white/20">{n}</span>
+                    <span className="font-display min-w-[88px] text-[14px] font-bold text-white">{country}</span>
+                    <span className="font-body flex-1 text-[12px] text-white/38">{region}</span>
                     <div className="h-[3px] w-[72px] shrink-0 overflow-hidden rounded-full bg-white/10">
-                      <div
-                        className="h-full rounded-full bg-[linear-gradient(90deg,#8cff38,#ff6b35)]"
-                        style={{ width: `${bar}%` }}
-                      />
+                      <div className="h-full rounded-full bg-[linear-gradient(90deg,#8cff38,#ff6b35)]" style={{ width: `${bar}%` }} />
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Footer */}
-              <div className="border-t border-white/[0.08] px-5 py-4">
-                <p className="font-body text-[12px] leading-[1.5] text-white/40">
-                  Gamio is easiest to understand through the things we make:
-                  fast games, prediction moments, social loops and product worlds
-                  players can recognize quickly.
-                </p>
               </div>
             </div>
           </div>
