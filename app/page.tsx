@@ -1352,11 +1352,28 @@ export default function Home() {
               <div className="h-px w-16 bg-gradient-to-r from-[var(--gamio-orange)] to-transparent" style={{ opacity: 0.3 }} />
             </div>
           </div>
-          <div data-reveal className="gamio-about-card relative overflow-visible rounded-[12px] p-5 lg:p-7">
-            {/* Prediction Arenas image — top-right, above card */}
+          {(() => {
+            const activeCategory = hoveredBuildCategory ?? autoBuildCategory;
+            const categoryColor: Record<string, string> = {
+              "Prediction arenas": "#ff6b35",
+              "Instant games": "#d1006f",
+              "Multiplayer chaos": "#4f8cff",
+            };
+            const activeColor = categoryColor[activeCategory] ?? "#ff6b35";
+            return (
+          <div
+            data-reveal
+            className="gamio-about-card relative overflow-visible rounded-[12px] p-5 lg:p-7"
+            style={{
+              borderColor: `${activeColor}40`,
+              boxShadow: `inset 0 1px 0 rgba(255,255,255,0.08), 0 0 60px ${activeColor}14, 0 24px 70px rgba(0,0,0,0.36)`,
+              background: `linear-gradient(160deg, ${activeColor}0d 0%, rgba(255,255,255,0.04) 40%, rgba(255,255,255,0.02) 100%), rgba(8,8,8,0.64)`,
+              transition: "border-color 0.5s ease, box-shadow 0.5s ease, background 0.5s ease",
+            }}
+          >
             {[
               { label: "Prediction arenas", image: "/images/prediction-arena/coin.png",  color: "#ff6b35", pos: "absolute -top-10 -right-6 z-20 h-[84px] w-[84px]" },
-              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-1/2 -right-10 z-20 h-[124px] w-[124px] -translate-y-1/2" },
+              { label: "Instant games",      image: "/images/originals/chicken.png",       color: "#d1006f", pos: "absolute top-[34%] -right-10 z-20 h-[124px] w-[124px] -translate-y-1/2" },
               { label: "Multiplayer chaos",  image: "/images/hogamba/mascot.png",          color: "#4f8cff", pos: "absolute -bottom-14 -right-10 z-20 h-[132px] w-[132px]" },
             ].map(({ label, image, color, pos }) => {
               const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
@@ -1414,6 +1431,8 @@ export default function Home() {
               })}
             </div>
           </div>
+          );
+          })()}
         </div>
       </section>
 
