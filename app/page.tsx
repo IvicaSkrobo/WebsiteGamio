@@ -1528,12 +1528,12 @@ export default function Home() {
                       <span className="text-[2rem] leading-none">{flag}</span>
                       <div>
                         <p className="font-display text-[13px] font-bold leading-none text-white">{country}</p>
-                        <p className="font-body mt-1 text-[10px] uppercase tracking-[0.14em] text-white/30">{region}</p>
+                        <p className="font-body mt-1 hidden text-[10px] uppercase tracking-[0.14em] text-white/30 lg:block">{region}</p>
                       </div>
                     </div>
 
                     {/* Product tags */}
-                    <div className="flex flex-wrap gap-1">
+                    <div className="hidden flex-wrap gap-1 lg:flex">
                       {products.map((p) => (
                         <span key={p} className="font-body rounded-[4px] bg-white/[0.06] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.1em] text-white/40">
                           {p}
@@ -1783,29 +1783,29 @@ export default function Home() {
                   <p className="font-body mt-2 hidden text-[12px] leading-[1.4] text-white/55 lg:block">
                     {hogambaFeatureCards[0].description}
                   </p>
-                  <div className="mt-3 flex items-end gap-2">
+                  <div className="mt-2 flex items-center gap-2">
                     {/* COMMON — blue */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
-                        <img src={`${BASE}/images/hogamba/christmas_hat_3 1.png`} alt="" className="h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
+                        <img src={`${BASE}/images/hogamba/christmas_hat_3 1.png`} alt="" className="h-6 w-6 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] lg:h-8 lg:w-8" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Common</span>
+                      <span className="absolute -bottom-2 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white lg:inline">Common</span>
                     </div>
                     {/* EPIC — purple */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
-                        <img src={`${BASE}/images/hogamba/parachute_hogamba 1.png`} alt="" className="h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
+                        <img src={`${BASE}/images/hogamba/parachute_hogamba 1.png`} alt="" className="h-6 w-6 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] lg:h-8 lg:w-8" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
+                      <span className="absolute -bottom-2 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white lg:inline">Epic</span>
                     </div>
                     {/* LEGENDARY — gold */}
                     <div className="relative flex-shrink-0">
-                      <div className="flex h-[44px] w-[44px] items-center justify-center rounded-[8px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
-                        <img src={`${BASE}/images/hogamba/death_head.png`} alt="" className="h-8 w-8 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
+                        <img src={`${BASE}/images/hogamba/death_head.png`} alt="" className="h-6 w-6 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] lg:h-8 lg:w-8" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
+                      <span className="absolute -bottom-2 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black lg:inline">Legend</span>
                     </div>
-                    <span className="font-body mb-1 ml-auto text-[10px] font-bold text-white/35">+200<br/>items</span>
+                    <span className="font-body ml-auto text-[10px] font-bold text-white/35">+200<br/>items</span>
                   </div>
                 </article>
 
