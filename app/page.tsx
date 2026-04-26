@@ -778,6 +778,7 @@ function HeroFallbackIcon({
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
   const [activeOriginalIndex, setActiveOriginalIndex] = useState(0);
+  const [originalsTransitioning, setOriginalsTransitioning] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isNavHidden, setIsNavHidden] = useState(false);
   const [hoveredBuildCategory, setHoveredBuildCategory] = useState<string | null>(null);
@@ -791,6 +792,21 @@ export default function Home() {
   const transactionCountRef = useRef<HTMLParagraphElement | null>(null);
   const floatingOuterRefs = useRef<Array<HTMLDivElement | null>>([]);
   const lastScrollY = useRef(0);
+  const swipeTouchStartX = useRef<number | null>(null);
+  const tabStripRef = useRef<HTMLDivElement | null>(null);
+  const tabButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  const changeOriginal = (index: number) => {
+    if (originalsTransitioning || index === activeOriginalIndex) return;
+    setOriginalsTransitioning(true);
+    setTimeout(() => {
+      setActiveOriginalIndex(index);
+      setOriginalsTransitioning(false);
+      // scroll the tab strip so the active button is centered
+      const btn = tabButtonRefs.current[index];
+      btn?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }, 150);
+  };
 
   // Auto-rotate "What We Build" categories every 5s when not hovering
   useEffect(() => {
@@ -1187,7 +1203,7 @@ export default function Home() {
       <section
         id="about"
         ref={heroRef}
-        className="relative isolate mx-auto min-h-[760px] w-full max-w-[1560px] overflow-visible px-6 pb-12 pt-28 lg:min-h-[860px] lg:px-12 lg:pb-20 lg:pt-0"
+        className="relative isolate mx-auto w-full max-w-[1560px] overflow-visible px-6 pb-8 pt-28 lg:min-h-[860px] lg:px-12 lg:pb-20 lg:pt-0"
       >
         <div className="pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 bg-[linear-gradient(180deg,rgba(8,8,8,0.44),rgba(8,8,8,0.94)_78%)]" />
         <div className="pointer-events-none absolute inset-x-8 top-24 hidden h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)] lg:block" />
@@ -1435,20 +1451,20 @@ export default function Home() {
 
           <div data-reveal data-motion-visual className="grid gap-3 lg:grid-cols-[220px_1fr]">
             {/* Stat pills — mobile: horizontal scroll row; desktop: vertical stack */}
-            <div className="flex gap-2 overflow-x-auto pb-1 lg:hidden" style={{ scrollbarWidth: "none" }}>
+            <div className="grid grid-cols-3 gap-2 lg:hidden">
               {[
-                { label: "Markets live", value: "6" },
-                { label: "Studio model", value: "Games" },
-                { label: "Approach", value: "Player-first" },
+                { label: "Markets", value: "6" },
+                { label: "Model", value: "Games" },
+                { label: "Approach", value: "Players" },
               ].map((card) => (
                 <div
                   key={card.label}
-                  className="flex-shrink-0 rounded-[10px] border border-white/[0.08] bg-[rgba(255,255,255,0.03)] px-4 py-3"
+                  className="rounded-[10px] border border-white/[0.08] bg-[rgba(255,255,255,0.03)] px-3 py-3 text-center"
                 >
-                  <p className="font-body text-[9px] font-bold uppercase tracking-[0.22em] text-[rgba(255,107,53,0.6)] whitespace-nowrap">
+                  <p className="font-body text-[9px] font-bold uppercase tracking-[0.18em] text-[rgba(255,107,53,0.6)]">
                     {card.label}
                   </p>
-                  <p className="font-display mt-1.5 text-[1.5rem] leading-none font-bold text-white whitespace-nowrap">
+                  <p className="font-display mt-1.5 text-[1.4rem] leading-none font-bold text-white">
                     {card.value}
                   </p>
                 </div>
@@ -1564,14 +1580,33 @@ export default function Home() {
           </div>
 
           {/* Mobile-only product tab strip */}
-          <div className="relative z-10 mt-8 flex gap-2 overflow-x-auto pb-1 lg:hidden" style={{ scrollbarWidth: "none" }}>
+          <div
+            ref={tabStripRef}
+            className="relative z-10 mt-8 flex gap-2 overflow-x-auto pb-1 lg:hidden"
+            style={{ scrollbarWidth: "none" }}
+            onScroll={() => {
+              const strip = tabStripRef.current;
+              if (!strip) return;
+              const center = strip.scrollLeft + strip.clientWidth / 2;
+              let closest = 0;
+              let closestDist = Infinity;
+              tabButtonRefs.current.forEach((btn, i) => {
+                if (!btn) return;
+                const btnCenter = btn.offsetLeft + btn.offsetWidth / 2;
+                const dist = Math.abs(btnCenter - center);
+                if (dist < closestDist) { closestDist = dist; closest = i; }
+              });
+              if (closest !== activeOriginalIndex) changeOriginal(closest);
+            }}
+          >
             {productCards.map((card, index) => {
               const isActive = index === activeOriginalIndex;
               return (
                 <button
                   key={card.name}
+                  ref={(el) => { tabButtonRefs.current[index] = el; }}
                   type="button"
-                  onClick={() => setActiveOriginalIndex(index)}
+                  onClick={() => changeOriginal(index)}
                   className={cn(
                     "flex shrink-0 items-center gap-2.5 rounded-[8px] border px-3 py-2 text-left transition duration-200",
                     isActive ? "bg-white/[0.09]" : "border-white/10 bg-white/[0.04]",
@@ -1598,10 +1633,22 @@ export default function Home() {
             <div
               data-reveal
               data-motion-visual
-              className="gamio-product-frame overflow-hidden rounded-[8px] p-3 sm:p-4"
+              className={cn("gamio-product-frame overflow-hidden rounded-[8px] p-3 transition-opacity duration-150 sm:p-4", originalsTransitioning && "opacity-0")}
               style={{
                 borderColor: `${activeOriginal.accent}55`,
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 34px 110px rgba(209,0,111,0.14)",
+              }}
+              onTouchStart={(e) => { swipeTouchStartX.current = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                if (swipeTouchStartX.current === null) return;
+                const dx = e.changedTouches[0].clientX - swipeTouchStartX.current;
+                if (Math.abs(dx) > 45) {
+                  const next = dx < 0
+                    ? (activeOriginalIndex + 1) % productCards.length
+                    : (activeOriginalIndex - 1 + productCards.length) % productCards.length;
+                  changeOriginal(next);
+                }
+                swipeTouchStartX.current = null;
               }}
             >
               <AssetImage
@@ -1693,7 +1740,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div data-reveal className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div data-reveal className="hidden gap-3 sm:grid-cols-4 lg:grid">
               {["Skins", "Influencers", "Milestones", "Branding"].map((label) => (
                 <div
                   key={label}
@@ -1791,31 +1838,31 @@ export default function Home() {
                 </article>
 
                 {/* Influencer */}
-                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                <article data-reveal data-motion-card className="hidden rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4 lg:block">
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[1].title}
                   </h3>
-                  <p className="font-body mt-2 hidden text-[12px] leading-[1.45] text-white/62 lg:block">
+                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
                     {hogambaFeatureCards[1].description}
                   </p>
                 </article>
 
                 {/* Progress milestones */}
-                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                <article data-reveal data-motion-card className="hidden rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4 lg:block">
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[2].title}
                   </h3>
-                  <p className="font-body mt-2 hidden text-[12px] leading-[1.45] text-white/62 lg:block">
+                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
                     {hogambaFeatureCards[2].description}
                   </p>
                 </article>
 
                 {/* Brand worlds */}
-                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                <article data-reveal data-motion-card className="hidden rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4 lg:block">
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[3].title}
                   </h3>
-                  <p className="font-body mt-2 hidden text-[12px] leading-[1.45] text-white/62 lg:block">
+                  <p className="font-body mt-2 text-[12px] leading-[1.45] text-white/62">
                     {hogambaFeatureCards[3].description}
                   </p>
                 </article>
@@ -1863,7 +1910,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div data-reveal data-motion-visual className="relative mt-6 lg:mt-9">
+          <div data-reveal data-motion-visual className="relative mt-6 hidden lg:mt-9 lg:block">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(79,140,255,0.14),rgba(79,140,255,0)_28%),radial-gradient(circle_at_22%_82%,rgba(255,79,59,0.08),rgba(255,79,59,0)_24%)]" />
             {/* Main ChatArena image */}
             <img
