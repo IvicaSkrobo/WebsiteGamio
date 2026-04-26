@@ -1655,50 +1655,57 @@ export default function Home() {
             </div>
 
             <div className="grid gap-3">
-              {/* Main card — lootbox breaks out of the top */}
+              {/* Main card — lootbox breaks WAY out of the top */}
               <div data-reveal data-motion-card className="gamio-surface relative overflow-visible rounded-[8px] p-5 lg:p-6">
-                <div className="pointer-events-none absolute -top-11 right-5 w-[72px]">
+                <div className="pointer-events-none absolute -top-20 right-3 w-[130px]">
                   <img
                     src="/images/hogamba/Lootbox Epic Closed.svg"
                     alt=""
-                    className="h-auto w-full drop-shadow-[0_12px_36px_rgba(140,255,56,0.28)]"
-                    style={{ filter: "drop-shadow(0 0 12px rgba(140,255,56,0.22))" }}
+                    className="h-auto w-full"
+                    style={{ filter: "drop-shadow(0 16px 40px rgba(140,255,56,0.35)) drop-shadow(0 0 18px rgba(140,255,56,0.28))" }}
                   />
                 </div>
-                <p className="font-display text-[1.65rem] leading-tight font-bold text-white">
-                  A complete crash-game world with progression, loot moments and a strong visual identity.
+                <p className="font-display text-[1.4rem] leading-tight font-bold text-white pr-16 lg:text-[1.5rem]">
+                  Progression, loot moments and a strong visual identity — all in one world.
                 </p>
-                <p className="font-body mt-4 text-[14px] leading-[1.55] text-white/68">
-                  Hogamba works best when it reads as one full product experience:
-                  the round, the surface, the progression layer, the lootbox logic
+                <p className="font-body mt-3 text-[13px] leading-[1.55] text-white/60">
+                  The round, the surface, the progression layer, the lootbox logic
                   and the branded world all belong together.
                 </p>
               </div>
 
               <div className="grid gap-3 md:grid-cols-2">
-                {/* Skins card — with item strip */}
+                {/* Skins card — rarity showcase */}
                 <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
                   <h3 className="font-display text-[16px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[0].title}
                   </h3>
-                  <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
+                  <p className="font-body mt-2 text-[12px] leading-[1.4] text-white/55">
                     {hogambaFeatureCards[0].description}
                   </p>
-                  <div className="mt-4 flex items-end gap-2">
-                    {[
-                      "/images/hogamba/parachute_hogamba 1.png",
-                      "/images/hogamba/parachute_death.png",
-                      "/images/hogamba/death_head.png",
-                      "/images/hogamba/christmas_hat_3 1.png",
-                    ].map((src) => (
-                      <img
-                        key={src}
-                        src={src}
-                        alt=""
-                        className="h-10 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                      />
-                    ))}
-                    <span className="font-body ml-1 text-[10px] font-bold text-white/38">+200 items</span>
+                  <div className="mt-4 flex items-end gap-3">
+                    {/* LEGENDARY — gold */}
+                    <div className="relative flex-shrink-0">
+                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#ffd700] bg-[rgba(255,215,0,0.08)]" style={{ boxShadow: "0 0 12px rgba(255,215,0,0.3), inset 0 0 8px rgba(255,215,0,0.06)" }}>
+                        <img src="/images/hogamba/christmas_hat_3 1.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      </div>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#ffd700] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
+                    </div>
+                    {/* EPIC — purple */}
+                    <div className="relative flex-shrink-0">
+                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
+                        <img src="/images/hogamba/parachute_hogamba 1.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      </div>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
+                    </div>
+                    {/* EPIC — purple */}
+                    <div className="relative flex-shrink-0">
+                      <div className="flex h-[52px] w-[52px] items-center justify-center rounded-[8px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
+                        <img src="/images/hogamba/death_head.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                      </div>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
+                    </div>
+                    <span className="font-body mb-1 ml-auto text-[10px] font-bold text-white/35">+200<br/>items</span>
                   </div>
                 </article>
 
