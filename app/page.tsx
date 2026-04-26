@@ -1567,17 +1567,21 @@ export default function Home() {
               data-motion-visual
               className="gamio-product-frame overflow-hidden rounded-[8px] p-3 sm:p-4"
               style={{
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 34px 110px rgba(209,0,111,0.14)",
+                borderColor: `${activeOriginal.accent}38`,
+                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.06), 0 34px 110px ${activeOriginal.accent}1f`,
               }}
             >
               <AssetImage
                 src={originalsFeaturedGameAsset}
                 alt={`${activeOriginal.name} featured game art`}
-                wrapperClassName="aspect-[16/10] w-full overflow-hidden rounded-[6px] bg-[radial-gradient(circle_at_50%_52%,rgba(209,0,111,0.16),rgba(209,0,111,0)_58%),linear-gradient(180deg,rgba(255,255,255,0.025),rgba(255,255,255,0.008))]"
-                imgClassName="h-full w-full object-contain p-2 transition-opacity duration-200 sm:p-3"
+                wrapperClassName="aspect-[16/10] w-full overflow-hidden rounded-[6px] bg-[radial-gradient(circle_at_50%_54%,rgba(209,0,111,0.18),rgba(209,0,111,0)_60%),#130814]"
+                imgClassName="h-full w-full scale-[1.035] object-contain p-1 transition-opacity duration-200 sm:p-2"
                 fallback={<ProductArtFallback name={activeOriginal.name} />}
               />
-              <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
+              <div
+                className="mt-4 flex flex-col gap-3 border-t pt-4 sm:flex-row sm:items-end sm:justify-between"
+                style={{ borderColor: `${activeOriginal.accent}42` }}
+              >
                 <div>
                   <p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
                     Featured original
