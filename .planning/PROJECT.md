@@ -2,11 +2,11 @@
 
 ## What This Is
 
-Gamio is a B2B iGaming platform company ("Game & Gain") that builds prediction arenas, instant games, and multiplayer experiences. This project is a marketing/landing website that showcases Gamio's products and capabilities to potential operator clients. The site is a fully animated, dark-themed single-page experience designed to convert operators into clients.
+Gamio ("Game & Gain") is a game/product studio that builds prediction arenas, instant games, multiplayer experiences and player-facing systems. This project is a public company/product showcase for people discovering Gamio through the team, LinkedIn, events or shared links. The site should make people understand what Gamio makes and what the products feel like without exposing the internal buyer/sales context too directly.
 
 ## Core Value
 
-A visually stunning, animated landing page that makes operators immediately understand what Gamio builds and want to get in touch.
+A visually stunning, animated single-page showcase that makes people quickly understand who Gamio is, what it builds, and why the products and player moments are memorable.
 
 ## Requirements
 
@@ -16,11 +16,11 @@ A visually stunning, animated landing page that makes operators immediately unde
 
 ### Active
 
-- [ ] Fixed navigation bar with Gamio logo and section links (About, Markets, Originals, Magarba, Prediction arena, Capabilities)
+- [ ] Fixed navigation bar with Gamio logo and section links (About, Reach, Originals, Hogamba, Prediction arena, Capabilities)
 - [ ] Hero section: large "Gamio" metallic heading, floating 3D game icons, "Game & Gain" tagline, live stats bar (players + transactions)
 - [ ] About section: dark background, large centered tagline text
-- [ ] Platform section: descriptive text + 3D network visualization image
-- [ ] "Where do we operate?" section: regulated markets text (Belgium, Poland, Romania, Greece, Turkey, Brazil)
+- [ ] Product identity section: descriptive text + product/game visuals
+- [ ] "Where our work travels" section: public reach and product context (Belgium, Poland, Romania, Greece, Turkey, Brazil)
 - [ ] "Our Products" section: PLINKO, MINES, CHICKEN, DICE game cards on dark/purple gradient
 - [ ] Product showcase section: game UI preview with multiplier display and bet controls
 - [ ] "Gamio Prediction Arena" section: 3D phone/tablet mockups
@@ -71,6 +71,7 @@ A visually stunning, animated landing page that makes operators immediately unde
 | Local `Nohemi` + `Kumbh Sans` | Match the actual Figma typography and avoid font-metric drift during pixel alignment | Adopted 2026-04-22 |
 | Second section owns hero mask | The `About Us` section shape should cut into the hero rather than a separate hero arc layer faking the transition | Adopted 2026-04-22 |
 | Desktop-first Figma refinement before mobile | The highest-visibility desktop sections are being tightened section-by-section before Phase 4 mobile adaptation | In progress 2026-04-22 |
+| Public showcase positioning | User clarified the page should explain Gamio for company/LinkedIn discovery and keep buyer/sales context quiet, not read like a direct B2B operator sales page | Adopted 2026-04-25 |
 
 ---
 ## Evolution

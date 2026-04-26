@@ -13,6 +13,8 @@ type ProductCard = {
   name: string;
   description: string;
   art: string;
+  accent: string;
+  metric: string;
 };
 
 type CapabilityCard = {
@@ -22,37 +24,30 @@ type CapabilityCard = {
   innerCircleAsset?: string;
 };
 
-type ShowcaseSlide = {
+type MarketCard = {
   label: string;
-  title: string;
-  body: string;
+  value: string;
+  description: string;
 };
 
-const heroHeartAsset =
-  "https://www.figma.com/api/mcp/asset/26062869-ab7f-4927-af3c-d4524ffb4363";
-const heroStarAsset =
-  "https://www.figma.com/api/mcp/asset/e36ce489-54c9-4a7d-bf01-0e6a4d40dfb8";
-const heroBombAsset =
-  "https://www.figma.com/api/mcp/asset/2b43b9ff-e369-4878-b022-b51872c79c47";
-const heroDiceAsset =
-  "https://www.figma.com/api/mcp/asset/a3c12707-50e5-4672-8fc5-c3f3bc7669f7";
-const navLogoAsset =
-  "https://www.figma.com/api/mcp/asset/a0b3b725-c38f-4623-815a-c48307def09f";
-const hogambaLogoAsset =
-  "https://www.figma.com/api/mcp/asset/7c5f33f0-63a4-4970-9bdf-423a360b6c6f";
+const navLogoAsset = "/images/site/gamio-logo.svg";
+const hogambaLogoAsset = "/images/hogamba/live-logo.png";
 const hogambaGamePanelAsset = "/images/hogamba/game-panel.png";
 const hogambaControlsAsset = "/images/hogamba/controls.png";
 const hogambaMascotAsset = "/images/hogamba/mascot.png";
+const hogambaLiveRocketAsset = "/images/hogamba/rocket.png";
+const hogambaParachuteAsset = "/images/hogamba/parachute_hogamba 1.png";
+const hogambaChipsAsset = "/images/hogamba/Chips hogamba.png";
+const hogambaSkinTorsoAsset = "/images/hogamba/common_japan_torso.png";
+const hogambaDeathHeadAsset = "/images/hogamba/death_head.png";
+const hogambaDesktopViewportAsset = "/images/hogamba/pchogamba.svg";
+const hogambaRocketSvgAsset = "/images/hogamba/Hogamba Rocket 1.svg";
 const predictionStreamerAsset =
   "/images/prediction-arena/streamer.png";
 const predictionChatAsset =
   "/images/prediction-arena/chat.png";
 const predictionTabletAsset =
   "/images/prediction-arena/tablet.png";
-const predictionPotionAsset =
-  "/images/prediction-arena/potion.png";
-const predictionGameBadgeAsset =
-  "/images/prediction-arena/game-badge.png";
 const predictionCoinAsset =
   "/images/prediction-arena/coin.png";
 const predictionBombAsset =
@@ -69,70 +64,23 @@ const originalsChickenThumbnailAsset =
   "/images/originals/chicken-thumbnail.png";
 const originalsDiceThumbnailAsset =
   "/images/originals/dice-thumbnail.png";
-const originalsCashoutAsset =
-  "https://www.figma.com/api/mcp/asset/474529f6-1b4b-4ed9-a559-9023571feedc";
-const originalsBadgeAsset =
-  "https://www.figma.com/api/mcp/asset/1402779d-2350-4299-8b95-fbc0726e7a5d";
-const aboutUsPanelAsset =
-  "https://www.figma.com/api/mcp/asset/208b2f34-cbcf-4f23-847d-0d820c4af45d";
-const marketsVisualAsset =
-  "https://www.figma.com/api/mcp/asset/30c91480-1867-45c0-98f1-fb0cb5297e4d";
-const capabilityGlowAsset =
-  "https://www.figma.com/api/mcp/asset/3ae48aa8-6c49-4780-8d25-0971c66ffdd0";
-const capabilityRingAsset =
-  "https://www.figma.com/api/mcp/asset/0e59212d-cad4-43c5-9e1d-fe4b641a9b78";
-const capabilityInnerCircleAsset =
-  "https://www.figma.com/api/mcp/asset/e6bf41ef-699e-408d-b3bd-5ed0b24878f0";
-const capabilityInnerCircleAltAsset =
-  "https://www.figma.com/api/mcp/asset/2a5953bf-471f-463b-99bd-3dd2ad5533f0";
-const capabilityF2PAsset =
-  "https://www.figma.com/api/mcp/asset/6ce9903b-a926-49ce-884e-54c449b5591f";
-const capabilityRngTopAsset =
-  "https://www.figma.com/api/mcp/asset/025d7357-eccd-4aba-99bd-d8e883c6b628";
-const capabilityRngBottomAsset =
-  "https://www.figma.com/api/mcp/asset/5adf6808-26d5-4e53-b726-77b0d960dcff";
-const capabilityAffiliateAsset =
-  "https://www.figma.com/api/mcp/asset/0fcb3d53-b936-405d-bbdd-05a347997da3";
-const capabilityAnalyticsAsset =
-  "https://www.figma.com/api/mcp/asset/1e8e7f37-0a4c-49fe-84d7-38d9bab87c38";
-const capabilityStreamingAsset =
-  "https://www.figma.com/api/mcp/asset/520e3f2c-fa22-4a3f-be66-68c93b2af955";
-const capabilityWhitelabelAsset =
-  "https://www.figma.com/api/mcp/asset/d5c3a2d3-443c-42d5-ac13-eb7384927a2d";
+const originalsFeaturedGameAsset =
+  "/images/originals/OriginalsChickenFullGame Graphic.svg";
+const originalsBadgeAsset = "/images/site/originals-badge.svg";
+const capabilityF2PAsset = "/images/site/capability-f2p.svg";
+const capabilityRngTopAsset = "/images/site/capability-rng-top.svg";
+const capabilityAffiliateAsset = "/images/site/capability-affiliate.svg";
+const capabilityAnalyticsAsset = "/images/site/capability-analytics.svg";
+const capabilityStreamingAsset = "/images/site/capability-streaming.svg";
+const capabilityWhitelabelAsset = "/images/site/capability-whitelabel.svg";
 
 const navItems: NavItem[] = [
   { id: "about", label: "About" },
-  { id: "markets", label: "Markets" },
+  { id: "markets", label: "Reach" },
   { id: "originals", label: "Originals" },
   { id: "hogamba", label: "Hogamba" },
   { id: "prediction-arena", label: "Prediction arena" },
   { id: "capabilities", label: "Capabilities" },
-];
-
-const floatingIcons = [
-  {
-    fallback: "heart" as const,
-    className: "left-[12.4%] top-[11.2rem] h-[94px] w-[106px]",
-  },
-  {
-    fallback: "star" as const,
-    className: "left-[10.9%] top-[22.3rem] h-[94px] w-[94px]",
-  },
-  {
-    asset: predictionCoinAsset,
-    fallback: "coin" as const,
-    className: "left-[20.3%] top-[16.2rem] h-[82px] w-[82px]",
-  },
-  {
-    asset: heroBombAsset,
-    fallback: "bomb" as const,
-    className: "right-[23.2%] top-[10.8rem] h-[106px] w-[84px]",
-  },
-  {
-    asset: heroDiceAsset,
-    fallback: "dice" as const,
-    className: "right-[16.8%] top-[18.6rem] h-[104px] w-[94px]",
-  },
 ];
 
 const productCards: ProductCard[] = [
@@ -140,21 +88,66 @@ const productCards: ProductCard[] = [
     name: "PLINKO",
     description: "High-energy drops, sharp risk ladders, and immediate visual payoff.",
     art: originalsPlinkoThumbnailAsset,
+    accent: "#00d0ff",
+    metric: "Drop mechanics",
   },
   {
     name: "MINES",
     description: "Tense reveal loops built for repeat sessions and streamer drama.",
     art: originalsMinesThumbnailAsset,
+    accent: "#ff376a",
+    metric: "Risk reveal",
   },
   {
     name: "CHICKEN",
     description: "Chaos-forward pacing with bright reward cues and simple rounds.",
     art: originalsChickenThumbnailAsset,
+    accent: "#ffc44d",
+    metric: "Arcade rounds",
   },
   {
     name: "DICE",
-    description: "Fast, configurable risk gameplay for broad operator audiences.",
+    description: "Fast, configurable risk gameplay with simple rules and instant feedback.",
     art: originalsDiceThumbnailAsset,
+    accent: "#d1006f",
+    metric: "Instant play",
+  },
+];
+
+const marketCards: MarketCard[] = [
+  {
+    label: "Where we show up",
+    value: "6",
+    description: "Belgium, Poland, Romania, Greece, Turkey and Brazil.",
+  },
+  {
+    label: "Studio model",
+    value: "Games",
+    description: "We build playable products, not just pitch decks or prototypes.",
+  },
+  {
+    label: "Product stance",
+    value: "Player-first",
+    description: "Readable mechanics, character, tension and reasons to come back.",
+  },
+];
+
+const hogambaFeatureCards = [
+  {
+    title: "Skins system",
+    description: "Personalized cosmetic loops that give players a reason to keep returning.",
+  },
+  {
+    title: "Influencer access",
+    description: "Creator-led skins and promotions that turn audience attention into game engagement.",
+  },
+  {
+    title: "Progress milestones",
+    description: "Visible goals, rewards and achievement cues that make sessions feel earned.",
+  },
+  {
+    title: "Brand worlds",
+    description: "Custom visual surfaces that make Hogamba feel like a complete game universe.",
   },
 ];
 
@@ -162,7 +155,7 @@ const capabilityCards: CapabilityCard[] = [
   {
     title: "F2P engagement",
     description:
-      "Free-to-play games, missions and progression loops that plug into loyalty and CRM.",
+      "Free-to-play games, missions and progression loops that give players reasons to return.",
     symbolAsset: capabilityF2PAsset,
   },
   {
@@ -174,7 +167,7 @@ const capabilityCards: CapabilityCard[] = [
   {
     title: "Affiliate & referral systems",
     description:
-      "Tracking, rewarding and surfacing high-value traffic with simple, transparent mechanics.",
+      "Referral and creator loops that help communities gather around games.",
     symbolAsset: capabilityAffiliateAsset,
   },
   {
@@ -182,7 +175,6 @@ const capabilityCards: CapabilityCard[] = [
     description:
       "Game-level telemetry, cohort analysis and experimentation to tune products over time.",
     symbolAsset: capabilityAnalyticsAsset,
-    innerCircleAsset: capabilityInnerCircleAltAsset,
   },
   {
     title: "Streaming-ready software",
@@ -193,26 +185,8 @@ const capabilityCards: CapabilityCard[] = [
   {
     title: "Whitelabel solutions",
     description:
-      "Select products and platforms that can be adapted and branded for new partners under a common tech core.",
+      "Product worlds and reusable systems that can carry different brands, themes and audiences.",
     symbolAsset: capabilityWhitelabelAsset,
-  },
-];
-
-const arenaSlides: ShowcaseSlide[] = [
-  {
-    label: "01",
-    title: "Join the arena",
-    body: "Users land in a clean entry state with obvious participation cues and a live event frame that reads instantly.",
-  },
-  {
-    label: "02",
-    title: "Track the swing",
-    body: "Predictions stay legible through the tension arc, with score movement and probability cues carrying the drama.",
-  },
-  {
-    label: "03",
-    title: "Resolve and return",
-    body: "The finish is built to hand players into the next round naturally, which is exactly why the section works as a scrubbed sequence.",
   },
 ];
 
@@ -246,19 +220,16 @@ function AssetImage({
   imgClassName?: string;
   fallback?: ReactNode;
 }) {
-  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
+  const [status, setStatus] = useState<"loaded" | "error">("loaded");
 
   return (
     <div className={cn("relative", wrapperClassName)}>
-      {status !== "loaded" ? fallback ?? null : null}
+      {status === "error" ? fallback ?? null : null}
       {status !== "error" ? (
         <img
           src={src}
           alt={alt}
-          className={cn(
-            imgClassName,
-            status === "loaded" ? "opacity-100" : "opacity-0",
-          )}
+          className={imgClassName}
           onLoad={() => setStatus("loaded")}
           onError={() => setStatus("error")}
         />
@@ -663,15 +634,6 @@ function CapabilityIcon({
 }: {
   card: CapabilityCard;
 }) {
-  const symbolMap: Record<string, string> = {
-    "F2P engagement": "F2P",
-    "Scalable RNG systems": "RNG",
-    "Affiliate & referral systems": "AFF",
-    "Data & analytics": "DATA",
-    "Streaming-ready software": "LIVE",
-    "Whitelabel solutions": "WL",
-  };
-
   const glowMap: Record<string, string> = {
     "F2P engagement":
       "bg-[radial-gradient(circle,rgba(255,154,107,0.42),rgba(255,154,107,0)_70%)]",
@@ -691,11 +653,15 @@ function CapabilityIcon({
     <div className="relative h-[130px] w-[130px] shrink-0">
       <div className={cn("absolute left-[18px] top-[18px] h-[94px] w-[94px] scale-[1.25]", glowMap[card.title])} />
       <div className="absolute inset-0 rounded-full border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
-      <div className="absolute left-[29px] top-[29px] flex h-[72px] w-[72px] items-center justify-center rounded-full border border-white/12 bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.22),rgba(255,255,255,0.06)_55%,rgba(255,255,255,0.02)_100%)]">
-        <span className="text-[14px] font-bold tracking-[0.18em] text-white/90">
-          {symbolMap[card.title]}
-        </span>
-      </div>
+      <AssetImage
+        src={card.symbolAsset}
+        alt=""
+        wrapperClassName="absolute inset-[20px]"
+        imgClassName="h-full w-full object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.35)]"
+        fallback={
+          <div className="absolute inset-3 rounded-full border border-white/12 bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.22),rgba(255,255,255,0.06)_55%,rgba(255,255,255,0.02)_100%)]" />
+        }
+      />
     </div>
   );
 }
@@ -771,19 +737,16 @@ function HeroFallbackIcon({
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
+  const [activeOriginalIndex, setActiveOriginalIndex] = useState(0);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const activeOriginal = productCards[activeOriginalIndex] ?? productCards[0];
 
   const rootRef = useRef<HTMLElement | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
   const statsBarRef = useRef<HTMLDivElement | null>(null);
   const playerCountRef = useRef<HTMLParagraphElement | null>(null);
   const transactionCountRef = useRef<HTMLParagraphElement | null>(null);
-  const arenaSectionRef = useRef<HTMLElement | null>(null);
-  const arenaCopyRef = useRef<HTMLDivElement | null>(null);
-  const arenaTrackRef = useRef<HTMLDivElement | null>(null);
-  const arenaProgressRef = useRef<HTMLDivElement | null>(null);
-
   const floatingOuterRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const floatingInnerRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
     const sections = navItems
@@ -810,6 +773,30 @@ export default function Home() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileNavOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileNavOpen]);
+
+  useEffect(() => {
+    if (!isMobileNavOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileNavOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileNavOpen]);
 
   useEffect(() => {
     if (!rootRef.current) {
@@ -884,21 +871,6 @@ export default function Home() {
         });
       }
 
-      floatingInnerRefs.current.forEach((icon, index) => {
-        if (!icon) {
-          return;
-        }
-
-        gsap.to(icon, {
-          y: index % 2 === 0 ? -18 : 18,
-          rotation: index % 2 === 0 ? 6 : -6,
-          duration: 2.8 + index * 0.35,
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-        });
-      });
-
       const hero = heroRef.current;
       if (hero) {
         const handleMove = (event: MouseEvent) => {
@@ -949,53 +921,78 @@ export default function Home() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
-      if (
-        arenaSectionRef.current &&
-        arenaTrackRef.current &&
-        arenaCopyRef.current &&
-        arenaProgressRef.current
-      ) {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: arenaSectionRef.current,
-              start: "top top+=64",
-              end: "+=220%",
-              scrub: 1,
-              pin: true,
-              anticipatePin: 1,
-            },
-          })
-          .to(
-            arenaTrackRef.current,
+      gsap.utils.toArray<HTMLElement>("[data-motion-section]").forEach((section) => {
+        const visuals = gsap.utils.toArray<HTMLElement>(
+          section.querySelectorAll("[data-motion-visual]"),
+        );
+        const cards = gsap.utils.toArray<HTMLElement>(
+          section.querySelectorAll("[data-motion-card]"),
+        );
+        const floaters = gsap.utils.toArray<HTMLElement>(
+          section.querySelectorAll("[data-motion-float]"),
+        );
+
+        if (visuals.length) {
+          gsap.fromTo(
+            visuals,
             {
-              xPercent: -66.666,
-              ease: "none",
-            },
-            0,
-          )
-          .to(
-            arenaCopyRef.current,
-            {
-              yPercent: -10,
-              autoAlpha: 0.35,
-              ease: "none",
-            },
-            0,
-          )
-          .fromTo(
-            arenaProgressRef.current,
-            {
-              scaleX: 0,
-              transformOrigin: "left center",
+              autoAlpha: 0.82,
+              scale: 0.965,
+              y: 56,
             },
             {
-              scaleX: 1,
-              ease: "none",
+              autoAlpha: 1,
+              scale: 1,
+              y: 0,
+              duration: 1.15,
+              ease: "power3.out",
+              stagger: 0.08,
+              scrollTrigger: {
+                trigger: section,
+                start: "top 72%",
+                once: true,
+              },
             },
-            0,
           );
-      }
+        }
+
+        if (cards.length) {
+          gsap.fromTo(
+            cards,
+            {
+              autoAlpha: 0,
+              y: 34,
+            },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.85,
+              ease: "power3.out",
+              stagger: 0.055,
+              scrollTrigger: {
+                trigger: section,
+                start: "top 76%",
+                once: true,
+              },
+            },
+          );
+        }
+
+        floaters.forEach((floater, index) => {
+          gsap.to(floater, {
+            y: index % 2 === 0 ? -22 : 18,
+            rotation: index % 2 === 0 ? 1.8 : -1.4,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          });
+        });
+      });
+
     });
 
     return () => {
@@ -1009,7 +1006,7 @@ export default function Home() {
     <main ref={rootRef} className="relative overflow-x-clip bg-gamio-bg text-white">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[48rem] bg-[radial-gradient(circle_at_50%_0%,rgba(255,107,53,0.18),rgba(8,8,8,0.96)_46%,rgba(8,8,8,0)_82%)]" />
 
-      <nav className="fixed inset-x-0 top-0 z-50 flex justify-center px-5 pt-3 lg:px-5 lg:pt-[14px]">
+      <nav className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 lg:px-5 lg:pt-[14px]">
         <div className="flex h-20 w-full max-w-[1440px] items-center justify-center">
           <a
             href="#about"
@@ -1053,13 +1050,90 @@ export default function Home() {
               </a>
             </div>
           </div>
+
+          <div className="flex h-[62px] w-full items-center justify-between rounded-[8px] border border-[rgba(255,206,182,0.16)] bg-[rgba(20,16,14,0.86)] px-3 shadow-[0_14px_42px_rgba(0,0,0,0.26),inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-[18px] lg:hidden">
+            <a
+              href="#about"
+              className="flex h-10 items-center"
+              onClick={() => setIsMobileNavOpen(false)}
+            >
+              <AssetImage
+                src={navLogoAsset}
+                alt="Gamio"
+                wrapperClassName="h-[28px] w-[98px]"
+                imgClassName="block h-full w-full object-contain transition-opacity duration-200"
+                fallback={<NavLogoFallback />}
+              />
+            </a>
+
+            <button
+              type="button"
+              aria-label={isMobileNavOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={isMobileNavOpen}
+              onClick={() => setIsMobileNavOpen((isOpen) => !isOpen)}
+              className="flex h-10 w-10 items-center justify-center rounded-[8px] border border-white/10 bg-white/[0.055] text-white transition duration-200 hover:bg-white/[0.09]"
+            >
+              <span className="relative h-4 w-5">
+                <span
+                  className={cn(
+                    "absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-transform duration-200",
+                    isMobileNavOpen && "translate-y-[7px] rotate-45",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition-opacity duration-200",
+                    isMobileNavOpen && "opacity-0",
+                  )}
+                />
+                <span
+                  className={cn(
+                    "absolute bottom-0 left-0 h-0.5 w-5 rounded-full bg-current transition-transform duration-200",
+                    isMobileNavOpen && "-translate-y-[7px] -rotate-45",
+                  )}
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          className={cn(
+            "absolute inset-x-4 top-[84px] overflow-hidden rounded-[8px] border border-white/10 bg-[#15110f]/95 shadow-[0_28px_80px_rgba(0,0,0,0.48)] backdrop-blur-[20px] transition duration-200 lg:hidden",
+            isMobileNavOpen
+              ? "pointer-events-auto translate-y-0 opacity-100"
+              : "pointer-events-none -translate-y-2 opacity-0",
+          )}
+        >
+          <div className="grid gap-1 p-2">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={() => setIsMobileNavOpen(false)}
+                className={cn(
+                  "rounded-[8px] px-4 py-3 text-[15px] font-semibold text-white/72 transition-colors duration-200 hover:bg-white/[0.06] hover:text-white",
+                  activeSection === item.id && "bg-white/[0.075] text-white",
+                )}
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="mailto:hello@gamio.io"
+              onClick={() => setIsMobileNavOpen(false)}
+              className="mt-2 rounded-[8px] bg-[#ff5e39] px-4 py-3 text-center text-[14px] font-bold text-white shadow-[0_10px_24px_rgba(255,94,57,0.22)]"
+            >
+              Get in touch
+            </a>
+          </div>
         </div>
       </nav>
 
       <section
         id="about"
         ref={heroRef}
-        className="relative isolate mx-auto min-h-[720px] w-full max-w-[1440px] overflow-hidden px-6 pb-12 pt-28 lg:h-[760px] lg:px-12 lg:pb-0 lg:pt-0"
+        className="relative isolate mx-auto min-h-[760px] w-full max-w-[1560px] overflow-visible px-6 pb-12 pt-28 lg:min-h-[860px] lg:px-12 lg:pb-20 lg:pt-0"
       >
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,8,0.44),rgba(8,8,8,0.94)_78%)]" />
         <div className="pointer-events-none absolute inset-x-8 top-24 hidden h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)] lg:block" />
@@ -1067,8 +1141,7 @@ export default function Home() {
           <div className="absolute inset-[13.4%] rounded-full bg-[radial-gradient(circle,rgba(255,48,0,1)_0%,rgba(255,60,14,1)_15%,rgba(255,71,29,1)_30%,rgba(255,94,57,1)_60%,rgba(255,127,83,1)_80%,rgba(255,159,108,1)_100%)] blur-[90px] lg:blur-[120px]" />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,107,53,0.08),rgba(0,0,0,0)_36%,rgba(0,0,0,0.56)_100%)]" />
-        {/* Dark curved mask — lives inside hero so overflow-hidden clips its bottom half, keeping it below stats bar (z-10) */}
-        <div className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[204px] w-[1820px] -translate-x-1/2 translate-y-1/2 rounded-[50%] bg-[#121212] lg:block" />
+        <div className="pointer-events-none absolute bottom-[-88px] left-1/2 hidden h-[260px] w-[2100px] -translate-x-1/2 rounded-[50%] bg-[#121212] lg:block" />
 
         <div
           ref={(node) => {
@@ -1104,14 +1177,14 @@ export default function Home() {
           ref={(node) => {
             floatingOuterRefs.current[2] = node;
           }}
-          className="pointer-events-none absolute bottom-9 left-[5%] z-0 hidden w-[500px] grid-cols-4 gap-3 opacity-95 lg:grid"
+          className="pointer-events-none absolute bottom-[86px] left-[5.5%] z-0 hidden w-[430px] grid-cols-4 gap-4 opacity-95 lg:grid"
         >
           {productCards.map((card) => (
             <AssetImage
               key={card.name}
               src={card.art}
               alt=""
-              wrapperClassName="aspect-[280/350] overflow-hidden rounded-[8px] border border-white/10 bg-[#181020] shadow-[0_18px_44px_rgba(0,0,0,0.38)]"
+              wrapperClassName="aspect-[280/350] overflow-hidden rounded-[8px] shadow-[0_18px_44px_rgba(0,0,0,0.38)]"
               imgClassName="h-full w-full object-cover"
               fallback={<ProductArtFallback name={card.name} />}
             />
@@ -1119,44 +1192,45 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 mx-auto flex w-full max-w-[720px] flex-col items-center justify-center text-center lg:absolute lg:left-1/2 lg:top-[166px] lg:w-[760px] lg:-translate-x-1/2">
-          <p data-reveal className="gamio-section-label mb-5">
-            B2B iGaming platform
+          <p data-reveal className="gamio-section-label mb-5 max-w-[28ch] whitespace-normal text-center text-[0.62rem] leading-[1.45] tracking-[0.14em] sm:max-w-none sm:text-[0.72rem] sm:tracking-[0.18em]">
+            Games, products and player moments
           </p>
           <h1
             data-reveal
-            className="font-display mx-auto w-full overflow-visible whitespace-nowrap bg-[linear-gradient(180deg,#ffffff_8%,rgba(255,255,255,0.82)_44%,rgba(255,255,255,0.18)_92%)] bg-clip-text text-center text-[5.1rem] leading-[0.9] font-bold tracking-[0] text-transparent sm:text-[6rem] lg:text-[166px] lg:leading-[150px]"
+            className="font-display mx-auto w-full overflow-visible whitespace-nowrap bg-[linear-gradient(180deg,#ffffff_8%,rgba(255,255,255,0.82)_44%,rgba(255,255,255,0.18)_92%)] bg-clip-text text-center text-[4.65rem] leading-[0.9] font-bold tracking-[0] text-transparent sm:text-[6rem] lg:text-[166px] lg:leading-[150px]"
           >
             Gamio
           </h1>
           <p
             data-reveal
-            className="font-display mx-auto -mt-1 w-full text-center text-[1.85rem] leading-none font-bold tracking-[0] text-white sm:text-[2.15rem] lg:-mt-3 lg:text-[34px] lg:leading-[42px]"
+            className="font-display mx-auto -mt-1 w-full text-center text-[1.6rem] leading-none font-bold tracking-[0] text-white sm:text-[2.15rem] lg:-mt-3 lg:text-[34px] lg:leading-[42px]"
           >
             Game & Gain
           </p>
         </div>
 
-        <div className="relative z-10 mx-auto mt-10 grid w-full max-w-[520px] gap-3 sm:grid-cols-3 lg:hidden">
+        <div className="relative z-10 mx-auto mt-12 h-[258px] w-full max-w-[560px] lg:hidden sm:mt-8 sm:h-[342px]">
+          <div className="absolute inset-x-4 bottom-3 h-28 rounded-[50%] bg-[radial-gradient(circle,rgba(255,107,53,0.18),rgba(255,107,53,0)_68%)] blur-[34px]" />
           <AssetImage
             src={productCards[0].art}
             alt=""
-            wrapperClassName="aspect-[280/350] overflow-hidden rounded-[8px] border border-white/10 bg-[#181020]"
+            wrapperClassName="absolute bottom-[18%] left-0 z-10 aspect-square w-[34%] overflow-hidden rounded-[8px] shadow-[0_18px_48px_rgba(0,0,0,0.42)] sm:bottom-0 sm:aspect-[280/350] sm:w-[38%]"
             imgClassName="h-full w-full object-cover"
             fallback={<ProductArtFallback name="PLINKO" />}
           />
           <AssetImage
-            src={hogambaMascotAsset}
-            alt=""
-            wrapperClassName="flex aspect-[280/350] items-center justify-center overflow-hidden rounded-[8px] border border-white/10 bg-[#111]"
-            imgClassName="h-full w-full object-contain"
-            fallback={<HogambaMascotFallback />}
-          />
-          <AssetImage
             src={predictionTabletAsset}
             alt=""
-            wrapperClassName="aspect-[280/350] overflow-hidden rounded-[8px] border border-white/10 bg-[#111]"
-            imgClassName="h-full w-full object-cover"
+            wrapperClassName="absolute bottom-3 right-0 z-0 w-[64%] overflow-hidden rounded-[8px] border border-white/10 bg-black/20 shadow-[0_22px_54px_rgba(0,0,0,0.48)]"
+            imgClassName="h-auto w-full object-contain"
             fallback={<PredictionAssetFallback kind="tablet" />}
+          />
+          <AssetImage
+            src={hogambaMascotAsset}
+            alt=""
+            wrapperClassName="absolute left-[37%] top-2 z-20 w-[30%] -translate-x-1/2 sm:top-0 sm:w-[37%]"
+            imgClassName="h-auto w-full object-contain drop-shadow-[0_18px_38px_rgba(0,0,0,0.62)]"
+            fallback={<HogambaMascotFallback />}
           />
         </div>
 
@@ -1221,66 +1295,180 @@ export default function Home() {
 
       <section
         id="markets"
-        className="mx-auto w-full max-w-[1440px] px-6 py-16 lg:px-0 lg:pt-[40px] lg:pb-[140px]"
+        data-motion-section
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-12 lg:pt-[40px] lg:pb-[120px]"
       >
-        <div
-          data-reveal
-          className="mx-auto max-w-[795px] text-center lg:w-[795px]"
-        >
-          <h2 className="font-display text-[2.75rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3.35rem] lg:text-[49px] lg:leading-[68px]">
-            Where do we operate?
-          </h2>
-          <p className="font-body mx-auto mt-9 max-w-[720px] text-[1rem] leading-[1.4] tracking-[0] text-white/88 lg:text-[16px] lg:leading-[20px]">
-            Regulated markets: Belgium, Poland, Romania, Greece, Turkey, Brazil.
-          </p>
-          <p className="font-body mx-auto mt-6 max-w-[690px] text-[1rem] leading-[1.45] tracking-[0] text-white/72 lg:text-[16px] lg:leading-[22px]">
-            Our products stay market-agnostic, so compliance, UX and feature depth
-            can flex quickly as we expand into new regions.
-          </p>
+        <div className="pointer-events-none absolute inset-x-12 top-0 h-px bg-white/8" />
+        <div className="pointer-events-none absolute right-[-16rem] top-[-4rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,107,53,0.2),rgba(255,107,53,0)_68%)] blur-[120px]" />
+        <div className="relative mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div data-reveal>
+            <p className="gamio-section-label">Where our work travels</p>
+            <h2 className="font-display mt-5 text-[2.75rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3.35rem] lg:text-[49px] lg:leading-[58px]">
+              Where do people meet our games?
+            </h2>
+            <p className="font-body mt-7 max-w-[520px] text-[1rem] leading-[1.55] tracking-[0] text-white/78 lg:text-[17px]">
+              Our work has reached players across Belgium, Poland, Romania, Greece, Turkey and Brazil.
+            </p>
+          </div>
+
+          <div data-reveal data-motion-visual className="grid gap-4">
+            <div className="grid gap-3 sm:grid-cols-3">
+              {marketCards.map((card) => (
+                <article
+                  key={card.label}
+                  data-motion-card
+                  className="rounded-[8px] border border-white/10 bg-white/[0.035] p-4"
+                >
+                  <p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
+                    {card.label}
+                  </p>
+                  <p className="font-display mt-4 text-[2.4rem] leading-none font-bold text-white">
+                    {card.value}
+                  </p>
+                  <p className="font-body mt-4 text-[13px] leading-[1.45] text-white/65">
+                    {card.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+            <div className="relative min-h-[330px] overflow-hidden rounded-[8px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-4 sm:min-h-[400px] lg:min-h-[460px]">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_72%_20%,rgba(255,107,53,0.12),rgba(255,107,53,0)_28%),radial-gradient(circle_at_18%_76%,rgba(127,255,89,0.08),rgba(127,255,89,0)_24%)]" />
+              <AssetImage
+                src={hogambaDesktopViewportAsset}
+                alt="Hogamba full product viewport"
+                wrapperClassName="absolute left-[2%] top-[16%] w-[62%] overflow-hidden rounded-[8px] shadow-[0_26px_90px_rgba(0,0,0,0.44)] sm:left-[3%] sm:top-[12%] sm:w-[58%]"
+                imgClassName="h-auto w-full object-cover"
+                fallback={<HogambaGameFallback />}
+              />
+              <AssetImage
+                src={originalsFeaturedGameAsset}
+                alt="Gamio Originals featured game art"
+                wrapperClassName="absolute right-[3%] top-[4%] w-[42%] overflow-hidden rounded-[8px] shadow-[0_24px_72px_rgba(0,0,0,0.36)] sm:right-[5%] sm:w-[36%]"
+                imgClassName="h-auto w-full object-cover"
+                fallback={<ProductArtFallback name="CHICKEN" />}
+              />
+              <AssetImage
+                src={predictionTabletAsset}
+                alt="Prediction Arena interface"
+                wrapperClassName="absolute bottom-[4%] right-[3%] w-[44%] overflow-hidden rounded-[8px] shadow-[0_26px_72px_rgba(0,0,0,0.44)] sm:right-[5%] sm:w-[38%]"
+                imgClassName="h-auto w-full object-contain"
+                fallback={<PredictionAssetFallback kind="tablet" />}
+              />
+              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-4 border-t border-white/10 pt-4">
+                <p className="max-w-[42ch] text-[12px] leading-[1.45] text-white/62 sm:text-[13px]">
+                  Gamio is easiest to understand through the things we make:
+                  fast games, prediction moments, social loops and product worlds
+                  players can recognize quickly.
+                </p>
+                <div className="hidden rounded-full border border-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/54 sm:block">
+                  Playable product surfaces
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section
         id="originals"
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-0 lg:py-34"
+        data-motion-section
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:py-34"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-22rem] top-16 h-[41rem] w-[41rem] rounded-full bg-[radial-gradient(circle,rgba(255,0,132,0.34),rgba(255,0,132,0)_68%)] blur-[110px]" />
         <div className="relative mx-auto max-w-[1180px]">
-          <div className="relative z-10 mx-auto max-w-[809px] text-center">
-            <h2
-              data-reveal
-              className="font-display text-[2.75rem] leading-[1.02] font-bold tracking-[0] text-white sm:text-[3.6rem] lg:text-[95px] lg:leading-[137px]"
-            >
-              Our Products
-            </h2>
-            <div data-reveal className="mt-5 flex justify-center">
-              <AssetImage
-                src={originalsBadgeAsset}
-                alt="Originals"
-                wrapperClassName="h-[40px] w-[178px]"
-                imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                fallback={<OriginalsBadgeFallback />}
-              />
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <h2
+                data-reveal
+                className="font-display text-[2.75rem] leading-[1.02] font-bold tracking-[0] text-white sm:text-[3.6rem] lg:text-[82px] lg:leading-[96px]"
+              >
+                Our Products
+              </h2>
+              <div data-reveal className="mt-5">
+                <AssetImage
+                  src={originalsBadgeAsset}
+                  alt="Originals"
+                  wrapperClassName="h-[40px] w-[178px]"
+                  imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                  fallback={<OriginalsBadgeFallback />}
+                />
+              </div>
             </div>
+            <p
+              data-reveal
+              className="font-body max-w-[510px] text-[1rem] leading-[1.55] text-white/72 lg:justify-self-end lg:text-[17px]"
+            >
+              Instant games built around readable tension: one core mechanic, sharp
+              feedback, and enough visual identity for every round to feel ownable.
+            </p>
           </div>
 
-          <div className="relative z-10 mx-auto mt-12 grid max-w-[1180px] gap-5 lg:mt-[56px] lg:grid-cols-4">
-            {productCards.map((card) => (
-              <article
-                key={card.name}
-                data-reveal
-                className="group overflow-hidden rounded-[10px] border border-[rgba(255,162,222,0.16)] bg-[#181020] transition-transform duration-300 hover:scale-[1.015]"
-              >
-                <AssetImage
-                  src={card.art}
-                  alt={`${card.name} game thumbnail`}
-                  wrapperClassName="block aspect-[280/350] w-full"
-                  imgClassName="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]"
-                  fallback={<ProductArtFallback name={card.name} />}
-                />
-              </article>
-            ))}
+          <div className="relative z-10 mt-12 grid gap-5 lg:mt-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
+            <div
+              data-reveal
+              data-motion-visual
+              className="gamio-product-frame overflow-hidden rounded-[8px] p-3 sm:p-4"
+              style={{
+                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.08), 0 34px 110px ${activeOriginal.accent}24`,
+              }}
+            >
+              <AssetImage
+                src={originalsFeaturedGameAsset}
+                alt={`${activeOriginal.name} featured game art`}
+                wrapperClassName="aspect-[16/10] w-full overflow-hidden rounded-[6px] bg-[rgba(255,255,255,0.03)]"
+                imgClassName="h-full w-full object-cover transition-opacity duration-200"
+                fallback={<ProductArtFallback name={activeOriginal.name} />}
+              />
+              <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
+                    Featured original
+                  </p>
+                  <h3 className="font-display mt-2 text-[2rem] leading-none font-bold text-white">
+                    {activeOriginal.name}
+                  </h3>
+                </div>
+                <p className="font-body max-w-[360px] text-[14px] leading-[1.45] text-white/68">
+                  {activeOriginal.description}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              {productCards.map((card, index) => (
+                <button
+                  key={card.name}
+                  type="button"
+                  data-reveal
+                  data-motion-card
+                  onClick={() => setActiveOriginalIndex(index)}
+                  className={cn(
+                    "group grid grid-cols-[86px_1fr] gap-4 rounded-[8px] border p-3 text-left transition duration-300",
+                    index === activeOriginalIndex
+                      ? "border-white/24 bg-white/[0.09]"
+                      : "border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.065]",
+                  )}
+                >
+                  <AssetImage
+                    src={card.art}
+                    alt=""
+                    wrapperClassName="aspect-square overflow-hidden rounded-[6px] bg-[rgba(255,255,255,0.03)]"
+                    imgClassName="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    fallback={<ProductArtFallback name={card.name} />}
+                  />
+                  <span className="min-w-0 self-center">
+                    <span className="font-body block text-[11px] font-bold uppercase tracking-[0.16em] text-white/42">
+                      {card.metric}
+                    </span>
+                    <span className="font-display mt-2 block text-[20px] leading-none font-bold text-white">
+                      {card.name}
+                    </span>
+                    <span className="mt-2 block h-1 w-14 rounded-full" style={{ backgroundColor: card.accent }} />
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
 
         </div>
@@ -1288,7 +1476,8 @@ export default function Home() {
 
       <section
         id="hogamba"
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-0 lg:py-24"
+        data-motion-section
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-16 lg:px-12 lg:py-24"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         {/* Green radial glow — left-center, cosmic feel */}
@@ -1296,259 +1485,234 @@ export default function Home() {
         <div className="pointer-events-none absolute left-[2%] top-[14rem] h-[22rem] w-[26rem] rounded-full bg-[radial-gradient(circle,rgba(40,180,10,0.16),rgba(40,180,10,0)_75%)] blur-[90px]" />
 
         <div className="relative mx-auto max-w-[1180px]">
-          {/* Logo */}
-          <div className="mb-8 flex justify-center lg:mb-10">
-            <AssetImage
-              src={hogambaLogoAsset}
-              alt="Hogamba"
-              wrapperClassName="h-8 min-w-[180px]"
-              imgClassName="h-full w-full object-contain transition-opacity duration-200"
-              fallback={<HogambaLogoFallback />}
-            />
+          <div className="mb-8 grid gap-6 lg:mb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div data-reveal>
+              <p className="gamio-section-label text-[var(--gamio-hogamba)]">Where Gaming Meets iGaming</p>
+              <div className="mt-4">
+                <AssetImage
+                  src={hogambaLogoAsset}
+                  alt="Hogamba"
+                  wrapperClassName="h-10 min-w-[220px]"
+                  imgClassName="h-full w-full object-contain transition-opacity duration-200"
+                  fallback={<HogambaLogoFallback />}
+                />
+              </div>
+            </div>
+            <div data-reveal className="grid gap-3 sm:grid-cols-4">
+              {["Skins", "Influencers", "Milestones", "Branding"].map((label) => (
+                <div
+                  key={label}
+                  data-motion-card
+                  className="rounded-[8px] border border-[rgba(140,255,56,0.18)] bg-[rgba(140,255,56,0.045)] px-4 py-3 text-[12px] font-bold uppercase tracking-[0.13em] text-white/68"
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Main split: game panel left, mascot right */}
-          <div
-            data-reveal
-            className="mt-8 flex flex-col gap-6 lg:mt-10 lg:flex-row lg:items-center lg:gap-10"
-          >
-            {/* Left: rocket game panel (~55% width) */}
-            <div className="flex-1">
+          <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+            <div data-reveal data-motion-visual className="gamio-product-frame relative overflow-hidden rounded-[8px] p-3">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_78%,rgba(124,255,63,0.15),rgba(124,255,63,0)_26%),radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.07),rgba(255,255,255,0)_24%)]" />
               <AssetImage
-                src={hogambaGamePanelAsset}
-                alt="Hogamba game interface"
-                wrapperClassName="w-full overflow-hidden rounded-[20px]"
-                imgClassName="h-auto w-full rounded-[20px] object-contain transition-opacity duration-200"
+                src={hogambaDesktopViewportAsset}
+                alt="Hogamba desktop viewport"
+                wrapperClassName="aspect-[16/11] overflow-hidden rounded-[6px]"
+                imgClassName="h-full w-full object-cover object-top"
                 fallback={<HogambaGameFallback />}
               />
+              <AssetImage
+                src={hogambaRocketSvgAsset}
+                alt=""
+                wrapperClassName="pointer-events-none absolute right-[4%] top-[6%] hidden w-[18%] rotate-[8deg] lg:block"
+                imgClassName="h-auto w-full object-contain drop-shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
+              />
             </div>
 
-            {/* Right: mascot (~45% width, capped) */}
-            <div className="flex justify-center lg:w-[380px] lg:justify-end">
-              <AssetImage
-                src={hogambaMascotAsset}
-                alt="Hogamba mascot"
-                wrapperClassName="w-full max-w-[420px]"
-                imgClassName="h-auto w-full object-contain transition-opacity duration-200"
-                fallback={<HogambaMascotFallback />}
-              />
+            <div className="grid gap-3">
+              <div data-reveal data-motion-card className="gamio-surface rounded-[8px] p-5 lg:p-6">
+                <p className="font-display text-[1.65rem] leading-tight font-bold text-white">
+                  A complete crash-game world with progression, loot moments and a strong visual identity.
+                </p>
+                <p className="font-body mt-4 text-[14px] leading-[1.55] text-white/68">
+                  Hogamba works best when it reads as one full product experience:
+                  the round, the surface, the progression layer, the lootbox logic
+                  and the branded world all belong together.
+                </p>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-2">
+                {hogambaFeatureCards.slice(0, 2).map((card) => (
+                  <article
+                    key={card.title}
+                    data-reveal
+                    data-motion-card
+                    className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4"
+                  >
+                    <h3 className="font-display text-[16px] leading-tight font-bold text-white">
+                      {card.title}
+                    </h3>
+                    <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
+                      {card.description}
+                    </p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Bottom: bet controls spanning full width */}
-          <div
-            data-reveal
-            className="mt-6"
-          >
-            <AssetImage
-              src={hogambaControlsAsset}
-              alt="Hogamba betting controls"
-              wrapperClassName="w-full overflow-hidden rounded-[20px]"
-              imgClassName="h-auto w-full rounded-[20px] object-contain transition-opacity duration-200"
-              fallback={<HogambaControlsFallback />}
-            />
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {hogambaFeatureCards.slice(2).map((card) => (
+              <article
+                key={card.title}
+                data-reveal
+                data-motion-card
+                className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4"
+              >
+                <h3 className="font-display text-[16px] leading-tight font-bold text-white">
+                  {card.title}
+                </h3>
+                <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
+                  {card.description}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       <section
         id="prediction-arena"
-        ref={arenaSectionRef}
-        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-0 lg:pt-[140px] lg:pb-[140px]"
+        data-motion-section
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:pt-[120px] lg:pb-[130px]"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
         <div className="pointer-events-none absolute left-[-26rem] top-[18rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(255,97,59,0.14),rgba(255,97,59,0)_68%)] blur-[130px]" />
 
-        <div data-reveal className="mx-auto max-w-[809px] text-center">
-          <h2 className="font-display text-[2.6rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[49px] lg:leading-[68px]">
-            Gamio Prediction Arena
-          </h2>
-        </div>
-
-        <div
-          data-reveal
-          className="mx-auto mt-12 w-full max-w-[1344px] overflow-hidden lg:mt-[60px]"
-        >
-          <div
-            ref={arenaTrackRef}
-            className="flex w-[300%] gap-0"
-          >
-            {arenaSlides.map((slide, slideIndex) => (
-              <article
-                key={slide.label}
-                className="relative h-[33rem] w-full overflow-hidden lg:h-[800px]"
-              >
-                <div className="absolute inset-0">
-                  {slideIndex === 0 && (
-                    <>
-                      <AssetImage
-                        src={predictionCoinAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[18%] top-[29%] h-[125px] w-[125px] rotate-[18deg]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="coin" />}
-                      />
-                      <AssetImage
-                        src={predictionTabletAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[19.5%] top-[38%] h-[270px] w-[419px]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="tablet" />}
-                      />
-                      <AssetImage
-                        src={predictionBombAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[14.7%] top-[59.5%] h-[150px] w-[150px] blur-[3px]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="bomb" />}
-                      />
-                      <AssetImage
-                        src={predictionPotionAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[44.5%] top-[55.8%] h-[138px] w-[138px] -rotate-[14deg]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="potion" />}
-                      />
-                      <AssetImage
-                        src={predictionGameBadgeAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[69.6%] top-[23.6%] h-[44px] w-[132px] rotate-[22deg]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="badge" />}
-                      />
-                    </>
-                  )}
-
-                  {slideIndex === 1 && (
-                    <>
-                      <AssetImage
-                        src={predictionChatAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[11.5%] top-[16.7%] h-[459px] w-[815px]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="chat" />}
-                      />
-                      <AssetImage
-                        src={predictionCoinAsset}
-                        alt=""
-                        wrapperClassName="absolute right-[16%] top-[23.5%] h-[118px] w-[118px] rotate-[18deg]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="coin" />}
-                      />
-                      <div className="absolute left-1/2 top-[47.5%] w-[336px] -translate-x-1/2 text-center">
-                        <p className="font-body text-[16px] leading-[20px] text-white/70">
-                          Track predictions, follow the odds, and watch outcomes unfold in real time.
-                        </p>
-                      </div>
-                    </>
-                  )}
-
-                  {slideIndex === 2 && (
-                    <>
-                      <AssetImage
-                        src={predictionGunAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[15.7%] top-[52%] h-[95px] w-[230px] rotate-[163deg]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="gun" />}
-                      />
-                      <AssetImage
-                        src={predictionStreamerAsset}
-                        alt=""
-                        wrapperClassName="absolute left-[54.3%] top-[21.9%] h-[450px] w-[806px]"
-                        imgClassName="h-full w-full rounded-[10px] border-2 border-[rgba(255,167,124,0.16)] object-cover transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="streamer" />}
-                      />
-                      <AssetImage
-                        src={predictionSkullCoinAsset}
-                        alt=""
-                        wrapperClassName="absolute right-[11.1%] top-[11.4%] h-[202px] w-[202px] rotate-[15deg] blur-[3px]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="skullCoin" />}
-                      />
-                      <AssetImage
-                        src={predictionCoinAsset}
-                        alt=""
-                        wrapperClassName="absolute right-[12.3%] top-[65.5%] h-[125px] w-[125px] rotate-[18deg]"
-                        imgClassName="h-full w-full object-contain transition-opacity duration-200"
-                        fallback={<PredictionAssetFallback kind="coin" />}
-                      />
-                      <div className="absolute left-[44%] top-[74.6%] rounded-[10px] border-2 border-[#f9bcae] bg-[rgba(146,28,0,0.16)] px-4 py-3 backdrop-blur-[4px]">
-                        <p className="font-display text-center text-[16px] leading-[20px] font-bold text-white">
-                          Prediction
-                        </p>
-                        <div className="mt-[34px] flex w-40 overflow-hidden rounded-full">
-                          <div className="h-3 w-[64%] bg-[linear-gradient(90deg,#0056c6,#507fff)]" />
-                          <div className="h-3 w-[36%] bg-[linear-gradient(90deg,#ff364f,#ee001e)]" />
-                        </div>
-                        <div className="mt-3 flex justify-between text-[10px] leading-[13px] text-white">
-                          <span>COMPLETE</span>
-                          <span>FAIL</span>
-                        </div>
-                      </div>
-                    </>
-                  )}
+        <div className="mx-auto max-w-[1180px]">
+          <div data-reveal className="mx-auto max-w-[760px] text-center">
+            <p className="gamio-section-label text-[var(--gamio-arena)]">Live participation</p>
+            <h2 className="font-display mt-5 text-[2.6rem] leading-[1.08] font-bold tracking-[0] text-white sm:text-[3rem] lg:text-[49px] lg:leading-[58px]">
+              Gamio Prediction Arena
+            </h2>
+            <p className="font-body mx-auto mt-6 max-w-[620px] text-[15px] leading-[1.55] text-white/68">
+              Prediction Arena should feel like one live product surface: clear entry,
+              visible odds movement, chat energy and enough visual drama that the next
+              round feels close.
+            </p>
+            <div className="mt-6 grid gap-3 md:grid-cols-3">
+              {[
+                "Live event framing that reads instantly.",
+                "Chat, odds and motion cues kept in the same surface.",
+                "Collectibles and tokens used as accents, not scattered clutter.",
+              ].map((line) => (
+                <div
+                  key={line}
+                  data-motion-card
+                  className="rounded-[8px] border border-[rgba(79,140,255,0.16)] bg-[rgba(79,140,255,0.045)] px-4 py-3 text-[14px] leading-[1.45] text-white/72"
+                >
+                  {line}
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div
-          ref={arenaCopyRef}
-          data-reveal
-          className="mx-auto mt-10 max-w-[460px]"
-        >
-          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-            <div
-              ref={arenaProgressRef}
-              className="h-full w-full rounded-full bg-[linear-gradient(90deg,#FF6B35,#CC4400)]"
+          <div data-reveal data-motion-visual className="relative mt-12 min-h-[340px] sm:min-h-[500px] lg:min-h-[560px]">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(79,140,255,0.14),rgba(79,140,255,0)_28%),radial-gradient(circle_at_22%_82%,rgba(255,79,59,0.08),rgba(255,79,59,0)_24%)]" />
+            <AssetImage
+              src={predictionTabletAsset}
+              alt="Prediction Arena interface"
+              wrapperClassName="absolute left-1/2 top-[4%] z-20 w-[104%] -translate-x-1/2 sm:top-[2%] sm:w-[88%] lg:w-[72%]"
+              imgClassName="h-auto w-full object-contain drop-shadow-[0_30px_100px_rgba(0,0,0,0.48)]"
+              fallback={<PredictionAssetFallback kind="tablet" />}
             />
-          </div>
-          <div className="mt-3 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-white/45">
-            {arenaSlides.map((slide) => (
-              <span key={slide.label}>{slide.label}</span>
-            ))}
+            <AssetImage
+              src={predictionChatAsset}
+              alt="Prediction Arena chat and odds"
+              wrapperClassName="absolute left-[62%] top-[25%] z-40 w-[31%] rotate-[-5deg] sm:left-[65%] sm:top-[24%] sm:w-[24%] lg:left-[67%] lg:top-[24%] lg:w-[18%]"
+              imgClassName="h-auto w-full object-contain drop-shadow-[0_22px_64px_rgba(0,0,0,0.44)]"
+              fallback={<PredictionAssetFallback kind="chat" />}
+            />
+            <AssetImage
+              src={predictionStreamerAsset}
+              alt="Prediction Arena streamer view"
+              wrapperClassName="absolute left-[9%] top-[42%] z-40 w-[38%] overflow-hidden sm:left-[17%] sm:top-[40%] sm:w-[30%] lg:left-[24%] lg:top-[38%] lg:w-[21%]"
+              imgClassName="h-auto w-full object-cover drop-shadow-[0_22px_64px_rgba(0,0,0,0.44)]"
+              fallback={<PredictionAssetFallback kind="streamer" />}
+            />
+            <div className="absolute left-[45%] top-[58%] z-50 w-[39%] rounded-[8px] border border-[#f9bcae] bg-[rgba(38,12,7,0.82)] px-3 py-3 backdrop-blur-[10px] sm:left-[48%] sm:top-[58%] sm:w-[25%] sm:px-4 lg:left-[52%] lg:top-[58%] lg:w-[17%]">
+              <p className="font-display text-center text-[15px] leading-none font-bold text-white">
+                Prediction
+              </p>
+              <div className="mt-5 flex overflow-hidden rounded-full">
+                <div className="h-2.5 w-[64%] bg-[linear-gradient(90deg,#0056c6,#507fff)]" />
+                <div className="h-2.5 w-[36%] bg-[linear-gradient(90deg,#ff364f,#ee001e)]" />
+              </div>
+              <div className="mt-2 flex justify-between text-[9px] leading-none text-white">
+                <span>COMPLETE</span>
+                <span>FAIL</span>
+              </div>
+            </div>
+            <AssetImage
+              src={predictionCoinAsset}
+              alt=""
+              wrapperClassName="pointer-events-none absolute left-[30%] top-[67%] z-50 aspect-square w-[15%] sm:left-[37%] sm:top-[68%] sm:w-[10%] lg:left-[42%] lg:top-[69%] lg:w-[7%]"
+              imgClassName="h-full w-full object-contain drop-shadow-[0_16px_42px_rgba(0,0,0,0.42)]"
+              fallback={<PredictionAssetFallback kind="coin" />}
+            />
           </div>
         </div>
       </section>
 
       <section
         id="capabilities"
-        className="mx-auto w-full max-w-[1440px] px-6 py-20 lg:px-0 lg:py-[140px]"
+        data-motion-section
+        className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 py-20 lg:px-12 lg:py-[140px]"
       >
-        <div className="mx-auto max-w-[794px] text-center">
-          <h2
-            data-reveal
-            className="font-display mx-auto max-w-[12ch] text-[3rem] leading-[1.08] font-bold tracking-[0] text-white lg:text-[49px] lg:leading-[68px]"
-          >
-            Capabilities & supporting systems
-          </h2>
-        </div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
+        <div className="pointer-events-none absolute right-[-18rem] top-[12rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(69,224,208,0.12),rgba(69,224,208,0)_68%)] blur-[130px]" />
+        <div className="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div data-reveal className="lg:sticky lg:top-28">
+            <p className="gamio-section-label text-[var(--gamio-cyan)]">How we build</p>
+            <h2 className="font-display mt-5 max-w-[12ch] text-[3rem] leading-[1.08] font-bold tracking-[0] text-white lg:text-[49px] lg:leading-[58px]">
+              Capabilities & supporting systems
+            </h2>
+            <p className="font-body mt-6 max-w-[390px] text-[15px] leading-[1.55] text-white/65">
+              The visible game layer sits on top of the systems that make our
+              products feel alive: progression, data, RNG, streaming moments and
+              reusable brand worlds.
+            </p>
+          </div>
 
-        <div className="mx-auto mt-10 grid max-w-[1180px] gap-x-5 gap-y-14 lg:mt-[40px] lg:grid-cols-3">
-          {capabilityCards.map((card) => (
-            <article
-              key={card.title}
-              data-reveal
-              className="mx-auto flex max-w-[380px] flex-col items-center gap-3 text-center"
-            >
-              <div className="mx-auto">
-                <CapabilityIcon card={card} />
-              </div>
-              <h3 className="font-display text-[16px] leading-[20px] font-bold tracking-[0] text-white">
-                {card.title}
-              </h3>
-              <p className="font-body max-w-[340px] text-[13px] leading-[18px] text-white/70">
-                {card.description}
-              </p>
-            </article>
-          ))}
+          <div data-motion-visual className="grid gap-3 md:grid-cols-2">
+              {capabilityCards.map((card) => (
+                <article
+                  key={card.title}
+                  data-reveal
+                  data-motion-card
+                  className="rounded-[8px] border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                >
+                  <div className="flex items-start gap-5">
+                    <div className="shrink-0">
+                      <CapabilityIcon card={card} />
+                    </div>
+                    <div className="min-w-0 pt-1">
+                      <h3 className="font-display text-[15px] leading-[1.15] font-bold tracking-[0] text-white">
+                        {card.title}
+                      </h3>
+                      <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/70">
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+          </div>
         </div>
       </section>
 
       <footer className="relative mx-auto w-full max-w-[1440px] overflow-hidden px-6 pb-16 pt-24 lg:px-12">
-        <div className="absolute inset-x-0 bottom-0 top-10 rounded-t-[36px] border border-white/8 bg-gamio-bg-secondary" />
+        <div className="absolute inset-x-0 bottom-0 top-10 border border-white/8 bg-gamio-bg-secondary lg:rounded-t-[28px]" />
         <div className="pointer-events-none absolute bottom-6 left-6 text-[7rem] font-bold tracking-[-0.08em] text-white/5 lg:left-12 lg:text-[13rem]">
           GAMIO
         </div>
@@ -1580,15 +1744,15 @@ export default function Home() {
             <a
               data-reveal
               href="mailto:hello@gamio.io"
-              className="rounded-full bg-[linear-gradient(135deg,#FF6B35,#CC4400)] px-8 py-4 text-sm font-bold tracking-[0.14em] text-white shadow-[0_0_40px_rgba(255,107,53,0.3)] transition-transform duration-300 hover:scale-[1.02]"
+              className="rounded-[8px] bg-[linear-gradient(135deg,#FF6B35,#CC4400)] px-8 py-4 text-sm font-bold tracking-[0.14em] text-white shadow-[0_0_40px_rgba(255,107,53,0.3)] transition-transform duration-300 hover:scale-[1.02]"
             >
-              → GET IN TOUCH
+              GET IN TOUCH
             </a>
             <div data-reveal className="grid w-full gap-4 text-sm tracking-[0.08em] text-white/75 lg:max-w-[18rem]">
-              <div className="rounded-2xl border border-white/8 bg-white/4 px-5 py-4">
+              <div className="rounded-[8px] border border-white/8 bg-white/4 px-5 py-4">
                 Zagreb
               </div>
-              <div className="rounded-2xl border border-white/8 bg-white/4 px-5 py-4">
+              <div className="rounded-[8px] border border-white/8 bg-white/4 px-5 py-4">
                 Nicosia
               </div>
             </div>

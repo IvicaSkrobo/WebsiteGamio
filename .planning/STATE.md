@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: planning
 stopped_at: Hogamba section now uses localized Figma exports for the game panel, rocket, and controls; next — continue markets-down desktop fidelity and mobile pass
-last_updated: "2026-04-23T02:20:00Z"
+last_updated: "2026-04-25T14:35:00Z"
 last_activity: 2026-04-23 — Wired localized Hogamba Figma exports into the redesigned Hogamba section
 progress:
   total_phases: 5
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** A visually stunning, animated landing page that makes operators immediately understand what Gamio builds and want to get in touch.
-**Current focus:** Desktop fidelity pass on Originals and Hogamba details after normalizing the post-markets sections onto a consistent centered desktop frame
+**Current focus:** In-browser visual QA and final art-direction polish after testing new Hogamba and Prediction Arena compositions
 
 ## Current Position
 
 Phase: 4 of 5 (Responsive & Mobile pending)
-Plan: Ad-hoc desktop polish continuation
+Plan: Visual QA and final polish
 Status: In progress
 Last activity: 2026-04-22 — Re-centered Originals, Hogamba, Prediction Arena, and Capabilities so they share the same desktop content gutters and no longer feel left-heavy
 
@@ -83,6 +83,20 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
+- Next: run the responsive pass, add mobile navigation, and verify the redesigned lower sections at 375px, 768px, 1024px, and 1440px.
+- Phase 4 product-led section pass is complete; remaining lower-section work should be visual tuning and mobile QA rather than another structural rebuild.
+- Phase 5 mobile navigation shell is complete; remaining responsive work should be in-browser visual QA and fine tuning once the browser automation runtime is available.
+- Phase 6 motion polish is complete; lower product modules now have scoped desktop entrance/stagger/parallax hooks.
+- Hogamba live source pass is complete; the section now uses local assets and product themes from the current Hogamba site.
+- Positioning update is complete; the site should read as a public Gamio/company/product showcase for LinkedIn/company discovery, not a direct B2B operator sales page.
+- Composition pass is complete; desktop hero is preserved, mobile hero uses a layered collage, Hogamba is one integrated scene, and Prediction Arena mobile no longer reuses the oversized desktop pinned panels.
+- Placeholder hero icon pass is complete; the hero now relies on real localized product imagery instead of generic floating SVG icons.
+- New Hogamba art pass is complete; the scene now uses the stronger rocket, branded parachute, chips, torso and death-head collectible assets.
+- Prediction Arena Figma node pass is complete; direct Figma export is blocked by file permissions, so the section was tightened with existing local interface assets instead.
+- Visual repair pass is complete; Originals thumbnails are tighter, Hogamba now uses full local viewport SVGs, Prediction Arena no longer uses the slide track, and Capabilities has a simpler layout treatment.
+- Follow-up visual repair is complete; Markets now uses a single collage, `Our Products` previews temporarily reuse the full Chicken game art, Hogamba keeps a fixed viewport crop, and Prediction Arena uses a centered one-scene composition with square coin framing.
+- Hero width and arena cleanup pass is complete; the hero now fills large screens better, thumbnail cards no longer sit under the stats block, and Prediction Arena uses only the core product surfaces instead of stray floating assets.
+
 - Continue desktop Figma fidelity pass — user confirmed hero is acceptable, issues start at markets section and below.
 - Audit each section from markets downward against Figma: markets, originals, hogamba, prediction arena, capabilities, footer.
 - Phase 4 planning remains pending: adapt the layout for mobile, introduce the hamburger navigation, and simplify pinned desktop interactions for smaller viewports.
@@ -105,6 +119,16 @@ Recent decisions affecting current work:
 | 260425-phase1 | Phase 1 asset intake and content lock | 2026-04-25 | uncommitted | [260425-phase-1-asset-intake-content-lock](.planning/quick/260425-phase-1-asset-intake-content-lock/) |
 | 260425-phase2 | Phase 2 visual system reset | 2026-04-25 | uncommitted | [260425-phase-2-visual-system-reset](.planning/quick/260425-phase-2-visual-system-reset/) |
 | 260425-phase3 | Phase 3 hero and What We Build transition redesign | 2026-04-25 | uncommitted | [260425-phase-3-hero-transition-redesign](.planning/quick/260425-phase-3-hero-transition-redesign/) |
+| 260425-phase4 | Phase 4 product-led sections | 2026-04-25 | uncommitted | [260425-phase-4-product-led-sections](.planning/quick/260425-phase-4-product-led-sections/) |
+| 260425-phase5 | Phase 5 responsive mobile pass | 2026-04-25 | uncommitted | [260425-phase-5-responsive-mobile-pass](.planning/quick/260425-phase-5-responsive-mobile-pass/) |
+| 260425-phase6 | Phase 6 motion polish | 2026-04-25 | uncommitted | [260425-phase-6-motion-polish](.planning/quick/260425-phase-6-motion-polish/) |
+| 260425-hogamba-live | Use live Hogamba sources | 2026-04-25 | uncommitted | [260425-hogamba-live-source-pass](.planning/quick/260425-hogamba-live-source-pass/) |
+| 260425-positioning | Soften B2B positioning language | 2026-04-25 | uncommitted | [260425-positioning-soften-b2b-language](.planning/quick/260425-positioning-soften-b2b-language/) |
+| 260425-composition | Fix mobile composition for hero, Hogamba and Prediction Arena | 2026-04-25 | uncommitted | [260425-composition-fit-mobile-hogamba-arena](.planning/quick/260425-composition-fit-mobile-hogamba-arena/) |
+| 260425-no-placeholder-icons | Remove placeholder hero icons | 2026-04-25 | uncommitted | [260425-remove-placeholder-hero-icons](.planning/quick/260425-remove-placeholder-hero-icons/) |
+| 260425-new-hogamba-art | Try new Hogamba art | 2026-04-25 | uncommitted | [260425-try-new-hogamba-art](.planning/quick/260425-try-new-hogamba-art/) |
+| 260425-prediction-figma | Prediction Arena Figma asset pass | 2026-04-25 | uncommitted | [260425-prediction-arena-figma-asset-pass](.planning/quick/260425-prediction-arena-figma-asset-pass/) |
+| 260425-visual-repair | Visual repair for Originals, Hogamba, Prediction Arena, and Capabilities | 2026-04-25 | uncommitted | [260425-visual-repair-hogamba-prediction-originals](.planning/quick/260425-visual-repair-hogamba-prediction-originals/) |
 
 ## Deferred Items
 
