@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Navigation labels, contact email, section anchor offsets, Prediction Arena fit, and section reveal timing are tuned
-last_updated: "2026-04-26T14:27:06Z"
-last_activity: 2026-04-26 - Synced scroll reveal timing and adjusted navbar targets/content polish from the live browser review
+stopped_at: Originals featured frame keeps the Dice magenta glow across games and restores the inner art backdrop
+last_updated: "2026-04-26T14:29:10Z"
+last_activity: 2026-04-26 - Restored the Originals featured SVG backdrop and locked the card glow to the Dice-style magenta treatment
 progress:
   total_phases: 5
   completed_phases: 3
@@ -89,6 +89,7 @@ Recent decisions affecting current work:
 - Navigation/content polish: changed `Reach` to `Markets`, replaced `hello@gamio.io` with `socials@gamio.gg`, and tuned section scroll offsets so anchored navigation clears the fixed navbar more cleanly.
 - Motion polish: section reveals now run through one timeline per section instead of independent element triggers plus duplicate card/visual triggers, keeping labels, buttons, cards, and divs in a more synchronized scroll entrance.
 - Prediction Arena: reduced the central product image and section vertical spacing so the full composition fits better in one viewport and lands slightly higher from navbar navigation.
+- Originals frame correction: restored the embedded featured-art backdrop and made the featured card underglow consistent across Plinko, Mines, Chicken, and Dice.
 
 ### Pending Todos
 
@@ -149,6 +150,7 @@ Recent decisions affecting current work:
 | 260426-landing-checkpoint | Capture current landing page polish state | 2026-04-26 | local | [260426-landing-page-polish-checkpoint](.planning/quick/260426-landing-page-polish-checkpoint/) |
 | 260426-originals-frame | Soften Originals featured art frame | 2026-04-26 | local | [260426-originals-transparent-frame-fix](.planning/quick/260426-originals-transparent-frame-fix/) |
 | 260426-scroll-nav-polish | Tune navbar labels, anchors, contact email, Prediction Arena fit, and scroll reveals | 2026-04-26 | local | [260426-scroll-nav-animation-polish](.planning/quick/260426-scroll-nav-animation-polish/) |
+| 260426-originals-frame-restore | Restore Originals inner backdrop and lock magenta glow | 2026-04-26 | local | [260426-originals-frame-backdrop-restore](.planning/quick/260426-originals-frame-backdrop-restore/) |
 
 ## Deferred Items
 

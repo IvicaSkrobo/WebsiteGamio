@@ -1,4 +1,6 @@
 <svg width="595" height="332" viewBox="0 0 595 332" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="26.7412" y="11" width="540" height="290" rx="20" fill="#130814"/>
+<rect x="25.7412" y="10" width="542" height="292" rx="21" stroke="white" stroke-opacity="0.16" stroke-width="2"/>
 <g filter="url(#filter0_f_169_10588)">
 <path d="M297.242 252C417.221 252 514.483 214.836 514.483 168.992C514.483 123.148 417.221 85.9845 297.242 85.9845C177.262 85.9845 80 123.148 80 168.992C80 214.836 177.262 252 297.242 252Z" fill="#42184E"/>
 </g>
