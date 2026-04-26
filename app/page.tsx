@@ -1576,7 +1576,7 @@ export default function Home() {
                 imgClassName="h-full w-full object-contain p-2 transition-opacity duration-200 sm:p-3"
                 fallback={<ProductArtFallback name={activeOriginal.name} />}
               />
-              <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mt-4 flex flex-col gap-3 border-t pt-4 sm:flex-row sm:items-end sm:justify-between" style={{ borderColor: activeOriginal.accent + "55" }}>
                 <div>
                   <p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
                     Featured original
