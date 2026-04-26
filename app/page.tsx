@@ -78,7 +78,6 @@ const capabilityStreamingAsset = "/images/site/capability-streaming.svg";
 const capabilityWhitelabelAsset = "/images/site/capability-whitelabel.svg";
 
 const navItems: NavItem[] = [
-  { id: "about", label: "About" },
   { id: "markets", label: "Markets" },
   { id: "originals", label: "Originals" },
   { id: "hogamba", label: "Hogamba" },
@@ -1532,7 +1531,6 @@ export default function Home() {
         className="relative mx-auto w-full max-w-[1440px] scroll-mt-16 overflow-hidden px-6 py-16 lg:scroll-mt-16 lg:px-12 lg:pt-20 lg:pb-28"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/8" />
-        <div className="pointer-events-none absolute left-[-22rem] top-16 h-[41rem] w-[41rem] rounded-full bg-[radial-gradient(circle,rgba(255,0,132,0.34),rgba(255,0,132,0)_68%)] blur-[110px]" />
         <div className="relative mx-auto max-w-[1180px]">
           <div className="relative z-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
@@ -1567,8 +1565,8 @@ export default function Home() {
               data-motion-visual
               className="gamio-product-frame overflow-hidden rounded-[8px] p-3 sm:p-4"
               style={{
-                borderColor: `${activeOriginal.accent}38`,
-                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.06), 0 34px 110px ${activeOriginal.accent}1f`,
+                borderColor: `${activeOriginal.accent}55`,
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), 0 34px 110px rgba(209,0,111,0.14)",
               }}
             >
               <AssetImage
@@ -1580,7 +1578,7 @@ export default function Home() {
               />
               <div
                 className="mt-4 flex flex-col gap-3 border-t pt-4 sm:flex-row sm:items-end sm:justify-between"
-                style={{ borderColor: `${activeOriginal.accent}42` }}
+                style={{ borderColor: `${activeOriginal.accent}55` }}
               >
                 <div>
                   <p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-white/45">
@@ -1607,9 +1605,10 @@ export default function Home() {
                   className={cn(
                     "group grid grid-cols-[86px_1fr] gap-4 rounded-[8px] border p-3 text-left transition duration-300",
                     index === activeOriginalIndex
-                      ? "border-white/24 bg-white/[0.09]"
-                      : "border-white/10 bg-white/[0.035] hover:border-white/20 hover:bg-white/[0.065]",
+                      ? "bg-white/[0.09]"
+                      : "border-white/10 bg-white/[0.035] hover:bg-white/[0.065]",
                   )}
+                  style={index === activeOriginalIndex ? { borderColor: card.accent + "66" } : undefined}
                 >
                   <AssetImage
                     src={card.art}
