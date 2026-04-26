@@ -1624,7 +1624,8 @@ export default function Home() {
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <div className="relative">
+            {/* PC image with mobile overlay escaping the frame */}
+            <div className="relative pb-10 pr-6">
               <div data-reveal data-motion-visual className="gamio-product-frame relative overflow-hidden rounded-[8px] p-3">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_78%,rgba(124,255,63,0.15),rgba(124,255,63,0)_26%),radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.07),rgba(255,255,255,0)_24%)]" />
                 <div className="relative overflow-hidden rounded-[6px]">
@@ -1635,21 +1636,31 @@ export default function Home() {
                     imgClassName="h-auto w-full object-contain"
                     fallback={<HogambaGameFallback />}
                   />
-                  <div className="absolute bottom-3 right-3 w-[28%] drop-shadow-[0_16px_48px_rgba(0,0,0,0.72)]">
-                    <AssetImage
-                      src={hogambaMobileViewportAsset}
-                      alt="Hogamba mobile viewport"
-                      wrapperClassName="w-full rounded-[8px] overflow-hidden border border-white/10"
-                      imgClassName="h-auto w-full object-contain"
-                      fallback={null}
-                    />
-                  </div>
                 </div>
+              </div>
+              {/* Mobile breaks out of the frame */}
+              <div className="pointer-events-none absolute bottom-0 right-0 w-[32%] drop-shadow-[0_20px_56px_rgba(0,0,0,0.8)]">
+                <AssetImage
+                  src={hogambaMobileViewportAsset}
+                  alt="Hogamba mobile viewport"
+                  wrapperClassName="w-full rounded-[10px] overflow-hidden border border-white/12 shadow-[0_0_0_1px_rgba(255,255,255,0.06)]"
+                  imgClassName="h-auto w-full object-contain"
+                  fallback={null}
+                />
               </div>
             </div>
 
             <div className="grid gap-3">
-              <div data-reveal data-motion-card className="gamio-surface rounded-[8px] p-5 lg:p-6">
+              {/* Main card — lootbox breaks out of the top */}
+              <div data-reveal data-motion-card className="gamio-surface relative overflow-visible rounded-[8px] p-5 lg:p-6">
+                <div className="pointer-events-none absolute -top-11 right-5 w-[72px]">
+                  <img
+                    src="/images/hogamba/Lootbox Epic Closed.svg"
+                    alt=""
+                    className="h-auto w-full drop-shadow-[0_12px_36px_rgba(140,255,56,0.28)]"
+                    style={{ filter: "drop-shadow(0 0 12px rgba(140,255,56,0.22))" }}
+                  />
+                </div>
                 <p className="font-display text-[1.65rem] leading-tight font-bold text-white">
                   A complete crash-game world with progression, loot moments and a strong visual identity.
                 </p>
@@ -1661,21 +1672,41 @@ export default function Home() {
               </div>
 
               <div className="grid gap-3 md:grid-cols-2">
-                {hogambaFeatureCards.slice(0, 2).map((card) => (
-                  <article
-                    key={card.title}
-                    data-reveal
-                    data-motion-card
-                    className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4"
-                  >
-                    <h3 className="font-display text-[16px] leading-tight font-bold text-white">
-                      {card.title}
-                    </h3>
-                    <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
-                      {card.description}
-                    </p>
-                  </article>
-                ))}
+                {/* Skins card — with item strip */}
+                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                  <h3 className="font-display text-[16px] leading-tight font-bold text-white">
+                    {hogambaFeatureCards[0].title}
+                  </h3>
+                  <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
+                    {hogambaFeatureCards[0].description}
+                  </p>
+                  <div className="mt-4 flex items-end gap-2">
+                    {[
+                      "/images/hogamba/parachute_hogamba 1.png",
+                      "/images/hogamba/parachute_death.png",
+                      "/images/hogamba/death_head.png",
+                      "/images/hogamba/christmas_hat_3 1.png",
+                    ].map((src) => (
+                      <img
+                        key={src}
+                        src={src}
+                        alt=""
+                        className="h-10 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+                      />
+                    ))}
+                    <span className="font-body ml-1 text-[10px] font-bold text-white/38">+200 items</span>
+                  </div>
+                </article>
+
+                {/* Influencer card — unchanged */}
+                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                  <h3 className="font-display text-[16px] leading-tight font-bold text-white">
+                    {hogambaFeatureCards[1].title}
+                  </h3>
+                  <p className="font-body mt-3 text-[13px] leading-[1.45] text-white/62">
+                    {hogambaFeatureCards[1].description}
+                  </p>
+                </article>
               </div>
             </div>
           </div>
