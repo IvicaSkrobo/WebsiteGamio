@@ -1693,18 +1693,16 @@ export default function Home() {
                   fallback={null}
                 />
               </div>
-            </div>
-
-            <div className="relative grid gap-3">
-              {/* Lootbox — floats above top card, clear of text */}
-              <div className="pointer-events-none absolute -top-14 -right-10 z-20 w-[110px]">
+              <div className="pointer-events-none absolute left-[-18px] top-[8%] z-20 w-[118px] -rotate-6 drop-shadow-[0_22px_54px_rgba(0,0,0,0.72)] sm:w-[140px] lg:left-[-26px] lg:top-[10%] lg:w-[168px]">
                 <img
                   src="/images/hogamba/Lootbox Epic Closed.png"
                   alt=""
-                  className="h-auto w-full drop-shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
+                  className="h-auto w-full"
                 />
               </div>
+            </div>
 
+            <div className="relative grid gap-3">
               {/* Progression header card */}
               <div data-reveal data-motion-card className="gamio-surface rounded-[8px] p-5 lg:p-6">
                 <p className="font-display text-[1.4rem] leading-tight font-bold text-white lg:text-[1.5rem]">
