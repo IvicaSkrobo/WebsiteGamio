@@ -1815,7 +1815,7 @@ export default function Home() {
                   <img
                     src={`${BASE}/images/hogamba/Lootbox Epic Closed.png`}
                     alt=""
-                    className="pointer-events-none absolute -right-3 -top-10 z-10 w-[120px] -rotate-6 object-contain drop-shadow-[0_18px_40px_rgba(168,85,247,0.55)] lg:hidden"
+                    className="pointer-events-none absolute -right-4 top-1/2 z-10 w-[170px] -translate-y-1/2 -rotate-6 object-contain drop-shadow-[0_18px_40px_rgba(168,85,247,0.55)] lg:hidden"
                   />
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[0].title}
@@ -1830,23 +1830,23 @@ export default function Home() {
                       <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
                         <img src={`${BASE}/images/hogamba/christmas_hat_3 1.png`} alt="" className="h-6 w-6 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] lg:h-8 lg:w-8" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white lg:inline">Common</span>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#3b9eff] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Common</span>
                     </div>
                     {/* EPIC — purple */}
                     <div className="relative flex-shrink-0">
                       <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#a855f7] bg-[rgba(168,85,247,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 12px rgba(168,85,247,0.3), inset 0 0 8px rgba(168,85,247,0.06)" }}>
                         <img src={`${BASE}/images/hogamba/parachute_hogamba 1.png`} alt="" className="h-6 w-6 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] lg:h-8 lg:w-8" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white lg:inline">Epic</span>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#a855f7] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-white">Epic</span>
                     </div>
                     {/* LEGENDARY — gold */}
                     <div className="relative flex-shrink-0">
                       <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#f59e0b] bg-[rgba(245,158,11,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 14px rgba(245,158,11,0.38), inset 0 0 8px rgba(245,158,11,0.07)" }}>
                         <img src={`${BASE}/images/hogamba/death_head.png`} alt="" className="h-6 w-6 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] lg:h-8 lg:w-8" />
                       </div>
-                      <span className="absolute -bottom-2 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black lg:inline">Legend</span>
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black">Legend</span>
                     </div>
-                    <span className="font-body ml-2 text-[10px] font-bold text-white/35">+200<br/>items</span>
+                    <span className="font-body text-[10px] font-bold text-white/35">+200<br/>items</span>
                   </div>
                 </article>
 
