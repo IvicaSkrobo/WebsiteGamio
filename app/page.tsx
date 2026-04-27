@@ -1810,7 +1810,13 @@ export default function Home() {
               {/* All 4 feature cards in 2×2 grid */}
               <div className="grid gap-3 sm:grid-cols-2">
                 {/* Skins — with rarity showcase */}
-                <article data-reveal data-motion-card className="rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                <article data-reveal data-motion-card className="relative overflow-visible rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
+                  {/* Lootbox — fills dead space on mobile, hidden on desktop (shown in Hogamba image instead) */}
+                  <img
+                    src={`${BASE}/images/hogamba/Lootbox Epic Closed.png`}
+                    alt=""
+                    className="pointer-events-none absolute -right-4 top-1/2 z-10 w-[88px] -translate-y-[55%] rotate-[12deg] object-contain drop-shadow-[0_12px_28px_rgba(168,85,247,0.45)] lg:hidden"
+                  />
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[0].title}
                   </h3>
@@ -1818,7 +1824,7 @@ export default function Home() {
                   <p className="font-body mt-2 hidden text-[12px] leading-[1.4] text-white/55 lg:block">
                     {hogambaFeatureCards[0].description}
                   </p>
-                  <div className="mt-2 flex items-center gap-2">
+                  <div className="mt-2 flex items-center gap-2 pr-14 lg:pr-0">
                     {/* COMMON — blue */}
                     <div className="relative flex-shrink-0">
                       <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
