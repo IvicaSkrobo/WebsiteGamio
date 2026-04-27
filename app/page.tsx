@@ -1364,9 +1364,9 @@ export default function Home() {
             }}
           >
             {[
-              { label: "Prediction arenas", image: `${BASE}/images/prediction-arena/coin.png`,  color: "#ff6b35", pos: "absolute top-2 right-2 z-20 h-[64px] w-[64px] lg:-top-10 lg:-right-6 lg:h-[84px] lg:w-[84px]" },
-              { label: "Instant games",      image: `${BASE}/images/originals/chicken.png`,       color: "#d1006f", pos: "absolute top-[36%] -right-1 z-20 h-[90px] w-[90px] lg:top-[40%] lg:-right-10 lg:h-[124px] lg:w-[124px] lg:-translate-y-1/2" },
-              { label: "Multiplayer chaos",  image: `${BASE}/images/hogamba/mascot.png`,          color: "#4f8cff", pos: "absolute top-[58%] right-0 z-20 h-[110px] w-[110px] lg:top-auto lg:-bottom-14 lg:-right-10 lg:h-[132px] lg:w-[132px]" },
+              { label: "Prediction arenas", image: `${BASE}/images/prediction-arena/coin.png`,  color: "#ff6b35", pos: "absolute top-[4%] -right-8 z-20 h-[72px] w-[72px] lg:-top-10 lg:-right-6 lg:h-[84px] lg:w-[84px]" },
+              { label: "Instant games",      image: `${BASE}/images/originals/chicken.png`,       color: "#d1006f", pos: "absolute top-[34%] -right-10 z-20 h-[92px] w-[92px] lg:top-[40%] lg:h-[124px] lg:w-[124px] lg:-translate-y-1/2" },
+              { label: "Multiplayer chaos",  image: `${BASE}/images/hogamba/mascot.png`,          color: "#4f8cff", pos: "absolute top-[60%] -right-9 z-20 h-[112px] w-[112px] lg:top-auto lg:-bottom-14 lg:-right-10 lg:h-[132px] lg:w-[132px]" },
             ].map(({ label, image, color, pos }) => {
               const isActive = (hoveredBuildCategory ?? autoBuildCategory) === label;
               return (
