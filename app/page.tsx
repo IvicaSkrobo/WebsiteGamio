@@ -1374,7 +1374,7 @@ export default function Home() {
                   key={label}
                   src={image}
                   alt=""
-                  className={`pointer-events-none object-contain hidden lg:block ${pos}`}
+                  className={`pointer-events-none object-contain ${pos}`}
                   style={{
                     opacity: isActive ? 1 : 0,
                     transform: isActive ? "scale(1)" : "scale(0.7)",
@@ -1917,16 +1917,16 @@ export default function Home() {
             </div>
           </div>
 
-          <div data-reveal data-motion-visual className="relative mt-6 hidden lg:mt-9 lg:block">
+          <div data-reveal data-motion-visual className="relative mt-6 max-h-[220px] overflow-hidden lg:mt-9 lg:max-h-none lg:overflow-visible">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(79,140,255,0.14),rgba(79,140,255,0)_28%),radial-gradient(circle_at_22%_82%,rgba(255,79,59,0.08),rgba(255,79,59,0)_24%)]" />
             {/* Main ChatArena image */}
             <img
               src={chatArenaGroupedAsset}
               alt="Prediction Arena interface"
-              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] lg:translate-x-[10%]"
+              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] lg:translate-x-[140px]"
             />
             {/* Strong bottom fade — hides sharp image cut */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-48 bg-gradient-to-t from-[#080808] via-[rgba(8,8,8,0.9)] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-[#080808] to-transparent lg:h-48 lg:via-[rgba(8,8,8,0.9)]" />
             {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
             <div className="absolute top-[68%] left-1/2 z-30 hidden w-[48%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[36%] lg:flex lg:w-[22%]">
               <p className="font-display text-center text-[15px] leading-none font-bold text-white">
