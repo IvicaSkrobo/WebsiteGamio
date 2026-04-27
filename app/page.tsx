@@ -1903,7 +1903,7 @@ export default function Home() {
             <div className="mt-6 hidden gap-3 sm:grid-cols-3 lg:grid">
               {[
                 "Live event framing that reads instantly.",
-                "Chat, odds and motion cues kept in the same surface.",
+                "Chat, odds and motion cues on one surface.",
                 "Collectibles and tokens used as accents, not scattered clutter.",
               ].map((line) => (
                 <div
@@ -1917,18 +1917,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div data-reveal data-motion-visual className="relative mt-6 hidden lg:mt-9 lg:block">
+          <div data-reveal data-motion-visual className="relative mt-6 lg:mt-9">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(79,140,255,0.14),rgba(79,140,255,0)_28%),radial-gradient(circle_at_22%_82%,rgba(255,79,59,0.08),rgba(255,79,59,0)_24%)]" />
             {/* Main ChatArena image */}
             <img
               src={chatArenaGroupedAsset}
               alt="Prediction Arena interface"
-              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] lg:translate-x-[-7%]"
+              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] lg:translate-x-[4%]"
             />
             {/* Strong bottom fade — hides sharp image cut */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-48 bg-gradient-to-t from-[#080808] via-[rgba(8,8,8,0.9)] to-transparent" />
             {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
-            <div className="absolute top-[68%] left-1/2 z-30 w-[48%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[36%] lg:w-[22%]">
+            <div className="absolute top-[68%] left-1/2 z-30 hidden w-[48%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[36%] lg:flex lg:w-[22%]">
               <p className="font-display text-center text-[15px] leading-none font-bold text-white">
                 Prediction
               </p>
@@ -2056,7 +2056,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 mt-16 border-t border-white/8 px-2 pt-6 text-sm text-white/55 lg:px-6">
-          Gamio. All Rights reserved.
+          © Gamio. All rights reserved.
         </div>
       </footer>
     </main>
