@@ -1923,12 +1923,12 @@ export default function Home() {
             <img
               src={chatArenaGroupedAsset}
               alt="Prediction Arena interface"
-              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] translate-x-[4%] lg:translate-x-[140px]"
+              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] translate-x-[4%] lg:translate-x-[110px]"
             />
             {/* Strong bottom fade — hides sharp image cut */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-[#080808] to-transparent lg:h-48 lg:via-[rgba(8,8,8,0.9)]" />
             {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
-            <div className="absolute top-[68%] left-1/2 z-30 hidden w-[48%] -translate-x-1/2 rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[36%] lg:flex lg:w-[22%]">
+            <div className="absolute top-[68%] left-1/2 z-30 hidden w-[48%] -translate-x-1/2 flex-col rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[36%] lg:flex lg:w-[22%]">
               <p className="font-display text-center text-[15px] leading-none font-bold text-white">
                 Prediction
               </p>
