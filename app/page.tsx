@@ -1928,15 +1928,15 @@ export default function Home() {
             {/* Strong bottom fade — hides sharp image cut */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-[#080808] to-transparent lg:h-48 lg:via-[rgba(8,8,8,0.9)]" />
             {/* Prediction bar — overlaid over the bottom of the ChatArena image */}
-            <div className="absolute top-[68%] left-1/2 z-30 hidden w-[48%] -translate-x-1/2 flex-col rounded-[10px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-4 py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[36%] lg:flex lg:w-[22%]">
-              <p className="font-display text-center text-[15px] leading-none font-bold text-white">
+            <div className="absolute top-[62%] left-1/2 z-30 flex w-[52%] -translate-x-1/2 flex-col rounded-[8px] border border-[#f9bcae] bg-[rgba(38,12,7,0.88)] px-3 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.48)] backdrop-blur-[12px] sm:w-[40%] lg:top-[68%] lg:w-[22%] lg:rounded-[10px] lg:px-4 lg:py-3.5">
+              <p className="font-display text-center text-[12px] leading-none font-bold text-white lg:text-[15px]">
                 Prediction
               </p>
-              <div className="mt-4 flex overflow-hidden rounded-full">
-                <div className="h-2.5 w-[64%] bg-[linear-gradient(90deg,#0056c6,#507fff)]" />
-                <div className="h-2.5 w-[36%] bg-[linear-gradient(90deg,#ff364f,#ee001e)]" />
+              <div className="mt-2.5 flex overflow-hidden rounded-full lg:mt-4">
+                <div className="h-2 w-[64%] bg-[linear-gradient(90deg,#0056c6,#507fff)] lg:h-2.5" />
+                <div className="h-2 w-[36%] bg-[linear-gradient(90deg,#ff364f,#ee001e)] lg:h-2.5" />
               </div>
-              <div className="mt-2 flex justify-between text-[9px] leading-none text-white/70">
+              <div className="mt-1.5 flex justify-between text-[8px] leading-none text-white/70 lg:mt-2 lg:text-[9px]">
                 <span>COMPLETE</span>
                 <span>FAIL</span>
               </div>
