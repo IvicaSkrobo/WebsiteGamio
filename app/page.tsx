@@ -1923,7 +1923,7 @@ export default function Home() {
             <img
               src={chatArenaGroupedAsset}
               alt="Prediction Arena interface"
-              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] lg:translate-x-[140px]"
+              className="relative z-10 mx-auto h-auto w-full max-w-[840px] object-contain drop-shadow-[0_30px_90px_rgba(0,0,0,0.44)] translate-x-[8%] lg:translate-x-[140px]"
             />
             {/* Strong bottom fade — hides sharp image cut */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-[#080808] to-transparent lg:h-48 lg:via-[rgba(8,8,8,0.9)]" />
