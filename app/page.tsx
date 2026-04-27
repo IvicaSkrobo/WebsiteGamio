@@ -195,7 +195,7 @@ function formatTransactions(value: number) {
     currency: "EUR",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(value).replace("€", "€ ");
+  }).format(value);
 }
 
 function AssetImage({
@@ -1302,13 +1302,13 @@ export default function Home() {
           </div>
           <div className="gamio-hud flex min-h-[88px] flex-col items-center justify-center rounded-[8px] px-3 py-4 text-center text-white sm:px-5">
             <p className="font-body text-[11px] leading-[16px] font-bold tracking-[0.08em] text-white/62 uppercase sm:text-[12px]">
-              Total transactions
+              Total volume paid out
             </p>
             <p
               ref={transactionCountRef}
               className="font-display mt-1 text-[2rem] leading-none font-bold tracking-[0] text-[#ffd7a8] sm:text-[2.35rem] lg:text-[31px]"
             >
-              € 303,980.99
+              €303,980.99
             </p>
           </div>
         </div>
