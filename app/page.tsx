@@ -1785,7 +1785,7 @@ export default function Home() {
                   fallback={null}
                 />
               </div>
-              <div className="pointer-events-none absolute bottom-[-24px] left-[31%] z-20 w-[132px] -translate-x-1/2 -rotate-6 drop-shadow-[0_22px_54px_rgba(0,0,0,0.72)] sm:w-[156px] lg:bottom-[-40px] lg:left-[67%] lg:w-[190px]">
+              <div className="pointer-events-none absolute bottom-[-24px] left-[31%] z-20 hidden w-[132px] -translate-x-1/2 -rotate-6 drop-shadow-[0_22px_54px_rgba(0,0,0,0.72)] sm:w-[156px] lg:bottom-[-40px] lg:left-[67%] lg:block lg:w-[190px]">
                 <img
                   src={`${BASE}/images/hogamba/Lootbox Epic Closed.png`}
                   alt=""
@@ -1811,11 +1811,11 @@ export default function Home() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {/* Skins — with rarity showcase */}
                 <article data-reveal data-motion-card className="relative overflow-visible rounded-[8px] border border-[rgba(140,255,56,0.14)] bg-[rgba(140,255,56,0.035)] p-4">
-                  {/* Lootbox — fills dead space on mobile, hidden on desktop (shown in Hogamba image instead) */}
+                  {/* Lootbox — positioned over the top-right of the Skins card on mobile */}
                   <img
                     src={`${BASE}/images/hogamba/Lootbox Epic Closed.png`}
                     alt=""
-                    className="pointer-events-none absolute -right-4 top-1/2 z-10 w-[88px] -translate-y-[55%] rotate-[12deg] object-contain drop-shadow-[0_12px_28px_rgba(168,85,247,0.45)] lg:hidden"
+                    className="pointer-events-none absolute -right-3 -top-10 z-10 w-[120px] -rotate-6 object-contain drop-shadow-[0_18px_40px_rgba(168,85,247,0.55)] lg:hidden"
                   />
                   <h3 className="font-display text-[15px] leading-tight font-bold text-white">
                     {hogambaFeatureCards[0].title}
@@ -1824,7 +1824,7 @@ export default function Home() {
                   <p className="font-body mt-2 hidden text-[12px] leading-[1.4] text-white/55 lg:block">
                     {hogambaFeatureCards[0].description}
                   </p>
-                  <div className="mt-2 flex items-center gap-2 pr-14 lg:pr-0">
+                  <div className="mt-2 flex items-center gap-2">
                     {/* COMMON — blue */}
                     <div className="relative flex-shrink-0">
                       <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[7px] border-2 border-[#3b9eff] bg-[rgba(59,158,255,0.08)] lg:h-[44px] lg:w-[44px]" style={{ boxShadow: "0 0 12px rgba(59,158,255,0.3), inset 0 0 8px rgba(59,158,255,0.06)" }}>
@@ -1846,7 +1846,7 @@ export default function Home() {
                       </div>
                       <span className="absolute -bottom-2 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-full bg-[#f59e0b] px-1.5 py-px text-[8px] font-bold uppercase tracking-[0.08em] text-black lg:inline">Legend</span>
                     </div>
-                    <span className="font-body ml-auto text-[10px] font-bold text-white/35">+200<br/>items</span>
+                    <span className="font-body ml-2 text-[10px] font-bold text-white/35">+200<br/>items</span>
                   </div>
                 </article>
 
